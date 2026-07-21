@@ -1054,6 +1054,26 @@ img, svg { display: block; }
 #tools .mini-foot { display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.6rem; border-top: 1px solid var(--border); font-size: 0.66rem; color: var(--muted-foreground); }
 #tools .mini-foot .icon.ok { color: var(--chart-2); }
 
+/* ============ SECURITY CLEARANCE (assurance matrix) ============ */
+#security .sc-matrix { border: 1px solid var(--border); }
+#security .sc-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); }
+@media (min-width: 620px) { #security .sc-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 940px) { #security .sc-grid { grid-template-columns: 1fr 1fr 1fr; } }
+#security .sc-cell { padding: 1.35rem 1.4rem; background: var(--card); }
+#security .g-item { display: flex; gap: 0.7rem; align-items: flex-start; }
+#security .g-item > .icon { font-size: 1.05rem; color: var(--chart-3); margin-top: 0.1rem; }
+#security .g-item .g-t { font-weight: 600; font-size: 0.82rem; }
+#security .g-item .g-d { color: var(--muted-foreground); font-size: 0.76rem; line-height: 1.5; }
+#security .sc-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.4rem; border-top: 1px solid var(--border); background: var(--muted); }
+#security .certs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+#security .cert { display: inline-flex; align-items: center; gap: 0.45rem; border: 1px solid var(--border); background: var(--card); padding: 0.4rem 0.65rem; font-size: 0.72rem; font-weight: 500; }
+#security .cert .icon { font-size: 0.95rem; color: var(--foreground); }
+#security .cert .st { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-foreground); padding-left: 0.4rem; margin-left: 0.15rem; border-left: 1px solid var(--border); }
+#security .sec-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 600; color: var(--foreground); border-bottom: 1px solid var(--border); padding-bottom: 0.1rem; transition: border-color 0.18s var(--ease-out); }
+#security .sec-link:hover { border-color: var(--foreground); }
+#security .sec-link .icon { color: var(--chart-3); transition: transform 0.18s var(--ease-out); }
+#security .sec-link:hover .icon { transform: translateX(2px); }
+
 /* demo vs production */
 .section-head .vs-stat {
   font-family: var(--font-heading); font-weight: 900;
@@ -1745,6 +1765,34 @@ img, svg { display: block; }
             </div>
             <div class="mini-foot"><i class="ri-checkbox-circle-fill icon ok"></i> Traced &middot; approved &middot; reversible</div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECURITY CLEARANCE ============ -->
+  <section class="section reveal" id="security">
+    <div class="container">
+      <div class="section-head">
+        <h2>Governed, private, and yours</h2>
+        <p>The controls a security team looks for, built in rather than bolted on.</p>
+      </div>
+      <div class="sc-matrix">
+        <div class="sc-grid">
+          <div class="sc-cell g-item"><i class="ri-lock-2-line icon" aria-hidden="true"></i><div><div class="g-t">Role-based access</div><div class="g-d">Scope agents, tasks and connections per person and team.</div></div></div>
+          <div class="sc-cell g-item"><i class="ri-shield-keyhole-line icon" aria-hidden="true"></i><div><div class="g-t">Never trained on your data</div><div class="g-d">Prompts, files and outputs stay out of model training.</div></div></div>
+          <div class="sc-cell g-item"><i class="ri-git-branch-line icon" aria-hidden="true"></i><div><div class="g-t">Encrypted in transit and at rest</div><div class="g-d">Standard encryption on every run and stored artifact.</div></div></div>
+          <div class="sc-cell g-item"><i class="ri-file-list-3-line icon" aria-hidden="true"></i><div><div class="g-t">Tamper-evident audit log</div><div class="g-d">Every run traceable to the exact prompt and model.</div></div></div>
+          <div class="sc-cell g-item"><i class="ri-user-follow-line icon" aria-hidden="true"></i><div><div class="g-t">Human-in-the-loop</div><div class="g-d">Approval gates before sensitive actions run.</div></div></div>
+          <div class="sc-cell g-item"><i class="ri-key-2-line icon" aria-hidden="true"></i><div><div class="g-t">SSO, SAML, no lock-in</div><div class="g-d">Your identity provider; export data and definitions anytime.</div></div></div>
+        </div>
+        <div class="sc-foot">
+          <div class="certs">
+            <span class="cert"><i class="ri-shield-check-line icon" aria-hidden="true"></i>SOC 2 Type II<span class="st">In progress</span></span>
+            <span class="cert"><i class="ri-government-line icon" aria-hidden="true"></i>GDPR aligned</span>
+            <span class="cert"><i class="ri-map-pin-line icon" aria-hidden="true"></i>EU data residency</span>
+          </div>
+          <a class="sec-link" href="#cta">Talk to us about security<i class="ri-arrow-right-line icon" aria-hidden="true"></i></a>
         </div>
       </div>
     </div>

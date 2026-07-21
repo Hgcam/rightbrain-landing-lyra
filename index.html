@@ -7,8 +7,13 @@
 <meta name="description" content="Build reliable agents, operate them at scale. AI that follows your business rules, plugs into your existing tools, and executes tasks around the clock.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+</noscript>
 <style>
 /* ============ Lyra / taupe tokens ============ */
 :root {
@@ -155,7 +160,8 @@ img, svg { display: block; }
 .dark .logo-mark .logo-mark-for-light { display: none; }
 .dark .logo-mark .logo-mark-for-dark { display: block; }
 .logo-name { font-family: var(--font-mono); font-weight: 600; font-size: 0.9375rem; text-transform: lowercase; }
-.logo-name .logo-tld { color: var(--chart-2); }
+.logo-name .logo-tld { color: var(--chart-4); }
+.dark .logo-name .logo-tld { color: var(--chart-2); }
 .nav-links { display: none; align-items: center; gap: 0.25rem; }
 @media (min-width: 900px) { .nav-links { display: flex; } }
 .nav-links a {
@@ -1266,7 +1272,7 @@ img, svg { display: block; }
 .footer-grid { display: grid; gap: 2.5rem; }
 @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; } }
 .footer-brand p { font-size: 0.8125rem; color: var(--muted-foreground); margin-top: 0.875rem; max-width: 18rem; }
-.footer-col h4 { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--muted-foreground); margin-bottom: 0.875rem; }
+.footer-col h3 { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--muted-foreground); margin-bottom: 0.875rem; }
 .footer-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.125rem; }
 .footer-col a { display: inline-flex; align-items: center; min-height: 2rem; font-size: 0.8125rem; color: var(--foreground); text-decoration: none; }
 @media (hover: hover) and (pointer: fine) {
@@ -1386,7 +1392,7 @@ img, svg { display: block; }
 </header>
 
 <div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Menu">
+<aside class="drawer" id="drawer" aria-hidden="true" inert aria-label="Menu">
   <div class="drawer-head">
     <a class="logo" href="#top" aria-label="Rightbrain home">
       <span class="logo-mark" aria-hidden="true">
@@ -1938,14 +1944,14 @@ img, svg { display: block; }
         <p>Build reliable agents. Run them at scale.</p>
       </div>
       <div class="footer-col">
-        <h4>Community</h4>
+        <h3>Community</h3>
         <ul>
           <li><a href="https://rightbrain.ai/b2b-services">B2B Services</a></li>
           <li><a href="https://rightbrain.ai/platform-partners">Partners Program</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Support</h4>
+        <h3>Support</h3>
         <ul>
           <li><a href="https://rightbrain-developers.slack.com/join/shared_invite/zt-2mt5nyavm-IiYim_3HzoJki7wr8oeHug#/shared-invite/email">Slack Group</a></li>
           <li><a href="https://rightbrain.ai/brand-kit">Brand Kit</a></li>
@@ -1953,7 +1959,7 @@ img, svg { display: block; }
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Legal</h4>
+        <h3>Legal</h3>
         <ul>
           <li><a href="https://rightbrain.ai/acceptable-use">Acceptable Use</a></li>
           <li><a href="https://rightbrain.ai/data-processing">Data Processing</a></li>
@@ -2019,6 +2025,7 @@ img, svg { display: block; }
   function setDrawer(open) {
     drawer.classList.toggle('open', open);
     scrim.classList.toggle('open', open);
+    drawer.toggleAttribute('inert', !open);
     drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
     menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     document.body.style.overflow = open ? 'hidden' : '';

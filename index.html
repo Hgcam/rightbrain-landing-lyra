@@ -1069,10 +1069,6 @@ img, svg { display: block; }
 #security .cert { display: inline-flex; align-items: center; gap: 0.45rem; border: 1px solid var(--border); background: var(--card); padding: 0.4rem 0.65rem; font-size: 0.72rem; font-weight: 500; }
 #security .cert .icon { font-size: 0.95rem; color: var(--foreground); }
 #security .cert .st { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-foreground); padding-left: 0.4rem; margin-left: 0.15rem; border-left: 1px solid var(--border); }
-#security .sec-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 600; color: var(--foreground); border-bottom: 1px solid var(--border); padding-bottom: 0.1rem; transition: border-color 0.18s var(--ease-out); }
-#security .sec-link:hover { border-color: var(--foreground); }
-#security .sec-link .icon { color: var(--chart-3); transition: transform 0.18s var(--ease-out); }
-#security .sec-link:hover .icon { transform: translateX(2px); }
 
 /* demo vs production */
 .section-head .vs-stat {
@@ -1792,7 +1788,7 @@ img, svg { display: block; }
             <span class="cert"><i class="ri-government-line icon" aria-hidden="true"></i>GDPR aligned</span>
             <span class="cert"><i class="ri-map-pin-line icon" aria-hidden="true"></i>EU data residency</span>
           </div>
-          <a class="sec-link" href="#cta">Talk to us about security<i class="ri-arrow-right-line icon" aria-hidden="true"></i></a>
+          <a class="btn btn-outline" href="#cta">Talk to us about security</a>
         </div>
       </div>
     </div>

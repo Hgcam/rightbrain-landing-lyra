@@ -1257,18 +1257,19 @@ img, svg { display: block; }
 .quote footer { font-size: 0.75rem; color: var(--muted-foreground); }
 .quote footer b { color: var(--foreground); font-weight: 600; }
 
-/* service tiers */
-.tiers { display: grid; gap: 1.25rem; }
-@media (min-width: 900px) { .tiers { grid-template-columns: repeat(3, 1fr); } }
-.tier { border: 1px solid var(--border); display: flex; flex-direction: column; }
-.tier-head { padding: 1.5rem 1.5rem 1.25rem; border-bottom: 1px solid var(--border); }
-.tier-kind { font-size: 0.75rem; color: var(--muted-foreground); margin-bottom: 0.625rem; }
-.tier-head h3 { font-size: 1.125rem; margin-bottom: 0.5rem; }
-.tier-head p { font-size: 0.8125rem; color: var(--muted-foreground); }
-.tier .check-list { padding: 1.25rem 1.5rem 1.5rem; }
-.tier.featured { border-color: var(--foreground); }
-.tier.featured .tier-head { background: var(--muted); }
-.tier-note { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; font-size: 0.8125rem; color: var(--muted-foreground); }
+/* service tiers (Option A - three-tier spectrum) */
+.tiers { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); grid-template-columns: 1fr; }
+@media (min-width: 720px) { .tiers { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1040px) { .tiers { grid-template-columns: 1fr 1.25fr 1fr; } }
+.tier { background: var(--card); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+@media (min-width: 1040px) { .tier.featured { background: var(--muted); } }
+.tier-kind { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-foreground); }
+.tier-kind .dot { width: 6px; height: 6px; flex: none; background: var(--chart-3); }
+.tier-head h3 { font-size: 1.05rem; margin-top: 0.4rem; margin-bottom: 0.4rem; }
+.tier-head p { font-size: 0.82rem; color: var(--muted-foreground); line-height: 1.5; }
+.tier .check-list { margin-top: auto; }
+.tier-note { margin-top: 1.75rem; font-size: 0.8125rem; color: var(--muted-foreground); }
+.tier-note a { margin-top: 1rem; }
 
 /* case study */
 .case-grid { display: grid; gap: 2.5rem; }
@@ -1937,7 +1938,7 @@ img, svg { display: block; }
       <div class="tiers reveal-stagger">
         <div class="tier">
           <div class="tier-head">
-            <p class="tier-kind">Platform</p>
+            <span class="tier-kind">Platform</span>
             <h3>Build it yourself</h3>
             <p>Full access to the platform. Your team builds, deploys, and manages agents on your own timeline.</p>
           </div>
@@ -1950,7 +1951,7 @@ img, svg { display: block; }
         </div>
         <div class="tier featured">
           <div class="tier-head">
-            <p class="tier-kind">Agents &middot; most teams start here</p>
+            <span class="tier-kind"><span class="dot"></span>Agents &middot; most teams start here</span>
             <h3>We build it with you</h3>
             <p>Purpose-built agents for your core workflows. We design, integrate, test, and deploy while you stay focused on results.</p>
           </div>
@@ -1963,7 +1964,7 @@ img, svg { display: block; }
         </div>
         <div class="tier">
           <div class="tier-head">
-            <p class="tier-kind">Delivery</p>
+            <span class="tier-kind">Delivery</span>
             <h3>We run it for you</h3>
             <p>Our team handles everything end to end, from scoping to ongoing optimisation. Your team stays focused on the business.</p>
           </div>
@@ -1975,10 +1976,8 @@ img, svg { display: block; }
           </ul>
         </div>
       </div>
-      <div class="tier-note">
-        <span>Not sure which is right? Start with a conversation and we'll help you find the right level of involvement.</span>
-        <a class="btn btn-outline" href="#cta">Let's chat</a>
-      </div>
+      <p class="tier-note">Not sure which is right? Start with a conversation and we'll help you find the right level of involvement.</p>
+      <p style="margin-top:1rem"><a class="btn btn-outline" href="#cta">Let's chat</a></p>
     </div>
   </section>
 

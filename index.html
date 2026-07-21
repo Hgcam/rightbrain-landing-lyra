@@ -872,6 +872,25 @@ img, svg { display: block; }
 /* ============ sections ============ */
 .section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
 @media (min-width: 1024px) { .section { padding: 5.5rem 0; } }
+
+/* section rhythm (anchored): taupe wells for supporting sections, an inverted band for proof.
+   colour edges do the separating, so the hairline is dropped wherever the tone shifts. */
+.sec-well { background: var(--muted); border-bottom: 0; }
+.sec-invert { background: var(--primary); color: var(--primary-foreground); border-bottom: 0; }
+.section:has(+ .sec-well), .section:has(+ .sec-invert) { border-bottom: 0; }
+
+/* inverted case study */
+#case-study .section-head p { color: color-mix(in oklch, var(--primary-foreground) 74%, transparent); }
+#case-study .cs-band { background: color-mix(in oklch, var(--primary-foreground) 6%, transparent); border-color: color-mix(in oklch, var(--primary-foreground) 20%, transparent); }
+#case-study .stat { border-color: color-mix(in oklch, var(--primary-foreground) 18%, transparent); }
+#case-study .stat span { color: color-mix(in oklch, var(--primary-foreground) 72%, transparent); }
+#case-study .cs-quote { border-color: color-mix(in oklch, var(--primary-foreground) 18%, transparent); }
+#case-study .cs-quote footer { color: color-mix(in oklch, var(--primary-foreground) 74%, transparent); }
+#case-study .cs-quote footer b { color: var(--primary-foreground); }
+#case-study .pal-logo { background: var(--primary-foreground); }
+#case-study .btn-outline { border-color: color-mix(in oklch, var(--primary-foreground) 32%, transparent); color: var(--primary-foreground); }
+@media (hover: hover) and (pointer: fine) { #case-study .btn-outline:hover { background: color-mix(in oklch, var(--primary-foreground) 12%, transparent); } }
+
 .section-head { max-width: 40rem; margin-bottom: 3rem; }
 .section-head h2 { font-size: 1.5rem; margin-bottom: 0.875rem; }
 @media (min-width: 768px) { .section-head h2 { font-size: 1.875rem; } }
@@ -1271,15 +1290,31 @@ img, svg { display: block; }
 .tier-note { margin-top: 1.75rem; font-size: 0.8125rem; color: var(--muted-foreground); }
 .tier-note a { margin-top: 1rem; }
 
-/* case study */
-.case-grid { display: grid; gap: 2.5rem; }
-@media (min-width: 1024px) { .case-grid { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 4rem; align-items: start; } }
-.stats { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--border); }
-.stat { padding: 1.5rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+/* case study (Option B - full-width metric band, quote below) */
+.cs-band { border: 1px solid var(--border); background: var(--muted); }
+.cs-logo { padding: 1.25rem 1.5rem 0; text-align: center; }
+.pal-logo {
+  width: 110px; height: 32px; display: inline-block;
+  background: var(--foreground);
+  mask-image: url('assets/brands/pal-health.png');
+  -webkit-mask-image: url('assets/brands/pal-health.png');
+  mask-size: contain; -webkit-mask-size: contain;
+  mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
+  mask-position: center; -webkit-mask-position: center;
+}
+.stats { display: grid; grid-template-columns: 1fr 1fr; }
+@media (min-width: 720px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+.stat { padding: 1.75rem 1.5rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
+@media (min-width: 720px) { .stat { border-bottom: 0; } }
 .stat:nth-child(2n) { border-right: 0; }
-.stat:nth-child(n+3) { border-bottom: 0; }
+@media (min-width: 720px) { .stat:nth-child(2n) { border-right: 1px solid var(--border); } }
+.stat:last-child { border-right: 0; }
 .stat b { display: block; font-family: var(--font-mono); font-size: 1.75rem; font-weight: 600; margin-bottom: 0.25rem; font-variant-numeric: tabular-nums; }
 .stat span { font-size: 0.75rem; color: var(--muted-foreground); }
+.cs-quote { border-top: 1px solid var(--border); padding: 1.5rem; }
+.cs-quote p { font-family: var(--font-heading); font-style: italic; font-size: 1.05rem; line-height: 1.5; margin-bottom: 0.75rem; }
+.cs-quote footer { font-size: 0.78rem; color: var(--muted-foreground); }
+.cs-quote footer b { color: var(--foreground); font-weight: 600; }
 
 /* final CTA (Option C - inverted full-width close) */
 #cta .cta-band { background: var(--primary); color: var(--primary-foreground); padding: 3rem 1.5rem; text-align: center; }
@@ -1582,7 +1617,7 @@ img, svg { display: block; }
   </section>
 
 <!-- ============ HOW IT WORKS ============ -->
-  <section class="section reveal" id="how">
+  <section class="section reveal sec-well" id="how">
     <div class="container">
       <div class="section-head">
         <h2>From workflow to running agent</h2>
@@ -1795,7 +1830,7 @@ img, svg { display: block; }
   </section>
 
   <!-- ============ SECURITY CLEARANCE ============ -->
-  <section class="section reveal" id="security">
+  <section class="section reveal sec-well" id="security">
     <div class="container">
       <div class="section-head">
         <h2>Governed, private, and yours</h2>
@@ -1880,6 +1915,30 @@ img, svg { display: block; }
     </div>
   </section>
 
+  <!-- ============ CASE STUDY ============ -->
+  <section class="section reveal sec-invert" id="case-study">
+    <div class="container">
+      <div class="section-head">
+        <h2>How Pal.health runs 20+ AI agents with Rightbrain</h2>
+        <p>Pal.health is an all-in-one health companion. It uses Rightbrain to build, deploy, and manage AI tasks that run in the background, giving users a full health-coach experience without scaling the engineering team.</p>
+      </div>
+      <div class="cs-band">
+        <p class="cs-logo"><span class="pal-logo" role="img" aria-label="Pal.health"></span></p>
+        <div class="stats" aria-label="Pal.health results">
+          <div class="stat"><b>20+</b><span>AI agents live</span></div>
+          <div class="stat"><b>1</b><span>engineer needed</span></div>
+          <div class="stat"><b>Daily</b><span>model updates shipped</span></div>
+          <div class="stat"><b>1</b><span>platform for everything</span></div>
+        </div>
+        <blockquote class="cs-quote">
+          <p>&ldquo;Without Rightbrain, it would be impossible. I can switch models, fix issues, and ship updates daily, without waiting on engineers.&rdquo;</p>
+          <footer><b>Chris Davison</b> &middot; Founder at Pal.health</footer>
+        </blockquote>
+      </div>
+      <p style="margin-top:1.75rem"><a class="btn btn-outline" href="https://rightbrain.ai/">Read the full story<i class="ri-arrow-right-line icon" aria-hidden="true"></i></a></p>
+    </div>
+  </section>
+
   <!-- ============ GETTING STARTED ============ -->
   <section class="section reveal">
     <div class="container">
@@ -1929,7 +1988,7 @@ img, svg { display: block; }
   </section>
 
   <!-- ============ SERVICES ============ -->
-  <section class="section reveal" id="services">
+  <section class="section reveal sec-well" id="services">
     <div class="container">
       <div class="section-head">
         <h2>Agents-as-a-Service</h2>
@@ -1978,31 +2037,6 @@ img, svg { display: block; }
       </div>
       <p class="tier-note">Not sure which is right? Start with a conversation and we'll help you find the right level of involvement.</p>
       <p style="margin-top:1rem"><a class="btn btn-outline" href="#cta">Let's chat</a></p>
-    </div>
-  </section>
-
-  <!-- ============ CASE STUDY ============ -->
-  <section class="section reveal" id="case-study">
-    <div class="container">
-      <div class="case-grid">
-        <div>
-          <div class="section-head" style="margin-bottom:1.75rem">
-            <h2>How Pal.health runs 20+ AI agents with Rightbrain</h2>
-            <p>Pal.health is an all-in-one health companion. It uses Rightbrain to build, deploy, and manage AI tasks that run in the background, giving users a full health-coach experience without scaling the engineering team.</p>
-          </div>
-          <blockquote class="quote" style="margin-top:1.5rem">
-            <p>&ldquo;Without Rightbrain, it would be impossible. I can switch models, fix issues, and ship updates daily, without waiting on engineers.&rdquo;</p>
-            <footer><b>Chris Davison</b> &middot; Founder at Pal.health</footer>
-          </blockquote>
-          <p style="margin-top:1.75rem"><a class="btn btn-outline" href="https://rightbrain.ai/">Read the full story</a></p>
-        </div>
-        <div class="stats" aria-label="Pal.health results">
-          <div class="stat"><b>20+</b><span>AI agents live</span></div>
-          <div class="stat"><b>1</b><span>engineer needed</span></div>
-          <div class="stat"><b>Daily</b><span>model updates shipped</span></div>
-          <div class="stat"><b>1</b><span>platform for everything</span></div>
-        </div>
-      </div>
     </div>
   </section>
 

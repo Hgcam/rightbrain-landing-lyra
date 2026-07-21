@@ -1095,6 +1095,35 @@ img, svg { display: block; }
 @keyframes ucFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { #usecases [data-panel]:not([hidden]) { animation: none; } }
 
+/* ============ RESOURCES (changelog-forward) ============ */
+#resources a { text-decoration: none; }
+#resources .resB { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 860px) { #resources .resB { grid-template-columns: 1.25fr 0.75fr; align-items: start; } }
+#resources .res-feed { border: 1px solid var(--border); background: var(--card); }
+#resources .res-feed-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
+#resources .res-feed-head .h { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading); font-weight: 700; font-size: 1rem; }
+#resources .res-feed-head .h .icon { color: var(--chart-3); }
+#resources .res-row { display: flex; gap: 0.85rem; align-items: baseline; padding: 0.95rem 1.25rem; }
+#resources .res-row + .res-row { border-top: 1px solid var(--border); }
+#resources .res-row .body { flex: 1; }
+#resources .res-row .t { font-size: 0.82rem; font-weight: 500; }
+#resources .res-row .d { font-size: 0.68rem; color: var(--muted-foreground); margin-top: 0.15rem; }
+#resources .tag-new { display: inline-flex; align-items: center; gap: 0.3rem; border: 1px solid var(--border); padding: 0.1rem 0.4rem; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); white-space: nowrap; }
+#resources .tag-new .dot { width: 5px; height: 5px; flex: none; background: var(--chart-2); }
+#resources .resB-side { display: grid; gap: 1rem; }
+#resources .res-card { border: 1px solid var(--border); background: var(--card); padding: 1.35rem 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; transition: background-color 0.16s var(--ease-out); }
+#resources .res-card:hover { background: var(--secondary); }
+#resources .res-card:hover .res-link .icon { transform: translateX(3px); }
+#resources .res-kicker { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-foreground); }
+#resources .res-kicker .icon { color: var(--chart-3); font-size: 1rem; }
+#resources .res-card h3 { font-size: 1.05rem; }
+#resources .res-card p { font-size: 0.8rem; color: var(--muted-foreground); line-height: 1.5; }
+#resources .res-card .res-foot { margin-top: auto; padding-top: 0.9rem; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+#resources .recency { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.68rem; color: var(--muted-foreground); }
+#resources .recency .dot { width: 6px; height: 6px; flex: none; background: var(--chart-2); }
+#resources .res-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; font-weight: 600; color: var(--foreground); }
+#resources .res-link .icon { color: var(--chart-3); transition: transform 0.18s var(--ease-out); }
+
 /* demo vs production */
 .section-head .vs-stat {
   font-family: var(--font-heading); font-weight: 900;
@@ -1993,6 +2022,42 @@ img, svg { display: block; }
           <div class="stat"><b>1</b><span>engineer needed</span></div>
           <div class="stat"><b>Daily</b><span>model updates shipped</span></div>
           <div class="stat"><b>1</b><span>platform for everything</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESOURCES ============ -->
+  <section class="section reveal" id="resources">
+    <div class="container">
+      <div class="section-head">
+        <h2>Shipping every week</h2>
+        <p>The product moves fast. Here's what landed recently, plus where to go deeper.</p>
+      </div>
+      <div class="resB">
+        <div class="res-feed">
+          <div class="res-feed-head">
+            <span class="h"><i class="ri-git-commit-line icon" aria-hidden="true"></i>Shipped recently</span>
+            <a class="res-link" href="https://rightbrain.ai/">Full changelog<i class="ri-arrow-right-line icon" aria-hidden="true"></i></a>
+          </div>
+          <div class="res-row"><span class="tag-new"><span class="dot"></span>New</span><div class="body"><div class="t">Gemini 2.5 Pro available for any task</div><div class="d">2 days ago</div></div></div>
+          <div class="res-row"><span class="tag-new">Improved</span><div class="body"><div class="t">Audit log export to CSV</div><div class="d">Last week</div></div></div>
+          <div class="res-row"><span class="tag-new"><span class="dot"></span>New</span><div class="body"><div class="t">Per-task model fallbacks</div><div class="d">Last week</div></div></div>
+          <div class="res-row"><span class="tag-new">Improved</span><div class="body"><div class="t">Faster RAG collection indexing</div><div class="d">2 weeks ago</div></div></div>
+        </div>
+        <div class="resB-side">
+          <a class="res-card" href="https://rightbrain.ai/">
+            <span class="res-kicker"><i class="ri-book-open-line icon" aria-hidden="true"></i>Docs</span>
+            <h3>Build your first agent</h3>
+            <p>Quickstarts, API reference and SDKs.</p>
+            <div class="res-foot"><span class="recency">Updated this week</span><span class="res-link">Read the docs<i class="ri-arrow-right-line icon" aria-hidden="true"></i></span></div>
+          </a>
+          <a class="res-card" href="https://rightbrain.ai/">
+            <span class="res-kicker"><i class="ri-article-line icon" aria-hidden="true"></i>Blog</span>
+            <h3>Notes on reliable agents</h3>
+            <p>Playbooks on models, evals and audit.</p>
+            <div class="res-foot"><span class="recency">New post</span><span class="res-link">Read the blog<i class="ri-arrow-right-line icon" aria-hidden="true"></i></span></div>
+          </a>
         </div>
       </div>
     </div>

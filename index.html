@@ -1235,6 +1235,12 @@ img, svg { display: block; }
 .gs-item h3 { font-size: 1.05rem; margin-bottom: 0.3rem; }
 .gs-item p { font-size: 0.8125rem; color: var(--muted-foreground); line-height: 1.55; max-width: 42rem; }
 .gs-cta { margin-top: 1.75rem; }
+.gs-layout { display: grid; gap: 2rem; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 900px) { .gs-layout { grid-template-columns: 1.5fr 1fr; gap: 3rem; } }
+.gs-aside { display: flex; flex-direction: column; gap: 1.5rem; align-self: stretch; justify-content: center; }
+.gs-aside .btn { align-self: flex-start; }
+.gs-aside .quote { margin-top: 0; max-width: none; }
+@media (min-width: 900px) { .gs-layout .path-notes { margin-bottom: 0; } }
 .path-notes { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin-top: 1.75rem; font-size: 0.8125rem; color: var(--muted-foreground); }
 .path-notes span { display: inline-flex; align-items: baseline; gap: 0.5rem; }
 .path-notes .icon { font-size: 0.875rem; transform: translateY(1px); color: var(--foreground); }
@@ -1880,40 +1886,44 @@ img, svg { display: block; }
         <h2>How teams get started</h2>
         <p>From first call to running agents in days, not months.</p>
       </div>
-      <div class="gs-timeline reveal-stagger">
-        <div class="gs-item">
-          <div class="gs-when"><i class="ri-calendar-event-line icon" aria-hidden="true"></i>Day 1</div>
-          <h3>Book a workshop</h3>
-          <p>We map your workflows and identify 2 to 3 high-impact automations to build first.</p>
+      <div class="gs-layout">
+        <div class="gs-main">
+          <div class="gs-timeline reveal-stagger">
+            <div class="gs-item">
+              <div class="gs-when"><i class="ri-calendar-event-line icon" aria-hidden="true"></i>Day 1</div>
+              <h3>Book a workshop</h3>
+              <p>We map your workflows and identify 2 to 3 high-impact automations to build first.</p>
+            </div>
+            <div class="gs-item">
+              <div class="gs-when"><i class="ri-flask-line icon" aria-hidden="true"></i>Week 1</div>
+              <h3>Pilot in a live workflow</h3>
+              <p>Your team tests the agent inside the tools they already use, with real data and real tasks.</p>
+            </div>
+            <div class="gs-item">
+              <div class="gs-when"><i class="ri-price-tag-3-line icon" aria-hidden="true"></i>Once it's proven</div>
+              <h3>Shape pricing around usage</h3>
+              <p>Once there's real data on run volume, we price around what you actually use.</p>
+            </div>
+            <div class="gs-item">
+              <div class="gs-when"><i class="ri-stack-line icon" aria-hidden="true"></i>Ongoing</div>
+              <h3>Stack more agents</h3>
+              <p>First agent working? Start automating different processes across the team.</p>
+            </div>
+          </div>
+          <div class="path-notes">
+            <span><i class="ri-check-line icon" aria-hidden="true"></i>No technical setup</span>
+            <span><i class="ri-check-line icon" aria-hidden="true"></i>No long onboarding</span>
+            <span><i class="ri-check-line icon" aria-hidden="true"></i>AI workflows that actually save time</span>
+          </div>
         </div>
-        <div class="gs-item">
-          <div class="gs-when"><i class="ri-flask-line icon" aria-hidden="true"></i>Week 1</div>
-          <h3>Pilot in a live workflow</h3>
-          <p>Your team tests the agent inside the tools they already use, with real data and real tasks.</p>
-        </div>
-        <div class="gs-item">
-          <div class="gs-when"><i class="ri-price-tag-3-line icon" aria-hidden="true"></i>Once it's proven</div>
-          <h3>Shape pricing around usage</h3>
-          <p>Once there's real data on run volume, we price around what you actually use.</p>
-        </div>
-        <div class="gs-item">
-          <div class="gs-when"><i class="ri-stack-line icon" aria-hidden="true"></i>Ongoing</div>
-          <h3>Stack more agents</h3>
-          <p>First agent working? Start automating different processes across the team.</p>
-        </div>
+        <aside class="gs-aside">
+          <blockquote class="quote">
+            <p>&ldquo;We started with one agent where we knew we'd see value. Now we're stacking different use cases as we uncover new processes to automate.&rdquo;</p>
+            <footer><b>Joe Mclaughlin</b> &middot; Account Director at Rocket SaaS</footer>
+          </blockquote>
+          <a class="btn btn-primary" href="https://rightbrain.ai/">Book a workshop<i class="ri-arrow-right-line icon" aria-hidden="true"></i></a>
+        </aside>
       </div>
-      <div class="path-notes">
-        <span><i class="ri-check-line icon" aria-hidden="true"></i>No technical setup</span>
-        <span><i class="ri-check-line icon" aria-hidden="true"></i>No long onboarding</span>
-        <span><i class="ri-check-line icon" aria-hidden="true"></i>AI workflows that actually save time</span>
-      </div>
-      <div class="gs-cta">
-        <a class="btn btn-primary" href="https://rightbrain.ai/">Book a workshop<i class="ri-arrow-right-line icon" aria-hidden="true"></i></a>
-      </div>
-      <blockquote class="quote" style="margin-top:2.25rem">
-        <p>&ldquo;We started with one agent where we knew we'd see value. Now we're stacking different use cases as we uncover new processes to automate.&rdquo;</p>
-        <footer><b>Joe Mclaughlin</b> &middot; Account Director at Rocket SaaS</footer>
-      </blockquote>
     </div>
   </section>
 

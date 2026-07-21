@@ -1071,6 +1071,30 @@ img, svg { display: block; }
 #security .cert .icon { font-size: 0.95rem; color: var(--foreground); }
 #security .cert .st { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-foreground); padding-left: 0.4rem; margin-left: 0.15rem; border-left: 1px solid var(--border); }
 
+/* ============ USE CASES (function tabs) ============ */
+#usecases .uc-tabs { display: flex; flex-wrap: wrap; gap: 0.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+#usecases .uc-tab { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.65rem 0.9rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted-foreground); background: none; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; transition: color 0.15s var(--ease-out), border-color 0.15s var(--ease-out); }
+#usecases .uc-tab .icon { font-size: 1rem; }
+#usecases .uc-tab:hover { color: var(--foreground); }
+#usecases .uc-tab[aria-selected="true"] { color: var(--foreground); border-bottom-color: var(--primary); font-weight: 600; }
+#usecases .uc-intro { font-size: 0.85rem; color: var(--muted-foreground); margin-bottom: 1.25rem; max-width: 48rem; }
+#usecases .uc-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 560px) { #usecases .uc-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { #usecases .uc-grid { grid-template-columns: repeat(4, 1fr); } }
+#usecases .uc-agent { border: 1px solid var(--border); background: var(--card); padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+#usecases .uc-agent-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+#usecases .uc-name { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-mono); font-weight: 600; font-size: 0.82rem; }
+#usecases .uc-name .icon { color: var(--chart-3); font-size: 0.95rem; }
+#usecases .uc-live { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-foreground); }
+#usecases .uc-live .dot { width: 6px; height: 6px; flex: none; background: var(--chart-2); }
+#usecases .uc-desc { font-size: 0.78rem; color: var(--muted-foreground); line-height: 1.5; }
+#usecases .uc-meta { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: auto; }
+#usecases .uc-chip { display: inline-flex; align-items: center; gap: 0.3rem; border: 1px solid var(--border); padding: 0.15rem 0.45rem; font-size: 0.66rem; color: var(--muted-foreground); white-space: nowrap; }
+#usecases .uc-chip .icon { font-size: 0.8rem; color: var(--chart-3); }
+#usecases [data-panel]:not([hidden]) { animation: ucFade 0.22s var(--ease-out); }
+@keyframes ucFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #usecases [data-panel]:not([hidden]) { animation: none; } }
+
 /* demo vs production */
 .section-head .vs-stat {
   font-family: var(--font-heading); font-weight: 900;
@@ -1795,6 +1819,64 @@ img, svg { display: block; }
     </div>
   </section>
 
+  <!-- ============ USE CASES ============ -->
+  <section class="section reveal" id="usecases">
+    <div class="container">
+      <div class="section-head">
+        <h2>Find the agents for your team</h2>
+        <p>Pick your function and see agents teams are already running in production.</p>
+      </div>
+      <div data-tabgroup="usecases">
+        <div class="uc-tabs" role="tablist" aria-label="Use cases by function">
+          <button class="uc-tab" type="button" role="tab" data-tab="finance" aria-selected="true"><i class="ri-bank-line icon" aria-hidden="true"></i>Finance</button>
+          <button class="uc-tab" type="button" role="tab" data-tab="support" aria-selected="false"><i class="ri-customer-service-2-line icon" aria-hidden="true"></i>Support</button>
+          <button class="uc-tab" type="button" role="tab" data-tab="sales" aria-selected="false"><i class="ri-line-chart-line icon" aria-hidden="true"></i>Sales</button>
+          <button class="uc-tab" type="button" role="tab" data-tab="legal" aria-selected="false"><i class="ri-scales-3-line icon" aria-hidden="true"></i>Legal</button>
+        </div>
+
+        <div role="tabpanel" data-panel="finance">
+          <p class="uc-intro">Close the books faster and cut manual data entry, with a full audit trail on every posting.</p>
+          <div class="uc-grid">
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>invoice-ops</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Extract, validate and post supplier invoices to your ERP.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-flashlight-line icon" aria-hidden="true"></i>New email</span><span class="uc-chip">Sheets</span><span class="uc-chip">NetSuite</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>spend-reconcile</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Match card transactions to receipts and flag anomalies.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-time-line icon" aria-hidden="true"></i>Daily</span><span class="uc-chip">Sheets</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>renewal-watch</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Track contract renewals and draft summaries ahead of time.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-time-line icon" aria-hidden="true"></i>Weekly</span><span class="uc-chip">Slack</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>expense-audit</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Check expense claims against policy and flag exceptions.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-flashlight-line icon" aria-hidden="true"></i>On submit</span><span class="uc-chip">Slack</span></div></article>
+          </div>
+        </div>
+
+        <div role="tabpanel" data-panel="support" hidden>
+          <p class="uc-intro">Cut response times and keep every reply grounded in your own help centre, with a human on the calls that matter.</p>
+          <div class="uc-grid">
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>ticket-triage</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Classify, prioritise and route inbound tickets automatically.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-flashlight-line icon" aria-hidden="true"></i>New ticket</span><span class="uc-chip">Zendesk</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>response-draft</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Draft grounded replies from your help centre with RAG.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-book-2-line icon" aria-hidden="true"></i>RAG</span><span class="uc-chip">Slack</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>escalation-summary</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Summarise long threads for a clean human handoff.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-user-follow-line icon" aria-hidden="true"></i>On escalate</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>kb-updater</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Draft help-centre updates from resolved tickets.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-time-line icon" aria-hidden="true"></i>Weekly</span><span class="uc-chip"><i class="ri-book-2-line icon" aria-hidden="true"></i>RAG</span></div></article>
+          </div>
+        </div>
+
+        <div role="tabpanel" data-panel="sales" hidden>
+          <p class="uc-intro">Spend less time on CRM admin and more on selling, with records that stay clean and quotes that follow the rules.</p>
+          <div class="uc-grid">
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>lead-enrich</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Enrich inbound leads and score fit before routing.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-flashlight-line icon" aria-hidden="true"></i>New lead</span><span class="uc-chip">HubSpot</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>deal-desk</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Draft quotes and check them against approval rules.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-user-follow-line icon" aria-hidden="true"></i>Approval</span><span class="uc-chip">Salesforce</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>crm-hygiene</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Keep CRM records deduped, complete and up to date.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-time-line icon" aria-hidden="true"></i>Nightly</span><span class="uc-chip">Salesforce</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>meeting-notes</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Turn call transcripts into CRM notes and next steps.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-flashlight-line icon" aria-hidden="true"></i>After call</span><span class="uc-chip">HubSpot</span></div></article>
+          </div>
+        </div>
+
+        <div role="tabpanel" data-panel="legal" hidden>
+          <p class="uc-intro">Move faster on routine review while keeping a person in the loop on anything that carries risk.</p>
+          <div class="uc-grid">
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>contract-review</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Flag risky clauses against your playbook with RAG.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-book-2-line icon" aria-hidden="true"></i>RAG</span><span class="uc-chip"><i class="ri-user-follow-line icon" aria-hidden="true"></i>Approval</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>nda-intake</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Triage inbound NDAs and route them to the right owner.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-flashlight-line icon" aria-hidden="true"></i>New doc</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>policy-check</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Check drafted output against your internal policy.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-book-2-line icon" aria-hidden="true"></i>RAG</span></div></article>
+            <article class="uc-agent"><div class="uc-agent-head"><span class="uc-name"><i class="ri-robot-2-line icon" aria-hidden="true"></i>redline-draft</span><span class="uc-live"><span class="dot"></span>live</span></div><p class="uc-desc">Suggest redlines from your standard positions.</p><div class="uc-meta"><span class="uc-chip"><i class="ri-book-2-line icon" aria-hidden="true"></i>RAG</span><span class="uc-chip"><i class="ri-user-follow-line icon" aria-hidden="true"></i>Approval</span></div></article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ GETTING STARTED ============ -->
   <section class="section reveal">
     <div class="container">
@@ -2132,6 +2214,21 @@ img, svg { display: block; }
     shotWraps.forEach(function (el) { io.observe(el); });
   }
 })();
+</script>
+<script>
+  (function () {
+    var group = document.querySelector('#usecases [data-tabgroup]');
+    if (!group) return;
+    var tabs = group.querySelectorAll('[data-tab]');
+    var panels = group.querySelectorAll('[data-panel]');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var key = tab.getAttribute('data-tab');
+        tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t === tab)); });
+        panels.forEach(function (p) { p.hidden = (p.getAttribute('data-panel') !== key); });
+      });
+    });
+  })();
 </script>
 </body>
 </html>

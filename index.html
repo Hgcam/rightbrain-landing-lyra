@@ -143,12 +143,12 @@ img, svg { display: block; }
   display: flex; align-items: center; justify-content: space-between;
   height: 3.75rem; gap: 1rem;
 }
-.logo { display: flex; align-items: center; gap: 0.625rem; text-decoration: none; }
+.logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
 .logo-mark {
-  width: 1.5rem; height: 1.5rem;
+  width: 1.75rem; height: 1.75rem;
   display: grid;
   place-items: center;
-  flex: 0 0 1.5rem;
+  flex: 0 0 1.75rem;
 }
 .logo-mark img {
   grid-area: 1 / 1;
@@ -160,7 +160,7 @@ img, svg { display: block; }
 .logo-mark .logo-mark-for-dark { display: none; }
 .dark .logo-mark .logo-mark-for-light { display: none; }
 .dark .logo-mark .logo-mark-for-dark { display: block; }
-.logo-name { font-family: var(--font-mono); font-weight: 600; font-size: 0.9375rem; text-transform: lowercase; }
+.logo-name { font-family: var(--font-mono); font-weight: 600; font-size: 1.0625rem; text-transform: lowercase; }
 .logo-name .logo-tld { color: var(--chart-4); }
 .dark .logo-name .logo-tld { color: var(--chart-2); }
 .nav-links { display: none; align-items: center; gap: 0.25rem; }
@@ -1143,86 +1143,45 @@ img, svg { display: block; }
 #resources .res-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; font-weight: 600; color: var(--foreground); }
 #resources .res-link .icon { color: var(--chart-3); transition: transform 0.18s var(--ease-out); }
 
-/* demo vs production */
+/* prototype vs production */
 .section-head .vs-stat {
+  display: block;
   font-family: var(--font-heading); font-weight: 900;
   font-size: clamp(2.5rem, 7vw, 4rem); color: var(--chart-2);
   line-height: 1; margin-bottom: 0.5rem;
 }
-.section-head .vs-stat-label {
-  font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;
-  color: var(--muted-foreground); margin-bottom: 1.5rem;
+.section-head .vs-source {
+  font-size: 0.72rem; color: var(--muted-foreground); margin-top: 0.75rem;
 }
-.vs-compare { display: grid; gap: 1rem; grid-template-areas: "demo" "demoRun" "prod" "prodRun"; }
-@media (min-width: 900px) {
-  .vs-compare { grid-template-columns: 1fr 1fr; grid-template-areas: "demo prod" "demoRun prodRun"; align-items: stretch; }
+.section-head .vs-source a { color: var(--muted-foreground); text-decoration: underline; text-underline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .section-head .vs-source a:hover { color: var(--foreground); } }
+.section-head .vs-lead {
+  margin-top: 1.25rem; font-family: var(--font-heading); font-weight: 700;
+  font-size: 1.15rem; line-height: 1.3; color: var(--foreground); max-width: 34rem;
 }
-.vs-a-demo    { grid-area: demo; }
-.vs-a-demorun { grid-area: demoRun; }
-.vs-a-prod    { grid-area: prod; }
-.vs-a-prodrun { grid-area: prodRun; }
-.vs-panel { border: 1px solid var(--border); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; position: relative; overflow: hidden; }
-.vs-panel.demo { background: var(--muted); }
-.vs-label { font-size: 0.75rem; color: var(--muted-foreground); margin-bottom: 0.75rem; }
-.vs-panel h3 { font-size: 1.125rem; margin-bottom: 1.25rem; }
-
-/* rb loader mark in production panel */
-.vs-mark {
-  position: absolute; top: 1.25rem; right: 1.25rem;
-  width: 40px; height: 40px;
-  opacity: 0.6;
-}
-.vs-mark .bar  { animation: rbBarPulse 1.6s ease-in-out infinite; }
-.vs-mark .b2   { animation-delay: .25s; }
-.vs-mark .b3   { animation-delay: .5s; }
-.vs-mark .core { animation: rbCorePulse 1.6s ease-in-out infinite; }
-@keyframes rbBarPulse  { 0%, 60%, 100% { opacity: .3; } 25% { opacity: 1; } }
-@keyframes rbCorePulse { 0%, 100% { opacity: .85; } 50% { opacity: 1; } }
-@media (prefers-reduced-motion: reduce) {
-  .vs-mark .bar, .vs-mark .core { animation: none; opacity: 1; }
-  .vs-mark { animation: rbGentle 2.8s ease-in-out infinite; }
-  @keyframes rbGentle { 0%, 100% { opacity: .5; } 50% { opacity: .7; } }
-}
-
-.fail-list, .win-list { list-style: none; padding: 0; display: grid; gap: 0.85rem; }
-.fail-list li, .win-list li { display: flex; gap: 0.6rem; font-size: 0.8125rem; line-height: 1.5; }
-.fail-list .icon { color: var(--destructive); font-size: 1rem; flex: none; transform: translateY(1px); }
-.win-list .icon { color: var(--chart-2); font-size: 1rem; flex: none; transform: translateY(1px); }
-.win-list b { display: block; font-family: var(--font-mono); font-weight: 700; }
-.win-list span { color: var(--muted-foreground); }
-
-/* comparison runs: unmonitored log vs traced run */
-.run-card { border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; }
-.run-card.demo { background: var(--muted); }
-.run-head {
-  display: flex; align-items: center; gap: 0.5rem;
-  padding: 0.75rem 1rem; border-bottom: 1px solid var(--border);
-  font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground);
-}
-.run-head .dot { width: 8px; height: 8px; flex: none; }
-.run-head .dot.red { background: var(--destructive); }
-.run-head .dot.ok { background: var(--chart-2); }
-.run-log { padding: 1rem; display: grid; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.75rem; }
-.run-log .line { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: baseline; }
-.run-log .t { color: var(--destructive); opacity: 0.85; font-variant-numeric: tabular-nums; }
-.run-trace { padding: 1rem; display: grid; gap: 0.5rem; }
-.tr-row { display: grid; grid-template-columns: 5rem 1fr 3rem; gap: 0.6rem; align-items: center; font-family: var(--font-mono); font-size: 0.7rem; }
-.tr-row .k { color: var(--muted-foreground); }
-.tr-bar { height: 8px; background: var(--border); position: relative; }
-.tr-bar > span { position: absolute; top: 0; height: 100%; background: var(--chart-2); }
-.tr-bar > span.c1 { background: var(--chart-1); }
-.tr-bar > span.c2 { background: var(--chart-2); }
-.tr-bar > span.c3 { background: var(--chart-3); }
-.tr-bar > span.c4 { background: var(--chart-4); }
-.tr-bar > span.c5 { background: var(--chart-5); }
-.tr-row .v { color: var(--muted-foreground); font-variant-numeric: tabular-nums; text-align: right; }
-.run-foot {
-  margin-top: auto; padding: 0.75rem 1rem; border-top: 1px solid var(--border);
-  font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground);
-  display: flex; align-items: center; gap: 0.5rem;
-}
-.run-foot .icon.ok { color: var(--chart-2); }
-.run-foot .icon.bad { color: var(--destructive); }
+@media (min-width: 768px) { .section-head .vs-lead { font-size: 1.3rem; } }
+/* comparison matrix (Option C) - one dimension per row, prototype vs Rightbrain */
+#production .pC-matrix { border: 1px solid var(--border); }
+#production .pC-row { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 780px) { #production .pC-row { grid-template-columns: 12rem 1fr 1fr; align-items: stretch; } }
+#production .pC-row + .pC-row { border-top: 1px solid var(--border); }
+#production .pC-colhead { display: none; }
+@media (min-width: 780px) { #production .pC-colhead { display: block; } }
+#production .pC-head .pC-cell { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); background: var(--muted); }
+#production .pC-head .pC-cell.proto, #production .pC-head .pC-cell.prod { color: var(--foreground); text-transform: none; letter-spacing: 0; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+#production .pC-dim { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; background: var(--muted); display: flex; align-items: center; }
+#production .pC-cell { padding: 1rem 1.25rem; }
+@media (min-width: 780px) { #production .pC-cell + .pC-cell { border-left: 1px solid var(--border); } }
+#production .pC-cell.proto, #production .pC-cell.prod { display: flex; gap: 0.6rem; font-size: 0.82rem; line-height: 1.45; align-items: flex-start; }
+#production .pC-cell .icon { font-size: 1rem; flex: none; transform: translateY(1px); }
+#production .pC-cell.proto .icon { color: var(--destructive); }
+#production .pC-cell.prod .icon { color: var(--chart-2); }
+#production .pC-cell.prod { background: color-mix(in oklch, var(--chart-2) 5%, transparent); }
+#production .pC-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); margin-bottom: 0.3rem; }
+@media (min-width: 780px) { #production .pC-tag { display: none; } }
+#production .pC-cell .dot { width: 8px; height: 8px; flex: none; }
+#production .pC-cell .dot.red { background: var(--destructive); }
+#production .pC-cell .dot.ok { background: var(--chart-2); }
 .check-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.8125rem; }
 .check-list li { display: flex; gap: 0.5rem; align-items: baseline; }
 .check-list .icon { font-size: 0.875rem; transform: translateY(1px); color: var(--foreground); }
@@ -1330,21 +1289,24 @@ img, svg { display: block; }
 #cta .cta-chips .icon { color: var(--primary-foreground); font-size: 0.95rem; }
 #cta .btn-invert { background: var(--primary-foreground); color: var(--primary); }
 @media (hover: hover) and (pointer: fine) { #cta .btn-invert:hover { opacity: 0.9; } }
-#cta .cta-or { max-width: 30rem; margin: 1.9rem auto 0; padding-top: 1.6rem; border-top: 1px solid color-mix(in oklch, var(--primary-foreground) 18%, transparent); }
-#cta .cta-or .lbl { font-size: 0.78rem; color: color-mix(in oklch, var(--primary-foreground) 72%, transparent); margin-bottom: 0.7rem; }
-#cta .cta-form { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
-#cta .cta-form input {
-  flex: 1 1 14rem; min-height: 2.75rem; padding: 0 0.85rem;
-  background: transparent; border: 1px solid color-mix(in oklch, var(--primary-foreground) 30%, transparent);
-  color: var(--primary-foreground); font-family: var(--font-mono); font-size: 0.8125rem; border-radius: 0;
+/* newsletter (quiet greyscale strip, split out of the primary CTA) */
+.news-strip { border: 1px solid var(--border); background: var(--muted); padding: 1.5rem 1.75rem; display: grid; gap: 1rem 2rem; }
+@media (min-width: 820px) { .news-strip { grid-template-columns: 1fr auto; align-items: center; } }
+.news-h { font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; }
+.news-d { font-size: 0.82rem; color: var(--muted-foreground); margin-top: 0.25rem; }
+.news-form { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.news-form input {
+  flex: 1 1 15rem; min-height: 2.75rem; padding: 0 0.85rem;
+  background: var(--background); border: 1px solid var(--input);
+  color: var(--foreground); font-family: var(--font-mono); font-size: 0.8125rem; border-radius: 0;
 }
-#cta .cta-form input::placeholder { color: color-mix(in oklch, var(--primary-foreground) 55%, transparent); }
-#cta .cta-form input:focus-visible { outline: none; border-color: var(--primary-foreground); }
-#cta .cta-form input[aria-invalid="true"] { border-color: var(--destructive); }
-#cta .field-error { display: none; font-size: 0.75rem; color: var(--destructive); margin-top: 0.6rem; }
-#cta .field-error.show { display: block; }
-#cta .news-success { display: none; margin: 0.9rem auto 0; max-width: 30rem; font-size: 0.8125rem; color: color-mix(in oklch, var(--primary-foreground) 88%, transparent); }
-#cta .news-success.show { display: block; }
+.news-form input::placeholder { color: var(--muted-foreground); }
+.news-form input:focus-visible { outline: none; border-color: var(--ring); }
+.news-form input[aria-invalid="true"] { border-color: var(--destructive); }
+#newsletter .field-error { display: none; font-size: 0.75rem; color: var(--destructive); margin-top: 0.6rem; }
+#newsletter .field-error.show { display: block; }
+#newsletter .news-success { display: none; font-size: 0.8125rem; color: var(--muted-foreground); margin-top: 0.6rem; }
+#newsletter .news-success.show { display: block; }
 
 /* footer */
 .site-footer { padding: 3.5rem 0 2.5rem; }
@@ -1452,7 +1414,7 @@ img, svg { display: block; }
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#how">How it works</a>
-      <a href="#production">Production</a>
+      <a href="#production">AI in production</a>
       <a href="#services">Services</a>
       <a href="#case-study">Customers</a>
       <a href="https://docs.rightbrain.ai/">Docs</a>
@@ -1486,7 +1448,7 @@ img, svg { display: block; }
   </div>
   <nav>
     <a href="#how">How it works</a>
-    <a href="#production">Production</a>
+    <a href="#production">AI in production</a>
     <a href="#services">Services</a>
     <a href="#case-study">Customers</a>
     <a href="https://docs.rightbrain.ai/">Docs</a>
@@ -1554,63 +1516,36 @@ img, svg { display: block; }
   <section class="section reveal" id="production">
     <div class="container">
       <div class="section-head">
-        <p class="vs-stat">~95%</p>
-        <p class="vs-stat-label">of enterprise AI pilots never reach production</p>
-        <h2>It's easy to build a demo. It's brutally hard to run AI in production.</h2>
+        <h2 class="vs-headline"><span class="vs-stat">~95%</span> of enterprise AI pilots never reach production</h2>
+        <p class="vs-source">Source: <a href="https://nanda.media.mit.edu/ai_report_2025.pdf" target="_blank" rel="noopener">MIT, State of AI in Business 2025</a></p>
+        <p class="vs-lead">It's easy to build a prototype. It's brutally hard to run AI in production.</p>
       </div>
 
-      <div class="vs-compare">
-        <div class="vs-panel demo vs-a-demo">
-          <p class="vs-label">A demo</p>
-          <h3>Works some of the time</h3>
-          <ul class="fail-list">
-            <li><i class="ri-close-circle-line icon" aria-hidden="true"></i>It breaks at 2am and no one knows which step failed.</li>
-            <li><i class="ri-close-circle-line icon" aria-hidden="true"></i>A model update ships and outputs drift, silently.</li>
-            <li><i class="ri-close-circle-line icon" aria-hidden="true"></i>Compliance asks what the model saw. There's no answer.</li>
-            <li><i class="ri-close-circle-line icon" aria-hidden="true"></i>One prompt tweak, and you can't roll back.</li>
-          </ul>
+      <div class="pC-matrix">
+        <div class="pC-row pC-head">
+          <div class="pC-cell pC-colhead">&nbsp;</div>
+          <div class="pC-cell proto"><span class="dot red"></span> A prototype</div>
+          <div class="pC-cell prod"><span class="dot ok"></span> Production with Rightbrain</div>
         </div>
-
-        <div class="run-card demo vs-a-demorun">
-          <div class="run-head"><span class="dot red"></span> demo-agent &middot; unmonitored</div>
-          <div class="run-log">
-            <div class="line"><span class="t">02:14</span><span>Model auto-upgraded &middot; output schema changed</span></div>
-            <div class="line"><span class="t">02:14</span><span>Downstream parse failed &middot; no alert sent</span></div>
-            <div class="line"><span class="t">09:37</span><span>Customer reports wrong totals</span></div>
-            <div class="line"><span class="t">09:52</span><span>No trace &middot; cannot reproduce the run</span></div>
-            <div class="line"><span class="t">10:20</span><span>Which prompt version shipped? Unknown</span></div>
-          </div>
-          <div class="run-foot"><i class="ri-close-circle-fill icon bad" aria-hidden="true"></i> Broke silently, no way to prove why</div>
+        <div class="pC-row">
+          <div class="pC-cell pC-dim">Reliability</div>
+          <div class="pC-cell proto"><i class="ri-close-circle-line icon" aria-hidden="true"></i><span><span class="pC-tag">A prototype</span>Breaks silently when a model auto-updates.</span></div>
+          <div class="pC-cell prod"><i class="ri-check-line icon" aria-hidden="true"></i><span><span class="pC-tag">With Rightbrain</span>Evals, fallbacks and versioning catch regressions first.</span></div>
         </div>
-
-        <div class="vs-panel vs-a-prod">
-          <svg class="vs-mark" viewBox="0 0 48 48" aria-hidden="true">
-            <g>
-              <rect class="bar b1" x="13" y="12" width="10" height="6"  fill="currentColor"/>
-              <rect class="bar b2" x="13" y="21" width="10" height="6"  fill="currentColor"/>
-              <rect class="bar b3" x="13" y="30" width="10" height="6"  fill="currentColor"/>
-              <rect class="core"   x="26" y="12" width="10" height="24" fill="var(--chart-2)"/>
-            </g>
-          </svg>
-          <p class="vs-label">Production with Rightbrain</p>
-          <h3>Built to be trusted</h3>
-          <ul class="win-list">
-            <li><i class="ri-shield-check-line icon" aria-hidden="true"></i><span><b>Reliable</b>Evals, fallbacks and versioning catch regressions before your users do.</span></li>
-            <li><i class="ri-eye-line icon" aria-hidden="true"></i><span><b>Observable</b>Every run traced and audited back to the exact prompt and model.</span></li>
-            <li><i class="ri-arrow-go-back-line icon" aria-hidden="true"></i><span><b>Reversible</b>Roll back any revision, with human approval on the steps that matter.</span></li>
-          </ul>
+        <div class="pC-row">
+          <div class="pC-cell pC-dim">Observability</div>
+          <div class="pC-cell proto"><i class="ri-close-circle-line icon" aria-hidden="true"></i><span><span class="pC-tag">A prototype</span>No trace. You can't reproduce the run.</span></div>
+          <div class="pC-cell prod"><i class="ri-check-line icon" aria-hidden="true"></i><span><span class="pC-tag">With Rightbrain</span>Every run traced to the exact prompt and model.</span></div>
         </div>
-
-        <div class="run-card vs-a-prodrun">
-          <div class="run-head"><span class="dot ok"></span> invoice-ops &middot; v5 &middot; traced</div>
-          <div class="run-trace">
-            <div class="tr-row"><span class="k">Setup</span><span class="tr-bar"><span class="c1" style="left:0;width:8%"></span></span><span class="v">0.31s</span></div>
-            <div class="tr-row"><span class="k">Inference</span><span class="tr-bar"><span class="c2" style="left:8%;width:60%"></span></span><span class="v">2.47s</span></div>
-            <div class="tr-row"><span class="k">Tool call</span><span class="tr-bar"><span class="c3" style="left:68%;width:22%"></span></span><span class="v">0.89s</span></div>
-            <div class="tr-row"><span class="k">Approval</span><span class="tr-bar"><span class="c4" style="left:90%;width:6%"></span></span><span class="v">HITL</span></div>
-            <div class="tr-row"><span class="k">Output</span><span class="tr-bar"><span class="c5" style="left:96%;width:4%"></span></span><span class="v">0.28s</span></div>
-          </div>
-          <div class="run-foot"><i class="ri-checkbox-circle-fill icon ok" aria-hidden="true"></i> Traced to prompt + model &middot; approved &middot; reversible</div>
+        <div class="pC-row">
+          <div class="pC-cell pC-dim">Auditability</div>
+          <div class="pC-cell proto"><i class="ri-close-circle-line icon" aria-hidden="true"></i><span><span class="pC-tag">A prototype</span>Compliance asks what the model saw. No answer.</span></div>
+          <div class="pC-cell prod"><i class="ri-check-line icon" aria-hidden="true"></i><span><span class="pC-tag">With Rightbrain</span>Full audit trail on every run and decision.</span></div>
+        </div>
+        <div class="pC-row">
+          <div class="pC-cell pC-dim">Reversibility</div>
+          <div class="pC-cell proto"><i class="ri-close-circle-line icon" aria-hidden="true"></i><span><span class="pC-tag">A prototype</span>One prompt tweak and you can't roll back.</span></div>
+          <div class="pC-cell prod"><i class="ri-check-line icon" aria-hidden="true"></i><span><span class="pC-tag">With Rightbrain</span>Roll back any revision, with human approval.</span></div>
         </div>
       </div>
     </div>
@@ -1951,7 +1886,7 @@ img, svg { display: block; }
           <div class="gs-timeline reveal-stagger">
             <div class="gs-item">
               <div class="gs-when"><i class="ri-calendar-event-line icon" aria-hidden="true"></i>Day 1</div>
-              <h3>Book a workshop</h3>
+              <h3>Book a call</h3>
               <p>We map your workflows and identify 2 to 3 high-impact automations to build first.</p>
             </div>
             <div class="gs-item">
@@ -1981,7 +1916,7 @@ img, svg { display: block; }
             <p>&ldquo;We started with one agent where we knew we'd see value. Now we're stacking different use cases as we uncover new processes to automate.&rdquo;</p>
             <footer><b>Joe Mclaughlin</b> &middot; Account Director at Rocket SaaS</footer>
           </blockquote>
-          <a class="btn btn-primary" href="https://rightbrain.ai/">Book a workshop<i class="ri-arrow-right-line icon" aria-hidden="true"></i></a>
+          <a class="btn btn-primary" href="#cta">Book a call<i class="ri-arrow-right-line icon" aria-hidden="true"></i></a>
         </aside>
       </div>
     </div>
@@ -2085,20 +2020,31 @@ img, svg { display: block; }
           <h2>Your first agent, on us</h2>
           <p class="cta-sub">Work with our team to scope, build and deploy your first agent, free of charge. See real results before you commit.</p>
           <div class="cta-chips">
-            <span><i class="ri-gift-line icon" aria-hidden="true"></i>Free workshop</span>
+            <span><i class="ri-rocket-2-line icon" aria-hidden="true"></i>First agent, free</span>
             <span><i class="ri-focus-3-line icon" aria-hidden="true"></i>2 to 3 workflows mapped</span>
             <span><i class="ri-bank-card-line icon" aria-hidden="true"></i>No credit card</span>
           </div>
-          <a class="btn btn-invert btn-lg" href="https://rightbrain.ai/">Book a free workshop<i class="ri-arrow-right-line icon" aria-hidden="true"></i></a>
-          <div class="cta-or">
-            <p class="lbl">Or keep in touch as we ship</p>
-            <form class="cta-form" onsubmit="return false">
-              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" inputmode="email" aria-label="Work email">
-              <button class="btn btn-invert" id="subscribeBtn" type="button">Subscribe</button>
-            </form>
-            <p class="field-error" id="emailError">Enter a valid email address.</p>
-            <p class="news-success" id="newsSuccess" role="status">You're on the list. We'll be in touch with the next update.</p>
-          </div>
+          <a class="btn btn-invert btn-lg" href="https://rightbrain.ai/">Book a call<i class="ri-arrow-right-line icon" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWSLETTER (quiet strip) ============ -->
+  <section class="section reveal" id="newsletter">
+    <div class="container">
+      <div class="news-strip">
+        <div class="news-copy">
+          <p class="news-h">Keep in touch as we ship</p>
+          <p class="news-d">Product notes, playbooks and changelog. No spam, unsubscribe any time.</p>
+        </div>
+        <div class="news-action">
+          <form class="news-form" onsubmit="return false">
+            <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" inputmode="email" aria-label="Work email">
+            <button class="btn btn-primary" id="subscribeBtn" type="button">Subscribe</button>
+          </form>
+          <p class="field-error" id="emailError">Enter a valid email address.</p>
+          <p class="news-success" id="newsSuccess" role="status">You're on the list. We'll be in touch with the next update.</p>
         </div>
       </div>
     </div>

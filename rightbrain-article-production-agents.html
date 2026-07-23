@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Stop trying to build a "God-level agent" | Rightbrain</title>
-<meta name="description" content="The teams deploying AI in production are not building one all-powerful agent. They are building small, focused agentic workflows that compound. The best AI is often the smallest AI.">
-<link rel="canonical" href="https://rightbrain.ai/resources/stop-trying-to-build-a-god-level-agent">
+<title>Production agents: the hard parts | Rightbrain</title>
+<meta name="description" content="Building an agent that works in a demo is easy. Chris Davison on the three pillars that separate a demo from a production-grade agent: cost, transparency, and control.">
+<link rel="canonical" href="https://rightbrain.ai/resources/production-agents-the-hard-parts">
 <!-- Open Graph / social -->
 <meta property="og:type" content="article">
-<meta property="og:title" content="Stop trying to build a &quot;God-level agent&quot;">
-<meta property="og:description" content="Everyone wants one autonomous agent that does everything. Here is why that is the wrong place to start, and what to build instead.">
-<meta property="og:url" content="https://rightbrain.ai/resources/stop-trying-to-build-a-god-level-agent">
-<meta property="article:published_time" content="2026-06-23">
-<meta property="article:author" content="Florian Ruspi">
+<meta property="og:title" content="Production agents: the hard parts">
+<meta property="og:description" content="The gap between a great demo and a production-grade agent is where all the hard parts live. On cost, transparency, and control.">
+<meta property="og:url" content="https://rightbrain.ai/resources/production-agents-the-hard-parts">
+<meta property="article:published_time" content="2026-06-18">
+<meta property="article:author" content="Chris Davison">
 <meta name="twitter:card" content="summary_large_image">
 <!-- Article schema for SEO / AEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Stop trying to build a \"God-level agent\"",
-  "description": "Everyone wants one autonomous agent that does everything. Here is why that is the wrong place to start, and what to build instead.",
-  "datePublished": "2026-06-23",
-  "author": { "@type": "Person", "name": "Florian Ruspi", "jobTitle": "Head of Growth" },
+  "headline": "Production agents: the hard parts",
+  "description": "The gap between a great demo and a production-grade agent is where all the hard parts live. On cost, transparency, and control.",
+  "datePublished": "2026-06-18",
+  "author": { "@type": "Person", "name": "Chris Davison", "jobTitle": "Head of Agent Delivery" },
   "publisher": { "@type": "Organization", "name": "Rightbrain" },
   "articleSection": "Blog",
-  "mainEntityOfPage": "https://rightbrain.ai/resources/stop-trying-to-build-a-god-level-agent"
+  "mainEntityOfPage": "https://rightbrain.ai/resources/production-agents-the-hard-parts"
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -363,15 +363,15 @@ img, svg { display: block; }
           <a href="rightbrain-resources-lyra.html">Blog</a>
         </nav>
         <span class="cat"><i class="ri-article-line icon" aria-hidden="true"></i> Blog</span>
-        <h1>Stop trying to build a "God-level agent"</h1>
-        <p class="deck">Every product or strategy lead is being asked the same question: what is our agent strategy? The teams seeing real value in production aren't building one all-powerful agent. They're building small, focused workflows that compound. The best AI is often the smallest AI.</p>
+        <h1>Production agents: the hard parts</h1>
+        <p class="deck">Building an agent that works "perfectly" in a demo is easy. The gap between that demo and a production-grade agent is where almost all the hard parts live — and it comes down to three pillars: cost, transparency, and control.</p>
 
         <div class="byline">
-          <span class="avatar" aria-hidden="true">FR</span>
-          <span class="who"><b>Florian Ruspi</b><span>Head of Growth, Rightbrain</span></span>
+          <span class="avatar" aria-hidden="true">CD</span>
+          <span class="who"><b>Chris Davison</b><span>Head of Agent Delivery, Rightbrain</span></span>
           <span class="meta">
-            <span class="mi"><i class="ri-calendar-line icon" aria-hidden="true"></i> 23 Jun 2026</span>
-            <span class="mi"><i class="ri-time-line icon" aria-hidden="true"></i> 7 min read</span>
+            <span class="mi"><i class="ri-calendar-line icon" aria-hidden="true"></i> 18 Jun 2026</span>
+            <span class="mi"><i class="ri-time-line icon" aria-hidden="true"></i> 6 min read</span>
           </span>
           <span class="share">
             <button class="copy-link" id="copyLink" type="button"><i class="ri-link icon" aria-hidden="true"></i> Copy link</button>
@@ -380,73 +380,41 @@ img, svg { display: block; }
       </div>
 
       <div class="article-col prose reveal">
-        <p>Every product or strategy lead is being asked the same question right now: what is our agent strategy? Almost every team answers it the same way — they picture one intelligent, autonomous agent that takes a goal, figures out a plan, calls the right tools, and delivers an outcome from start to finish. A single super-powered assistant that handles it all.</p>
-        <p>That mental model is intuitive and it makes for a compelling demo, but it is almost always the wrong place to start.</p>
-        <p>The teams deploying AI in production and seeing real value are not building one all-powerful agent. They are building a series of small, focused agentic workflows that compound over time, treating "the orchestrator agent" as something that emerges from the system rather than something you design and ship on day one. The best AI is often the smallest AI — focused on one repetitive workflow and operating within well-defined controls.</p>
+        <p>Most people are familiar with how easy it is to build an agent or skill in Claude or another leading provider — both technical and non-technical builders. You can add in tools, connect it to your Google Workspace, Slack, or whatever connections you have, and it will work "perfectly" — at least for a demo.</p>
+        <p>Agent Delivery at Rightbrain, in practice, means taking agents from prototype to production: scoping the right use cases, architecting them to be efficient and observable, and getting them robust enough to run reliably at scale once real people and real edge cases hit them. So the gap between a great demo and a production-grade agent is the thing I deal with every day, and it is where almost all the hard parts live.</p>
+        <p>After a few runs, or when you hit your first issues, things start to go off-piste. Before you know it there is a sense of losing control, a lack of transparency, and it is easy to become disillusioned — and that is before you open it up to other people in your business and encounter all the edge cases that happen in production. There are also the escalating costs you don't want to tackle without losing the quality of output you spent hours or days achieving in early testing. We see this time and again with our customers, and it boils down to not building the agents in a way that is suitable for a production environment, at scale.</p>
 
-        <h2>Why the god-level agent is so appealing</h2>
-        <p>The market is selling the dream. AI SDRs. AI analysts. AI engineers. These are all framed as a single monolithic build that replaces a role or handles an entire function end-to-end.</p>
-        <p>Demos reinforce it — a single chat interface that just does the thing looks effortless in a ten-minute pitch. There is also internal pressure, where leadership wants a story, not a toolkit. "We have an agent" is a much easier sentence than "we have AI executing specific repetitive tasks across different systems, with built-in controls and guardrails."</p>
-        <p>And there is a real kernel of truth in the vision — a true end-to-end agent might be the right end goal. The mistake is treating it as a destination you build directly, rather than something that emerges naturally.</p>
-
-        <h2>What goes wrong when you build the biggest agent possible</h2>
-        <p>Most teams find out the hard way. When you build a big agent first, what you have to account for includes:</p>
-        <ul>
-          <li><strong>Brittleness.</strong> A single agent expected to handle many workflows behaves unpredictably. Small changes to the prompt, the data, or the toolset cascade everywhere, and there is no clean way to contain the fallout.</li>
-          <li><strong>Architecture tax.</strong> The more you ask one agent to do, the more scaffolding you have to build around it: guardrails, evaluation layers, retry logic, memory management, routing decisions. You spend the majority of your engineering effort on the supporting structure rather than the value itself.</li>
-          <li><strong>Context poisoning.</strong> When one agent sees everything, irrelevant or incorrect context bleeds into every decision it makes. Quality degrades the more you add.</li>
-          <li><strong>No incremental value.</strong> You cannot ship thirty percent of a god-level agent. You either have the full experience or you do not. That kills momentum and burns internal trust before the product has proven itself.</li>
-          <li><strong>No visibility when things go wrong.</strong> When something breaks inside a large, interconnected agent, you cannot tell which step failed. Debugging becomes guesswork. Improvement becomes opinion.</li>
-        </ul>
-
-        <h2>A better model: agentic AI as a summation of steps</h2>
-        <p>An agentic product is not a single intelligence. It is a summation of incremental steps, each one doing a specific job well.</p>
-        <p>The architecture that actually works looks like this: an interface layer takes in the user's input and works out what they are trying to do. A routing layer decides which agentic workflow should handle it. A workflow layer contains independent, focused AI tasks, each one designed around a clear input and a clear output.</p>
-        <p>This is not a new idea. It is basically how good software has been built for decades. What is new is applying that discipline to AI, where the instinct is always to reach for more capability rather than more precision. The headline benefit is straightforward: you can build, test, and improve each workflow independently. Each one delivers value on its own. The orchestrator agent experience emerges as you add and connect more of them.</p>
-
-        <div class="pullquote">
-          <p>Stop asking "how powerful is our agent?" Start asking "how precisely are we feeding each step the context it needs?"</p>
+        <div class="callout">
+          <p class="k"><i class="ri-stack-line icon" aria-hidden="true"></i> The three pillars of production agents</p>
+          <p>This piece is about <strong>cost</strong>, <strong>transparency</strong>, and <strong>control</strong>. Data quality, compliance, and governance are just as important, but they are for another time.</p>
         </div>
 
-        <h2>The principle that changes everything: the best AI is the smallest AI</h2>
-        <p>The smallest, most precisely scoped application of AI you can get away with will give you the fastest return on investment. Tighter scope means tighter context. Tighter context means lower cost, lower latency, higher precision, and more predictable behaviour.</p>
-        <p>Here is the practical implication for product and strategy leaders: capability is not the bottleneck. The frontier models can already do most of what you want. What you are actually buying when you architect well is precision and reliability.</p>
-        <p>Take personalised outreach as an example. Instead of one agent that takes in everything you know about a prospect, reaches into your CRM, runs web search, and generates a series of messages, break it into three tasks:</p>
+        <h2>Brute forcing increases costs</h2>
+        <p>Tokenmaxxing is definitely not the flex it was a few months ago. It means letting the model do whatever it takes to get to an answer — burning through tokens and API costs, spinning up unnecessary loops and reasoning steps, and turning something that should be deterministic into something erratic that needs minutes of thinking time. It is really a symptom of a lack of precision in either the prompt or the configuration of the agent. Use any of the frontier models from the big three — Anthropic, Google, and OpenAI — and they will usually paper over the gaps and produce something that looks sensible. But that relies on luck, and at production volumes the misses start to add up.</p>
 
-        <figure class="figure">
-<pre><code>outreach (workflow)
-  research   -> web-search + crm     out: AccountFacts
-  analyse    -> reasoning model      out: Angles[]
-  generate   -> writer model         out: Message</code></pre>
-          <figcaption>Three scoped tasks instead of one monolith. Each is small, testable, and improvable — and when something goes wrong, you know exactly where.</figcaption>
-        </figure>
+        <h2>Using the right architecture</h2>
+        <p>The basic rule of thumb: the simpler and more deterministic the agent and tasks, the better, so reduce the agent's thinking and reasoning as much as possible. If you are running Opus 4.8 with an orchestrator that needs several reasoning steps, or re-ingests the same data on every turn, that should be split into sequential tasks that are observable and controllable independently of each other, but that run together according to well-defined logic rather than the model choosing the path each time. Only then do you get full visibility and the ability to optimise cost at every step. Determinism wins every time.</p>
+        <p>The expenses processing agent we built in-house for finance teams is a good example. It uses a more powerful model for orchestrating, but a small model classifies, extracts, and validates perfectly well at a fraction of the cost, removing around 90% of the unnecessary reasoning. It could be done by the orchestrating agent, but then you lose control and transparency.</p>
 
-        <h2>Context is the lever, not capability</h2>
-        <p>Most teams optimise the wrong variable. They reach for a bigger model, more tools, more memory, more autonomy. What actually moves quality is context management. The job of a well-built agentic system is to deliver the right context for the right task at the right time. Nothing more, nothing less.</p>
-        <p>Most "AI does not work for us" stories are not about model failure. They are about context overload or context starvation at specific steps in the workflow. Fix the context and you fix the output. This approach also lets you put controls in place for when your input data is insufficient.</p>
+        <div class="pullquote">
+          <p>Determinism wins every time.</p>
+        </div>
 
-        <h2>The shared memory trap</h2>
-        <p>Once teams have built a few agents, the next instinct is to connect them with shared memory. Let the agents learn from each other. It sounds obvious, and it is genuinely appealing.</p>
-        <p>The technical side of sharing memory seems straightforward, though it carries a lot of risk. The hard part is deciding what context to expose to which agent, in which situation, for which user. That is where the real cost lives. Two failure modes are worth taking seriously: the wrong context gets surfaced to the wrong workflow or user (privacy exposure, low-quality outputs, compliance risk); and shared memory makes context poisoning significantly more likely, where one bad signal contaminates every downstream decision.</p>
-        <p>Start with isolated context per use case or per user. Only introduce shared memory when you have a specific, well-scoped reason for it, and treat the access logic as a first-class product decision, not an afterthought.</p>
+        <h2>The power of being model agnostic</h2>
+        <h3>Fallback model</h3>
+        <p>This is an essential part of agents and tasks in production. If the primary model fails — which is more often the case than you might expect — you need a similarly capable model from a different provider to seamlessly carry out the task. Even the major providers go down or hit capacity limits without warning, and managed services can enforce global usage quotas that fail your task at seemingly random moments. None of it is your fault, and none of it is something you can prevent from inside a single provider, which is exactly why a fallback on a different provider matters.</p>
+        <h3>Avoiding vendor lock-in</h3>
+        <p>Not being tied to a model provider is not only beneficial, it is essential for any enterprise today. It matters in production, but also for evaluation, because being able to run the same agent across different models makes it far easier to replicate or simulate how it will actually behave once deployed.</p>
+        <p>We are also entering a period where safety and regulatory pressure can change a model's availability at short notice. A provider can restrict access to a model, or pull a version entirely, on grounds that have nothing to do with your use case — and if your agent is built around that one model, you inherit that risk with no say in it. Open-source models need to remain an option for many businesses, as data becomes more valuable and running private instances enters the radar.</p>
 
-        <h2>How to actually build this</h2>
-        <p>This does not require a complete rethink of your roadmap. It requires a shift in where you start.</p>
-        <ul>
-          <li><strong>Start with agentic workflows, not agents.</strong> List the discrete things you want AI to do. Each one should be expressible as: given X, produce Y.</li>
-          <li><strong>Pick two or three to build first.</strong> Choose ones that deliver standalone value. Do not start with steps that only matter as part of a future system that does not exist yet.</li>
-          <li><strong>Design for precision, not scope.</strong> For each workflow, ask: what is the smallest context that produces the right output? Build to that.</li>
-          <li><strong>Make each workflow observable and testable.</strong> You should be able to evaluate each one in isolation, version it, and compare revisions before deploying.</li>
-          <li><strong>Let the orchestrator agent emerge.</strong> As more workflows come online and the orchestration layer gets smarter about handing off between them, you will have something that looks and feels genuinely agentic — without betting your AI strategy on a single, brittle build.</li>
-        </ul>
+        <h2>Transparency wins</h2>
+        <p>Ask most people who have built a Skill in Claude to tell you what the steps are in the reasoning or processing, and most will return your question with a blank look. Even the ones who can describe it in theory usually cannot tell you whether the agent actually executed those steps in practice. That is the dangerous part. When a step is missing or a tool quietly fails, the model does not stop and flag it — it carries on and returns the most plausible-looking result. You get a confident answer that looks right but has skipped something important, and without visibility into the run you have no way of knowing.</p>
+        <p>This is why, on every agent we put into production, you have to be able to explain and review the execution flow for any given run — not the intended flow, the actual one. Once you can see the cost, latency, and inner workings of each step, the fixes are usually high value and low effort: not just model choice, but prompt engineering, tool use, or removing a tool and replacing it with a configured, deterministic task. Often a few hours of work takes a significant chunk out of the running cost.</p>
 
-        <h2>Build in-house or with a platform?</h2>
-        <p>This architecture is achievable in-house. But partnering tends to show its value in two specific places. The first is <strong>speed to market</strong>: getting from an idea to a tested, deployed workflow in days rather than months is a meaningful competitive advantage. The second is <strong>the operating layer</strong> — versioning, evaluation, observability, deployment safety. This is the unglamorous work that quietly drowns in-house builds.</p>
-        <p>Partnering with the right platform does not mean handing over your IP or your strategic thinking. The valuable work remains yours: defining what each agent should do, what context it should see, and what good output looks like. Rightbrain removes the engineering cost of getting there, not the ownership of the decisions that matter.</p>
-
-        <h2>What good actually looks like</h2>
-        <p>A product where agentic capability grows workflow by workflow, each one shipped and measured on its own terms. A team that can point to specific workflows and say "this one saves twenty minutes per rep per day" rather than "we are building an AI agent." An architecture that gets more reliable as it scales, not less, because every new piece is small, focused, and operating within well-defined controls.</p>
-        <p>The companies that win the agentic era will not be the ones who tried to build the biggest agent first. They will be the ones who built the smallest useful ones, over and over, and learned faster than anyone else.</p>
+        <h2>Your team in control, supported however you need</h2>
+        <p>For many enterprises, once you understand what needs to be done in production with your agents, the natural next step is to manage them in-house: learn from edge cases, handle them quickly, and run your agents like you do your own software stack. That is also where the care you took over the initial build pays off, as your own team becomes the one continuously improving the agent and driving it down the cost curve.</p>
+        <p>In the expenses agent, the orchestrator does real work when it outputs the extracted receipt data and appends it to a Google Sheet, or pushes it through a tool into a third-party system like Xero. Today, that justifies a more capable model with enough reasoning power to overcome edge cases. Over the coming months, as we discover those edge cases and harden the prompt and instructions across iterations, we can move that step to a smaller or open-source model — which on this build points to roughly another ten-fold reduction in cost. You earn the cheaper architecture as you become more precise and efficient.</p>
+        <p>If you are trying to get agents working properly inside your own workflows, that is exactly what we do — so do get in touch.</p>
       </div>
     </div>
 
@@ -454,11 +422,11 @@ img, svg { display: block; }
     <div class="container">
       <div class="article-foot reveal">
         <div class="author-card">
-          <span class="avatar" aria-hidden="true">FR</span>
+          <span class="avatar" aria-hidden="true">CD</span>
           <div>
-            <h3>Florian Ruspi</h3>
-            <p class="role">Head of Growth, Rightbrain</p>
-            <p>Florian writes about how teams move AI from prototype to production, and the operating models forming around agents that actually ship.</p>
+            <h3>Chris Davison</h3>
+            <p class="role">Head of Agent Delivery, Rightbrain</p>
+            <p>Chris takes agents from prototype to production for Rightbrain's customers, scoping use cases and architecting them to run reliably and cheaply at scale.</p>
           </div>
         </div>
       </div>
@@ -468,8 +436,8 @@ img, svg { display: block; }
       <div class="container">
         <div class="inner reveal">
           <div>
-            <h2>Move your best prototype to production</h2>
-            <p>Book a call and we will map your workflow to scoped, observable tasks.</p>
+            <h2>Get your agents production-ready</h2>
+            <p>Book a call and we will pressure-test your agent for cost, transparency, and control.</p>
           </div>
           <a class="btn btn-primary btn-lg" href="rightbrain-landing-lyra.html#cta">Book a call</a>
         </div>
@@ -483,7 +451,7 @@ img, svg { display: block; }
       <div class="reveal">
         <h2>Related reading</h2>
         <!-- Populated from resources.json by resources.js (RBResources.renderRelated) -->
-        <div class="grid-cards" data-related="production-agents-the-hard-parts,agents-make-engineering-hard-again,pal-health-ai-coach"></div>
+        <div class="grid-cards" data-related="agents-make-engineering-hard-again,stop-trying-to-build-a-god-level-agent,pal-health-ai-coach"></div>
       </div>
     </div>
   </section>

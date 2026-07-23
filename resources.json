@@ -17,7 +17,7 @@
       "title": "Production agents: the hard parts",
       "excerpt": "Building an agent that works \"perfectly\" in a demo is easy. Chris Davison, Head of Agent Delivery, on what actually breaks once real traffic, real tools, and real accountability arrive.",
       "date": "2026-06-18",
-      "href": "#",
+      "href": "rightbrain-article-production-agents.html",
       "author": { "name": "Chris Davison", "role": "Head of Agent Delivery" }
     },
     {
@@ -26,7 +26,7 @@
       "title": "Agents make engineering hard again",
       "excerpt": "We are nearing the end of the \"prompt demo\" phase of AI. Matthew Wells, CTO, on why the engineering phase brings all the hard bits back, and why that is good news for engineers.",
       "date": "2026-06-23",
-      "href": "#",
+      "href": "rightbrain-article-engineering-hard-again.html",
       "author": { "name": "Matthew Wells", "role": "CTO" }
     },
     {
@@ -35,7 +35,7 @@
       "title": "How marketing agencies are rebuilding around AI",
       "excerpt": "Most agencies have experimented with AI. There is a meaningful difference between individuals using AI and a business operating on it, and that gap is where the next operating model is being built.",
       "date": "2026-06-25",
-      "href": "#",
+      "href": "rightbrain-article-marketing-agencies.html",
       "author": { "name": "Florian Ruspi", "role": "Head of Growth" }
     },
     {
@@ -44,7 +44,7 @@
       "title": "Automated company enrichment",
       "excerpt": "An integration between Attio CRM and Rightbrain turns a basic company record into a fully enriched, actionable sales and marketing asset, automatically.",
       "date": "2026-02-15",
-      "href": "#",
+      "href": "rightbrain-article-attio-enrichment.html",
       "tool": "Attio CRM"
     },
     {
@@ -53,7 +53,7 @@
       "title": "Sales and ABM workflows in ChatGPT",
       "excerpt": "Run structured sales and marketing workflows directly inside ChatGPT by connecting custom Rightbrain Skills over MCP.",
       "date": "2026-02-20",
-      "href": "#",
+      "href": "rightbrain-article-chatgpt-abm.html",
       "tool": "ChatGPT \u00b7 MCP"
     },
     {
@@ -62,7 +62,7 @@
       "title": "Automated due diligence",
       "excerpt": "Automate document discovery and analysis with a workflow inside GitHub, so your team can handle due diligence without hiring a dedicated risk manager.",
       "date": "2026-03-14",
-      "href": "#",
+      "href": "rightbrain-article-due-diligence.html",
       "tool": "GitHub"
     },
     {
@@ -71,7 +71,7 @@
       "title": "Partner qualification and outreach",
       "excerpt": "Embed Rightbrain in a lightweight Google Sheets workflow to qualify potential partners or customers and generate tailored outreach messaging.",
       "date": "2026-03-22",
-      "href": "#",
+      "href": "rightbrain-article-partner-qualification.html",
       "tool": "Google Sheets"
     },
     {
@@ -89,7 +89,7 @@
       "title": "Rightbrain web search inside Clay",
       "excerpt": "Rocket SaaS built a fully automated audit-to-outreach workflow using Rightbrain inside Clay, so every prospect gets a consistent, structured set of recommendations ready to drop into an email.",
       "date": "2026-03-16",
-      "href": "#",
+      "href": "rightbrain-article-clay-outbound.html",
       "customer": "Rocket SaaS"
     },
     {
@@ -98,8 +98,8 @@
       "title": "Every sales call, a content asset",
       "excerpt": "Discovery sessions, strategy meetings, podcasts, kick-offs: each call generates market signals, buyer pain points, and content angles. Rightbrain turns them into structured assets, automatically.",
       "date": "2026-05-11",
-      "href": "#",
-      "customer": "Rocket SaaS"
+      "href": "rightbrain-article-sales-call-content.html",
+      "customer": "RocketSaaS"
     },
     {
       "slug": "automating-candidate-verification",
@@ -107,8 +107,8 @@
       "title": "Automating candidate verification",
       "excerpt": "ID checks, right-to-work documentation, and certifications for dozens of placements a week. Rightbrain handles the repetitive checking so recruiters focus on placing people, not chasing paperwork.",
       "date": "2026-05-11",
-      "href": "#",
-      "customer": "Recruitment"
+      "href": "rightbrain-article-candidate-verification.html",
+      "customer": "Appco"
     },
     {
       "slug": "on-brand-product-shots",
@@ -116,7 +116,7 @@
       "title": "On-brand product shots in minutes",
       "excerpt": "On-brand product imagery is usually slow and expensive. With Rightbrain and Gemini 2.5 Flash you can generate scenes from text, an image, or both.",
       "date": "2026-02-20",
-      "href": "#",
+      "href": "rightbrain-article-product-shots.html",
       "tool": "Gemini 2.5 Flash"
     },
     {
@@ -125,7 +125,7 @@
       "title": "Connect Rightbrain to Clay",
       "excerpt": "Connecting Rightbrain to Clay helps you create consistent, structured LLM responses you can reliably reuse across automations and outreach.",
       "date": "2026-02-20",
-      "href": "#",
+      "href": "rightbrain-article-clay-guide.html",
       "tool": "Clay"
     }
   ]

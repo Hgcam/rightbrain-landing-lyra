@@ -3,29 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Stop trying to build a "God-level agent" | Rightbrain</title>
-<meta name="description" content="The teams deploying AI in production are not building one all-powerful agent. They are building small, focused agentic workflows that compound. The best AI is often the smallest AI.">
-<link rel="canonical" href="https://rightbrain.ai/resources/stop-trying-to-build-a-god-level-agent">
-<!-- Open Graph / social -->
+<title>Embedding Rightbrain web search into Clay for scalable outbound | Rightbrain</title>
+<meta name="description" content="Rocket SaaS built a fully automated audit-to-outreach workflow with Rightbrain Tasks inside Clay: consistent, structured website recommendations that drop straight into an email.">
+<link rel="canonical" href="https://rightbrain.ai/resources/rocketsaas">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Stop trying to build a &quot;God-level agent&quot;">
-<meta property="og:description" content="Everyone wants one autonomous agent that does everything. Here is why that is the wrong place to start, and what to build instead.">
-<meta property="og:url" content="https://rightbrain.ai/resources/stop-trying-to-build-a-god-level-agent">
-<meta property="article:published_time" content="2026-06-23">
-<meta property="article:author" content="Florian Ruspi">
+<meta property="og:title" content="Embedding Rightbrain web search into Clay for scalable outbound">
+<meta property="og:description" content="Rocket SaaS built a fully automated audit-to-outreach workflow with Rightbrain Tasks inside Clay: consistent, structured recommendations that drop straight into an email.">
+<meta property="og:url" content="https://rightbrain.ai/resources/rocketsaas">
+<meta property="article:published_time" content="2026-03-16">
 <meta name="twitter:card" content="summary_large_image">
-<!-- Article schema for SEO / AEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Stop trying to build a \"God-level agent\"",
-  "description": "Everyone wants one autonomous agent that does everything. Here is why that is the wrong place to start, and what to build instead.",
-  "datePublished": "2026-06-23",
-  "author": { "@type": "Person", "name": "Florian Ruspi", "jobTitle": "Head of Growth" },
+  "headline": "Embedding Rightbrain web search into Clay for scalable outbound",
+  "description": "Rocket SaaS built a fully automated audit-to-outreach workflow with Rightbrain Tasks inside Clay: consistent, structured recommendations that drop straight into an email.",
+  "datePublished": "2026-03-16",
   "publisher": { "@type": "Organization", "name": "Rightbrain" },
-  "articleSection": "Blog",
-  "mainEntityOfPage": "https://rightbrain.ai/resources/stop-trying-to-build-a-god-level-agent"
+  "about": { "@type": "Organization", "name": "Rocket SaaS" },
+  "articleSection": "Case study",
+  "mainEntityOfPage": "https://rightbrain.ai/resources/rocketsaas"
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -126,7 +123,6 @@ img, svg { display: block; }
 .btn-primary { background: var(--primary); color: var(--primary-foreground); }
 .btn-outline { background: transparent; border-color: var(--border); color: var(--foreground); }
 .btn-lg { min-height: 3rem; padding: 0 1.75rem; font-size: 0.875rem; }
-.btn-xs { min-height: 2.25rem; padding: 0 0.85rem; font-size: 0.75rem; gap: 0.4rem; }
 @media (hover: hover) and (pointer: fine) {
   .btn-primary:hover { opacity: 0.88; }
   .btn-outline:hover { background: var(--accent); }
@@ -185,10 +181,10 @@ img, svg { display: block; }
 @media (hover: hover) and (pointer: fine) { .drawer nav a:hover { background: var(--accent); } }
 .drawer .btn { margin-top: auto; }
 
-/* reading progress (neutral, thin) */
+/* reading progress */
 .progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--foreground); z-index: 60; transition: width 80ms linear; }
 
-/* ============ article ============ */
+/* ============ article (structured) ============ */
 .article { padding: 2.5rem 0 3.5rem; }
 @media (min-width: 1024px) { .article { padding: 3.5rem 0 4rem; } }
 .article-col { max-width: 44rem; margin: 0 auto; }
@@ -203,21 +199,47 @@ img, svg { display: block; }
 .article-head .deck { font-family: var(--font-heading); font-weight: 300; font-size: 1.1875rem; line-height: 1.6; color: var(--muted-foreground); }
 @media (min-width: 768px) { .article-head .deck { font-size: 1.3125rem; } }
 
-.byline { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 2rem; padding: 1.25rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.byline .avatar { width: 2.5rem; height: 2.5rem; flex: none; display: grid; place-items: center; background: var(--muted); font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 600; color: var(--foreground); }
-.byline .who { display: flex; flex-direction: column; line-height: 1.35; font-size: 0.8125rem; }
-.byline .who b { font-weight: 600; }
-.byline .who span { color: var(--muted-foreground); }
-.byline .meta { display: flex; align-items: center; gap: 0.9rem; font-size: 0.75rem; color: var(--muted-foreground); }
-.byline .meta .mi { display: inline-flex; align-items: center; gap: 0.35rem; }
-.byline .share { margin-left: auto; }
+/* customer identity row */
+.customer { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.25rem; margin-top: 2rem; padding: 1.25rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pal-logo {
+  width: 104px; height: 30px; display: inline-block; flex: none;
+  background: var(--foreground);
+  mask-image: url('assets/brands/pal-health.png'); -webkit-mask-image: url('assets/brands/pal-health.png');
+  mask-size: contain; -webkit-mask-size: contain;
+  mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
+  mask-position: left center; -webkit-mask-position: left center;
+}
+.cust-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; line-height: 1; }
+.customer .cmeta { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.75rem; color: var(--muted-foreground); }
+.customer .cmeta .mi { display: inline-flex; align-items: center; gap: 0.35rem; }
+.customer .share { margin-left: auto; }
 .copy-link { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--border); background: transparent; min-height: 2.25rem; padding: 0 0.75rem; font-size: 0.75rem; font-family: var(--font-mono); transition: background-color 150ms ease; }
 .copy-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 @media (hover: hover) and (pointer: fine) { .copy-link:hover { background: var(--accent); } }
 
-/* long-form prose — DOCUMENTED DEVIATION: reading body is Merriweather (serif), not mono.
-   Mono is retained for metadata, labels, inline code, and code blocks. */
-.prose { margin-top: 2.5rem; }
+/* metrics strip */
+.metrics { margin-top: 2rem; border: 1px solid var(--border); display: grid; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .metrics { grid-template-columns: repeat(3, 1fr); } }
+.metric { padding: 1.5rem; border-bottom: 1px solid var(--border); text-align: center; }
+@media (min-width: 640px) { .metric { border-bottom: 0; border-right: 1px solid var(--border); } .metric:last-child { border-right: 0; } }
+.metric:last-child { border-bottom: 0; }
+.metric b { display: block; font-family: var(--font-mono); font-size: 1.75rem; font-weight: 600; font-variant-numeric: tabular-nums; margin-bottom: 0.3rem; }
+.metric span { font-size: 0.75rem; color: var(--muted-foreground); }
+
+/* at-a-glance facts + chips */
+.facts { margin-top: 2rem; border: 1px solid var(--border); background: var(--muted); padding: 1.5rem; }
+.facts .k { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-foreground); margin-bottom: 1rem; }
+.facts dl { display: grid; grid-template-columns: 1fr; gap: 0.75rem 1.5rem; margin: 0; }
+@media (min-width: 640px) { .facts dl { grid-template-columns: repeat(2, 1fr); } }
+.facts .row { display: grid; grid-template-columns: 8rem 1fr; gap: 0.75rem; align-items: baseline; }
+.facts dt { font-size: 0.75rem; color: var(--muted-foreground); }
+.facts dd { margin: 0; font-size: 0.8125rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+.chip { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--border); background: var(--background); padding: 0.3rem 0.6rem; font-size: 0.72rem; font-family: var(--font-mono); color: var(--foreground); }
+.chip .icon { font-size: 0.85rem; color: var(--muted-foreground); }
+
+/* long-form prose (serif reading body, mono for code/labels) */
+.prose { margin-top: 2.75rem; }
 .prose > * + * { margin-top: 1.5rem; }
 .prose p, .prose li { font-family: var(--font-heading); font-weight: 400; font-size: 1.0625rem; line-height: 1.85; }
 .prose h2 { font-size: 1.5rem; line-height: 1.25; margin-top: 3rem; }
@@ -229,32 +251,16 @@ img, svg { display: block; }
 .prose ul, .prose ol { padding-left: 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .prose li::marker { color: var(--muted-foreground); }
 .prose code { font-family: var(--font-mono); font-size: 0.82em; background: var(--muted); padding: 0.1rem 0.35rem; }
-.prose pre { font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.65; background: var(--muted); border: 1px solid var(--border); padding: 1.1rem 1.25rem; overflow: auto; }
-.prose pre code { background: none; padding: 0; font-size: inherit; }
-.prose blockquote { border-left: 2px solid var(--border); padding-left: 1.25rem; color: var(--muted-foreground); }
-.prose blockquote p { font-style: italic; }
 
-/* pull-quote: centred emphasis, hairline rules (no side-stripe) */
-.pullquote { margin: 2.5rem 0; padding: 1.75rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
-.pullquote p { font-family: var(--font-heading); font-weight: 300; font-size: 1.5rem; line-height: 1.4; }
-@media (min-width: 768px) { .pullquote p { font-size: 1.75rem; } }
-
-/* callout well */
-.callout { background: var(--muted); border: 1px solid var(--border); padding: 1.25rem 1.5rem; }
-.callout .k { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-foreground); display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem; }
-.callout p { margin-top: 0; }
-
-.figure figcaption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.6rem; }
-
-/* ============ end matter ============ */
-.article-foot { max-width: 44rem; margin: 0 auto; }
-.author-card { display: flex; gap: 1rem; align-items: flex-start; background: var(--muted); border: 1px solid var(--border); padding: 1.5rem; margin-top: 3rem; }
-.author-card .avatar { width: 3rem; height: 3rem; flex: none; display: grid; place-items: center; background: var(--background); font-family: var(--font-mono); font-size: 0.9375rem; font-weight: 600; }
-.author-card h3 { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 600; }
-.author-card .role { font-size: 0.75rem; color: var(--muted-foreground); margin-bottom: 0.6rem; }
-.author-card p { font-size: 0.8125rem; color: var(--muted-foreground); line-height: 1.65; }
+/* customer quote */
+.cs-quote { margin: 2.75rem 0; padding: 1.75rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.cs-quote p { font-family: var(--font-heading); font-weight: 300; font-style: italic; font-size: 1.375rem; line-height: 1.45; }
+@media (min-width: 768px) { .cs-quote p { font-size: 1.5rem; } }
+.cs-quote footer { margin-top: 1rem; font-size: 0.78rem; color: var(--muted-foreground); font-style: normal; }
+.cs-quote footer b { color: var(--foreground); font-weight: 600; }
 
 /* CTA band (inverted) */
+.article-foot { max-width: 44rem; margin: 0 auto; }
 .cta-band { background: var(--primary); color: var(--primary-foreground); margin-top: 3.5rem; }
 .cta-band .inner { max-width: 44rem; margin: 0 auto; padding: 2.75rem 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
 .cta-band h2 { font-size: 1.5rem; margin-bottom: 0.4rem; }
@@ -360,107 +366,114 @@ img, svg { display: block; }
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="rightbrain-resources-lyra.html">Resources</a>
           <span class="sep" aria-hidden="true">/</span>
-          <a href="rightbrain-resources-lyra.html">Blog</a>
+          <a href="rightbrain-resources-lyra.html">Case study</a>
         </nav>
-        <span class="cat"><i class="ri-article-line icon" aria-hidden="true"></i> Blog</span>
-        <h1>Stop trying to build a "God-level agent"</h1>
-        <p class="deck">Every product or strategy lead is being asked the same question: what is our agent strategy? The teams seeing real value in production aren't building one all-powerful agent. They're building small, focused workflows that compound. The best AI is often the smallest AI.</p>
+        <span class="cat"><i class="ri-line-chart-line icon" aria-hidden="true"></i> Case study</span>
+        <h1>Embedding Rightbrain web search into Clay for scalable outbound</h1>
+        <p class="deck">Outbound is noisier than ever. Rocket SaaS built a fully automated audit-to-outreach workflow using Rightbrain Tasks inside Clay, so every prospect gets a consistent, structured set of website recommendations that can drop straight into an email.</p>
 
-        <div class="byline">
-          <span class="avatar" aria-hidden="true">FR</span>
-          <span class="who"><b>Florian Ruspi</b><span>Head of Growth, Rightbrain</span></span>
-          <span class="meta">
-            <span class="mi"><i class="ri-calendar-line icon" aria-hidden="true"></i> 23 Jun 2026</span>
-            <span class="mi"><i class="ri-time-line icon" aria-hidden="true"></i> 7 min read</span>
+        <div class="customer">
+          <span class="cust-name">Rocket SaaS</span>
+          <span class="cmeta">
+            <span class="mi"><i class="ri-building-line icon" aria-hidden="true"></i> B2B marketing agency</span>
+            <span class="mi"><i class="ri-mail-send-line icon" aria-hidden="true"></i> Outbound</span>
+            <span class="mi"><i class="ri-calendar-line icon" aria-hidden="true"></i> 16 Mar 2026</span>
           </span>
           <span class="share">
             <button class="copy-link" id="copyLink" type="button"><i class="ri-link icon" aria-hidden="true"></i> Copy link</button>
           </span>
         </div>
+
+        <div class="metrics">
+          <div class="metric"><b>Every</b><span>prospect audited automatically</span></div>
+          <div class="metric"><b>Fallback</b><span>models keep the flow running</span></div>
+          <div class="metric"><b>Lower</b><span>cost per audit after model swaps</span></div>
+        </div>
+
+        <aside class="facts" aria-label="At a glance">
+          <p class="k">At a glance</p>
+          <dl>
+            <div class="row"><dt>Company</dt><dd>Rocket SaaS</dd></div>
+            <div class="row"><dt>Workflow</dt><dd>Audit-to-outreach, fully automated</dd></div>
+            <div class="row"><dt>Use case</dt><dd>Website audits + personalised email</dd></div>
+            <div class="row"><dt>Stack</dt><dd>Clay, Rightbrain, Instantly</dd></div>
+          </dl>
+          <div class="chips">
+            <span class="chip"><i class="ri-search-line icon" aria-hidden="true"></i> Website audit</span>
+            <span class="chip"><i class="ri-scales-3-line icon" aria-hidden="true"></i> Scoring matrix</span>
+            <span class="chip"><i class="ri-braces-line icon" aria-hidden="true"></i> Structured JSON</span>
+            <span class="chip"><i class="ri-shuffle-line icon" aria-hidden="true"></i> Model fallback</span>
+            <span class="chip"><i class="ri-links-line icon" aria-hidden="true"></i> Clay</span>
+            <span class="chip"><i class="ri-mail-line icon" aria-hidden="true"></i> Instantly</span>
+          </div>
+        </aside>
       </div>
 
       <div class="article-col prose reveal">
-        <p>Every product or strategy lead is being asked the same question right now: what is our agent strategy? Almost every team answers it the same way — they picture one intelligent, autonomous agent that takes a goal, figures out a plan, calls the right tools, and delivers an outcome from start to finish. A single super-powered assistant that handles it all.</p>
-        <p>That mental model is intuitive and it makes for a compelling demo, but it is almost always the wrong place to start.</p>
-        <p>The teams deploying AI in production and seeing real value are not building one all-powerful agent. They are building a series of small, focused agentic workflows that compound over time, treating "the orchestrator agent" as something that emerges from the system rather than something you design and ship on day one. The best AI is often the smallest AI — focused on one repetitive workflow and operating within well-defined controls.</p>
-
-        <h2>Why the god-level agent is so appealing</h2>
-        <p>The market is selling the dream. AI SDRs. AI analysts. AI engineers. These are all framed as a single monolithic build that replaces a role or handles an entire function end-to-end.</p>
-        <p>Demos reinforce it — a single chat interface that just does the thing looks effortless in a ten-minute pitch. There is also internal pressure, where leadership wants a story, not a toolkit. "We have an agent" is a much easier sentence than "we have AI executing specific repetitive tasks across different systems, with built-in controls and guardrails."</p>
-        <p>And there is a real kernel of truth in the vision — a true end-to-end agent might be the right end goal. The mistake is treating it as a destination you build directly, rather than something that emerges naturally.</p>
-
-        <h2>What goes wrong when you build the biggest agent possible</h2>
-        <p>Most teams find out the hard way. When you build a big agent first, what you have to account for includes:</p>
+        <h2>Rocket SaaS is building an AI-powered outbound motion</h2>
+        <p>Rocket SaaS runs marketing programs for B2B teams. One channel they use for new client acquisition is cold email. But email outbound has gotten harder. Everyone is sending more messages, so personalisation has to be genuinely relevant, not cosmetic.</p>
+        <p>The problem was simple:</p>
         <ul>
-          <li><strong>Brittleness.</strong> A single agent expected to handle many workflows behaves unpredictably. Small changes to the prompt, the data, or the toolset cascade everywhere, and there is no clean way to contain the fallout.</li>
-          <li><strong>Architecture tax.</strong> The more you ask one agent to do, the more scaffolding you have to build around it: guardrails, evaluation layers, retry logic, memory management, routing decisions. You spend the majority of your engineering effort on the supporting structure rather than the value itself.</li>
-          <li><strong>Context poisoning.</strong> When one agent sees everything, irrelevant or incorrect context bleeds into every decision it makes. Quality degrades the more you add.</li>
-          <li><strong>No incremental value.</strong> You cannot ship thirty percent of a god-level agent. You either have the full experience or you do not. That kills momentum and burns internal trust before the product has proven itself.</li>
-          <li><strong>No visibility when things go wrong.</strong> When something breaks inside a large, interconnected agent, you cannot tell which step failed. Debugging becomes guesswork. Improvement becomes opinion.</li>
+          <li>Manual website audits do not scale.</li>
+          <li>LLM-only outputs can be inconsistent, with formatting changes and variable structure.</li>
+          <li>Outbound workflows break when the output is not predictable.</li>
+        </ul>
+        <p>Rocket SaaS wanted a system that could run in the background, produce the same output structure every time, and be improved continuously without rebuilding the whole workflow.</p>
+
+        <h2>Why Rocket SaaS built this in Rightbrain, not directly in Clay</h2>
+        <p>Clay can already call models directly. Rocket SaaS chose Rightbrain because it made the workflow:</p>
+        <ul>
+          <li><strong>More consistent:</strong> structured outputs every time, so emails do not break when the response changes.</li>
+          <li><strong>Cheaper:</strong> more cost-effective model usage, rather than burning Clay credits on expensive defaults.</li>
+          <li><strong>Easier to optimise:</strong> compare models quickly, swap to cheaper ones once the prompt is dialled in.</li>
+          <li><strong>More reliable:</strong> set a backup model so the workflow does not fail if one provider is down.</li>
         </ul>
 
-        <h2>A better model: agentic AI as a summation of steps</h2>
-        <p>An agentic product is not a single intelligence. It is a summation of incremental steps, each one doing a specific job well.</p>
-        <p>The architecture that actually works looks like this: an interface layer takes in the user's input and works out what they are trying to do. A routing layer decides which agentic workflow should handle it. A workflow layer contains independent, focused AI tasks, each one designed around a clear input and a clear output.</p>
-        <p>This is not a new idea. It is basically how good software has been built for decades. What is new is applying that discipline to AI, where the instinct is always to reach for more capability rather than more precision. The headline benefit is straightforward: you can build, test, and improve each workflow independently. Each one delivers value on its own. The orchestrator agent experience emerges as you add and connect more of them.</p>
-
-        <div class="pullquote">
-          <p>Stop asking "how powerful is our agent?" Start asking "how precisely are we feeding each step the context it needs?"</p>
+        <div class="cs-quote">
+          <p>"We could call an LLM directly, but Rightbrain made the outputs consistent and easy to improve. That matters when it's feeding emails automatically."</p>
+          <footer><b>Joe McLaughlin</b> &middot; Rocket SaaS</footer>
         </div>
 
-        <h2>The principle that changes everything: the best AI is the smallest AI</h2>
-        <p>The smallest, most precisely scoped application of AI you can get away with will give you the fastest return on investment. Tighter scope means tighter context. Tighter context means lower cost, lower latency, higher precision, and more predictable behaviour.</p>
-        <p>Here is the practical implication for product and strategy leaders: capability is not the bottleneck. The frontier models can already do most of what you want. What you are actually buying when you architect well is precision and reliability.</p>
-        <p>Take personalised outreach as an example. Instead of one agent that takes in everything you know about a prospect, reaches into your CRM, runs web search, and generates a series of messages, break it into three tasks:</p>
-
-        <figure class="figure">
-<pre><code>outreach (workflow)
-  research   -> web-search + crm     out: AccountFacts
-  analyse    -> reasoning model      out: Angles[]
-  generate   -> writer model         out: Message</code></pre>
-          <figcaption>Three scoped tasks instead of one monolith. Each is small, testable, and improvable — and when something goes wrong, you know exactly where.</figcaption>
-        </figure>
-
-        <h2>Context is the lever, not capability</h2>
-        <p>Most teams optimise the wrong variable. They reach for a bigger model, more tools, more memory, more autonomy. What actually moves quality is context management. The job of a well-built agentic system is to deliver the right context for the right task at the right time. Nothing more, nothing less.</p>
-        <p>Most "AI does not work for us" stories are not about model failure. They are about context overload or context starvation at specific steps in the workflow. Fix the context and you fix the output. This approach also lets you put controls in place for when your input data is insufficient.</p>
-
-        <h2>The shared memory trap</h2>
-        <p>Once teams have built a few agents, the next instinct is to connect them with shared memory. Let the agents learn from each other. It sounds obvious, and it is genuinely appealing.</p>
-        <p>The technical side of sharing memory seems straightforward, though it carries a lot of risk. The hard part is deciding what context to expose to which agent, in which situation, for which user. That is where the real cost lives. Two failure modes are worth taking seriously: the wrong context gets surfaced to the wrong workflow or user (privacy exposure, low-quality outputs, compliance risk); and shared memory makes context poisoning significantly more likely, where one bad signal contaminates every downstream decision.</p>
-        <p>Start with isolated context per use case or per user. Only introduce shared memory when you have a specific, well-scoped reason for it, and treat the access logic as a first-class product decision, not an afterthought.</p>
-
-        <h2>How to actually build this</h2>
-        <p>This does not require a complete rethink of your roadmap. It requires a shift in where you start.</p>
+        <h2>Building a website audit Task with a scoring matrix</h2>
+        <p>Rocket SaaS already had an internal landing-page builder with a strong prompt based on best practice. They reverse-engineered that thinking into a website audit scoring matrix.</p>
+        <p>The Rightbrain Task takes a prospect's website and returns:</p>
         <ul>
-          <li><strong>Start with agentic workflows, not agents.</strong> List the discrete things you want AI to do. Each one should be expressible as: given X, produce Y.</li>
-          <li><strong>Pick two or three to build first.</strong> Choose ones that deliver standalone value. Do not start with steps that only matter as part of a future system that does not exist yet.</li>
-          <li><strong>Design for precision, not scope.</strong> For each workflow, ask: what is the smallest context that produces the right output? Build to that.</li>
-          <li><strong>Make each workflow observable and testable.</strong> You should be able to evaluate each one in isolation, version it, and compare revisions before deploying.</li>
-          <li><strong>Let the orchestrator agent emerge.</strong> As more workflows come online and the orchestration layer gets smarter about handing off between them, you will have something that looks and feels genuinely agentic — without betting your AI strategy on a single, brittle build.</li>
+          <li>A score against the landing-page best-practice criteria.</li>
+          <li>Three clear bullet-point recommendations to improve the page.</li>
+          <li>A structured output format that is identical every time.</li>
+        </ul>
+        <p>That predictable structure is what makes it safe to pipe directly into outbound messaging.</p>
+
+        <h2>From Clay to Rightbrain to Instantly, fully automated</h2>
+        <p>The workflow runs end to end without manual steps:</p>
+        <ol>
+          <li><strong>Clay creates or updates contacts from engagement.</strong> As Clay identifies new contacts engaging with Rocket SaaS ads, contacts are created in the workflow.</li>
+          <li><strong>Clay calls Rightbrain via HTTP enrichment.</strong> Clay triggers the Rightbrain Task using an API call in the background.</li>
+          <li><strong>Rightbrain returns a structured audit output.</strong> The Task outputs a consistent set of fields, like a score plus three recommendations.</li>
+          <li><strong>Clay populates fields and pushes to Instantly.</strong> Those fields are mapped into Clay columns and pushed into Instantly, where the audit insights become personalised lines inside outbound emails.</li>
+        </ol>
+        <p>Rocket SaaS started with a higher-cost model to get quality right, then tightened the prompt based on real outputs, swapped to cheaper models to reduce cost and improve speed, and added fallback models so the enrichment does not fail if one model endpoint is unavailable. This makes the system scalable and keeps performance improving over time.</p>
+
+        <div class="cs-quote">
+          <p>"We started expensive to get the output right, then used Rightbrain to test alternatives and bring cost down fast, without losing consistency."</p>
+          <footer><b>Joe McLaughlin</b> &middot; Rocket SaaS</footer>
+        </div>
+
+        <h2>Impact so far</h2>
+        <p>This is early, but already proving the motion works:</p>
+        <ul>
+          <li>A fully automated outbound flow that runs continuously.</li>
+          <li>Good open rates, and first replies coming in.</li>
+          <li>A repeatable framework for adding micro-intelligence into outreach, without adding manual work.</li>
         </ul>
 
-        <h2>Build in-house or with a platform?</h2>
-        <p>This architecture is achievable in-house. But partnering tends to show its value in two specific places. The first is <strong>speed to market</strong>: getting from an idea to a tested, deployed workflow in days rather than months is a meaningful competitive advantage. The second is <strong>the operating layer</strong> — versioning, evaluation, observability, deployment safety. This is the unglamorous work that quietly drowns in-house builds.</p>
-        <p>Partnering with the right platform does not mean handing over your IP or your strategic thinking. The valuable work remains yours: defining what each agent should do, what context it should see, and what good output looks like. Rightbrain removes the engineering cost of getting there, not the ownership of the decisions that matter.</p>
-
-        <h2>What good actually looks like</h2>
-        <p>A product where agentic capability grows workflow by workflow, each one shipped and measured on its own terms. A team that can point to specific workflows and say "this one saves twenty minutes per rep per day" rather than "we are building an AI agent." An architecture that gets more reliable as it scales, not less, because every new piece is small, focused, and operating within well-defined controls.</p>
-        <p>The companies that win the agentic era will not be the ones who tried to build the biggest agent first. They will be the ones who built the smallest useful ones, over and over, and learned faster than anyone else.</p>
-      </div>
-    </div>
-
-    <!-- end matter -->
-    <div class="container">
-      <div class="article-foot reveal">
-        <div class="author-card">
-          <span class="avatar" aria-hidden="true">FR</span>
-          <div>
-            <h3>Florian Ruspi</h3>
-            <p class="role">Head of Growth, Rightbrain</p>
-            <p>Florian writes about how teams move AI from prototype to production, and the operating models forming around agents that actually ship.</p>
-          </div>
-        </div>
+        <h2>What's next: more Tasks across outbound and the agency</h2>
+        <p>Rocket SaaS is using this as the first anchor use case, then expanding:</p>
+        <ul>
+          <li><strong>New outbound campaigns powered by Rightbrain Tasks</strong> — more variations of audit depth, angles, and triggers to level up automated outbound.</li>
+          <li><strong>A brand and QA checker for client work</strong> — a Task trained on a client's brand guidelines that grades assets before publishing, checks grammar and US/UK spelling, validates required keywords and rules, and blocks anything below a threshold score for review.</li>
+          <li><strong>A full workflow audit</strong> — Rightbrain's team helps identify where moments of micro-intelligence will create the biggest leverage, then turns them into production-ready Tasks.</li>
+        </ul>
       </div>
     </div>
 
@@ -468,8 +481,8 @@ img, svg { display: block; }
       <div class="container">
         <div class="inner reveal">
           <div>
-            <h2>Move your best prototype to production</h2>
-            <p>Book a call and we will map your workflow to scoped, observable tasks.</p>
+            <h2>See this running in your stack</h2>
+            <p>We'll map your current outbound workflow and build the first audit Task with you in a single session.</p>
           </div>
           <a class="btn btn-primary btn-lg" href="rightbrain-landing-lyra.html#cta">Book a call</a>
         </div>
@@ -477,13 +490,12 @@ img, svg { display: block; }
     </div>
   </article>
 
-  <!-- related -->
   <section class="related">
     <div class="container">
       <div class="reveal">
         <h2>Related reading</h2>
         <!-- Populated from resources.json by resources.js (RBResources.renderRelated) -->
-        <div class="grid-cards" data-related="production-agents-the-hard-parts,agents-make-engineering-hard-again,pal-health-ai-coach"></div>
+        <div class="grid-cards" data-related="every-sales-call-a-content-asset,automating-candidate-verification,pal-health-ai-coach"></div>
       </div>
     </div>
   </section>
@@ -543,14 +555,12 @@ img, svg { display: block; }
   // related reading from resources.json
   if (window.RBResources) document.querySelectorAll('[data-related]').forEach(function (h) { RBResources.renderRelated(h); });
 
-  // theme toggle
   var toggle = document.getElementById('themeToggle');
   if (toggle) toggle.addEventListener('click', function () {
     var dark = root.classList.toggle('dark');
     toggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
   });
 
-  // mobile drawer
   var drawer = document.getElementById('drawer');
   var scrim = document.getElementById('scrim');
   var menuBtn = document.getElementById('menuBtn');
@@ -570,33 +580,28 @@ img, svg { display: block; }
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setDrawer(false); });
   window.addEventListener('resize', function () { if (window.innerWidth > 900) setDrawer(false); });
 
-  // copy link
   var copyBtn = document.getElementById('copyLink');
   if (copyBtn) copyBtn.addEventListener('click', function () {
-    var label = copyBtn.querySelector('i');
     navigator.clipboard.writeText(location.href).then(function () {
-      var prev = copyBtn.childNodes[copyBtn.childNodes.length - 1].nodeValue;
-      copyBtn.childNodes[copyBtn.childNodes.length - 1].nodeValue = ' Copied';
-      setTimeout(function () { copyBtn.childNodes[copyBtn.childNodes.length - 1].nodeValue = ' Copy link'; }, 1400);
+      var last = copyBtn.childNodes[copyBtn.childNodes.length - 1];
+      last.nodeValue = ' Copied';
+      setTimeout(function () { last.nodeValue = ' Copy link'; }, 1400);
     }).catch(function () {});
   });
 
-  // reading progress
   var bar = document.getElementById('progress');
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (bar) {
     var onScroll = function () {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
-      bar.style.width = pct + '%';
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
 
-  // scroll reveal
   var reveals = document.querySelectorAll('.reveal');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion || !('IntersectionObserver' in window)) {
     reveals.forEach(function (el) { el.classList.add('in-view'); });
   } else {

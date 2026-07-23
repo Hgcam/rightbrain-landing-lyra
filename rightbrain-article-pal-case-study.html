@@ -369,7 +369,7 @@ img, svg { display: block; }
         </nav>
         <span class="cat"><i class="ri-line-chart-line icon" aria-hidden="true"></i> Case study</span>
         <h1>How Pal built an AI health coach with all the right tools</h1>
-        <p class="deck">15+ scoped AI tools power Pal.'s food scanner, nutrition targets, and coaching. One product lead runs them all, switching models and shipping updates daily.</p>
+        <p class="deck">15+ AI tools and features power Pal.'s food scanner, nutrition targets, and coaching features. Founder and Product Lead, Chris, runs them all, fixing edge cases, switching models, and shipping updates daily.</p>
 
         <div class="customer">
           <span class="pal-logo" role="img" aria-label="Pal.health"></span>
@@ -384,9 +384,9 @@ img, svg { display: block; }
         </div>
 
         <div class="metrics">
-          <div class="metric"><b>15+</b><span>AI tools and features in production</span></div>
-          <div class="metric"><b>1</b><span>product lead operating all of them</span></div>
-          <div class="metric"><b>Daily</b><span>releases without app redeploys</span></div>
+          <div class="metric"><b>20+</b><span>tasks live in production today</span></div>
+          <div class="metric"><b>30+</b><span>more in the pipeline</span></div>
+          <div class="metric"><b>Daily</b><span>updates without app redeploys</span></div>
         </div>
 
         <aside class="facts" aria-label="At a glance">
@@ -409,27 +409,58 @@ img, svg { display: block; }
       </div>
 
       <div class="article-col prose reveal">
-        <h2>The challenge</h2>
-        <p>Pal is a health app with AI woven through the core experience: point your camera at a meal and it logs the food, set nutrition targets and it adapts them, ask for guidance and it coaches you. Each of those is a different AI problem, with a different best model and a different prompt.</p>
-        <p>Building that the traditional way means standing up and babysitting bespoke inference for every feature, and re-deploying the app each time a prompt or model changes. For a founder-led team with no dedicated ML platform, that is not sustainable, and it makes every improvement slow and risky.</p>
+        <h2>Pal is the ultimate all-in-one health companion</h2>
+        <p>Pal is a mobile health coach app with features like a conversational voice agent, nutrition tracking, and SmartShop, a tool that rates supermarket products and suggests healthier alternatives.</p>
+        <p>Each of these features runs on Rightbrain <strong>Tasks</strong>, which are small, production-ready AI workflows that power the intelligence behind Pal's app. The app focuses on collecting data and delivering a great experience, while Rightbrain handles the processing, reasoning, and outputs.</p>
 
-        <h2>What they built</h2>
-        <p>Instead of one model wrapper buried in the app, Pal built 15+ Rightbrain <strong>tasks</strong>, one per feature. Each task has a narrow job, a typed output the app can rely on, the tools it needs, and its own model chosen for that specific job.</p>
+        <h2>Building tools for agents in Rightbrain</h2>
+        <p>One of Pal's features, SmartShop, is a health product scanner that helps users make better choices in the supermarket. When a user takes a photo of a product, SmartShop:</p>
         <ul>
-          <li>A <strong>food-scanner</strong> task pairs a vision model with a nutrition lookup and returns structured line items.</li>
-          <li>A <strong>targets</strong> task turns a profile and goals into adaptive daily targets.</li>
-          <li>A <strong>coaching</strong> task generates guidance in Pal's voice, grounded in the user's recent data.</li>
+          <li>Analyses the product and gives it a health rating.</li>
+          <li>Flags hidden ingredients or misleading marketing claims.</li>
+          <li>Suggests healthier alternatives with links to buy.</li>
         </ul>
-        <p>Because each task is defined and versioned outside the app, the app just calls it. Chris can change the prompt, tighten the output, or switch the model behind any single feature without shipping a new build.</p>
+        <p>Behind the scenes, SmartShop is powered by a Rightbrain Task. Pal have built this task to:</p>
+        <ul>
+          <li>Accept the product photo and ingredients label as inputs.</li>
+          <li>Run it through a model they selected after testing multiple options in Rightbrain.</li>
+          <li>Use a carefully crafted prompt that captures edge cases and defines exactly how the analysis should be performed.</li>
+          <li>Return a structured JSON output with health rating, flags, and recommended alternatives that developers can easily render in the app.</li>
+        </ul>
+        <p>Because SmartShop lives on Rightbrain, Pal can quickly adjust prompts, update output formats, and ship improvements instantly, all without redeploying their app.</p>
+
+        <h2>Monitoring AI tasks in one place</h2>
+        <p>Pal could have connected to a model API directly, but they needed a way to operate, monitor, and improve AI in production without waiting for engineering cycles or app redeploys, and to future-proof their AI approach through access to all leading models.</p>
+        <p>With Rightbrain, Chris can:</p>
+        <ul>
+          <li>Test and swap models side by side to find the most reliable one.</li>
+          <li>Refine prompts on the fly and deploy updates instantly to all users.</li>
+          <li>Handle edge cases quickly by iterating on prompts and output format.</li>
+        </ul>
+        <p>And when things fail, they're not black boxes. Chris can inspect the inputs and outputs, diagnose the issue, adjust the prompt, and redeploy, all without downtime.</p>
+
+        <h2>Pal builds and ships multiple AI agents in Rightbrain</h2>
+        <p>With Rightbrain, Pal are able to create and embed multiple AI agents to give users a complete suite of features.</p>
+        <h3>SmartShop: scan a product, get healthier alternatives</h3>
+        <p>In a supermarket aisle, a user snaps a yoghurt pot. Pal analyses the label, flags misleading claims like "low-fat" that hide high sugar content, and suggests healthier swaps with purchase links. Built as a Rightbrain task with structured JSON outputs, it's easy to refine; whenever accuracy drifts, Chris tweaks the prompt and updates go live instantly.</p>
+        <h3>Daily nutrition targets with guardrails</h3>
+        <p>When one user was assigned a dangerously low calorie target, Chris added a simple rule, "never recommend below safe minimums", and rolled it out in seconds. The fix went live for all users without requiring a developer.</p>
+        <h3>Content moderation in under an hour</h3>
+        <p>Pal's profanity filter, which blocks offensive usernames, was conceived, built, and deployed in a single afternoon.</p>
+
+        <h2>Impact so far</h2>
+        <p>Pal went from prototype to production with Rightbrain at the core. The results are measurable:</p>
+        <ul>
+          <li><strong>20+ tasks live today</strong>, with 30+ in the pipeline.</li>
+          <li><strong>Founder-led iteration:</strong> Chris pushes updates daily without adding to the engineering backlog.</li>
+          <li><strong>Model flexibility:</strong> test new models side by side, switch them in minutes, and optimise for speed, cost, and quality without re-engineering.</li>
+          <li><strong>Operational confidence:</strong> failures aren't black boxes; Chris can monitor failed runs, detect anomalies in performance, and patch fixes fast.</li>
+        </ul>
 
         <div class="cs-quote">
-          <p>"I can swap the model behind a feature in the morning and have it live by lunch, without touching the app. That is the whole game for a small team."</p>
-          <footer><b>Chris</b> &middot; Founder and Product Lead, Pal.health</footer>
+          <p>"If Rightbrain shut down tomorrow, the impact across the business would be huge. There's nothing else that makes it this easy to run AI in production."</p>
+          <footer><b>Chris Davison</b> &middot; Founder, Pal</footer>
         </div>
-
-        <h2>The result</h2>
-        <p>One person runs 15+ AI features in production. When a better model ships, Pal moves the relevant task to it and keeps the rest untouched, no lock-in to a single provider. When an edge case appears, Chris fixes the one task responsible rather than untangling a monolith.</p>
-        <p>The outcome is a small team shipping AI features daily, with each one observable, testable, and cheap to change, exactly the posture that keeps AI in production instead of stuck in a prototype.</p>
       </div>
     </div>
 
@@ -451,7 +482,7 @@ img, svg { display: block; }
       <div class="reveal">
         <h2>Related reading</h2>
         <!-- Populated from resources.json by resources.js (RBResources.renderRelated) -->
-        <div class="grid-cards" data-related="stop-trying-to-build-a-god-level-agent,rightbrain-web-search-inside-clay,on-brand-product-shots"></div>
+        <div class="grid-cards" data-related="rightbrain-web-search-inside-clay,every-sales-call-a-content-asset,automating-candidate-verification"></div>
       </div>
     </div>
   </section>

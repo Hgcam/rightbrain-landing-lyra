@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How Pal built an AI health coach on Rightbrain | Rightbrain</title>
+<meta name="description" content="15+ scoped AI tools power Pal.'s food scanner, nutrition targets, and coaching. One product lead runs them all, switching models and shipping updates daily.">
+<link rel="canonical" href="https://rightbrain.ai/resources/pal-health-ai-coach">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Pal built an AI health coach on Rightbrain">
+<meta property="og:description" content="15+ scoped AI tools power Pal.'s food scanner, nutrition targets, and coaching, run by one product lead shipping daily.">
+<meta property="og:url" content="https://rightbrain.ai/resources/pal-health-ai-coach">
+<meta property="article:published_time" content="2026-02-20">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Pal built an AI health coach on Rightbrain",
+  "description": "15+ scoped AI tools power Pal.'s food scanner, nutrition targets, and coaching, run by one product lead shipping daily.",
+  "datePublished": "2026-02-20",
+  "publisher": { "@type": "Organization", "name": "Rightbrain" },
+  "about": { "@type": "Organization", "name": "Pal.health" },
+  "articleSection": "Case study",
+  "mainEntityOfPage": "https://rightbrain.ai/resources/pal-health-ai-coach"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+</noscript>
+<style>
+/* ============ Lyra / taupe tokens ============ */
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.147 0.004 49.3);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.147 0.004 49.3);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.147 0.004 49.3);
+  --primary: oklch(0.214 0.009 43.1);
+  --primary-foreground: oklch(0.986 0.002 67.8);
+  --secondary: oklch(0.96 0.002 17.2);
+  --secondary-foreground: oklch(0.214 0.009 43.1);
+  --muted: oklch(0.96 0.002 17.2);
+  --muted-foreground: oklch(0.547 0.021 43.1);
+  --accent: oklch(0.96 0.002 17.2);
+  --accent-foreground: oklch(0.214 0.009 43.1);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0.005 34.3);
+  --input: oklch(0.922 0.005 34.3);
+  --ring: oklch(0.714 0.014 41.2);
+  --chart-1: oklch(0.837 0.128 66.29);
+  --chart-2: oklch(0.705 0.213 47.604);
+  --chart-3: oklch(0.646 0.222 41.116);
+  --chart-4: oklch(0.553 0.195 38.402);
+  --chart-5: oklch(0.47 0.157 37.304);
+  --radius: 0;
+  --font-heading: "Merriweather", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+.dark {
+  --background: oklch(0.147 0.004 49.3);
+  --foreground: oklch(0.986 0.002 67.8);
+  --card: oklch(0.214 0.009 43.1);
+  --card-foreground: oklch(0.986 0.002 67.8);
+  --popover: oklch(0.214 0.009 43.1);
+  --popover-foreground: oklch(0.986 0.002 67.8);
+  --primary: oklch(0.922 0.005 34.3);
+  --primary-foreground: oklch(0.214 0.009 43.1);
+  --secondary: oklch(0.268 0.011 36.5);
+  --secondary-foreground: oklch(0.986 0.002 67.8);
+  --muted: oklch(0.268 0.011 36.5);
+  --muted-foreground: oklch(0.714 0.014 41.2);
+  --accent: oklch(0.268 0.011 36.5);
+  --accent-foreground: oklch(0.986 0.002 67.8);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.547 0.021 43.1);
+}
+
+/* ============ base ============ */
+*, *::before, *::after { box-sizing: border-box; border-color: var(--border); margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; line-height: 1.2; }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+img, svg { display: block; }
+
+.container { max-width: 72rem; margin: 0 auto; padding: 0 1.25rem; }
+@media (min-width: 768px) { .container { padding: 0 2rem; } }
+.icon { flex: none; font-size: 1em; line-height: 1; display: inline-flex; align-items: center; justify-content: center; }
+
+/* ============ buttons ============ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 2.75rem; padding: 0 1.25rem;
+  border: 1px solid transparent; border-radius: 0;
+  font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500;
+  text-decoration: none; white-space: nowrap;
+  transition: opacity 150ms ease, background-color 150ms ease, transform 160ms var(--ease-out);
+}
+.btn:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--primary); color: var(--primary-foreground); }
+.btn-outline { background: transparent; border-color: var(--border); color: var(--foreground); }
+.btn-lg { min-height: 3rem; padding: 0 1.75rem; font-size: 0.875rem; }
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-outline:hover { background: var(--accent); }
+}
+
+/* ============ announcement bar ============ */
+.announce { border-bottom: 1px solid var(--border); background: var(--muted); font-size: 0.75rem; text-align: center; padding: 0.5rem 1.25rem; }
+.announce a { color: var(--foreground); text-decoration: underline; text-underline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .announce a:hover { color: var(--muted-foreground); } }
+
+/* ============ header ============ */
+.site-header { position: sticky; top: 0; z-index: 30; background: var(--background); border-bottom: 1px solid var(--border); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; height: 3.75rem; gap: 1rem; }
+.logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.logo-mark { width: 1.75rem; height: 1.75rem; display: grid; place-items: center; flex: 0 0 1.75rem; }
+.logo-mark img { grid-area: 1 / 1; width: 100%; height: 100%; display: block; object-fit: contain; }
+.logo-mark .logo-mark-for-dark { display: none; }
+.dark .logo-mark .logo-mark-for-light { display: none; }
+.dark .logo-mark .logo-mark-for-dark { display: block; }
+.logo-name { font-family: var(--font-mono); font-weight: 600; font-size: 1.0625rem; text-transform: lowercase; }
+.logo-name .logo-tld { color: var(--chart-4); }
+.dark .logo-name .logo-tld { color: var(--chart-2); }
+.nav-links { display: none; align-items: center; gap: 0.25rem; }
+@media (min-width: 900px) { .nav-links { display: flex; } }
+.nav-links a { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 0.875rem; font-size: 0.8125rem; color: var(--muted-foreground); text-decoration: none; transition: color 150ms ease; }
+.nav-links a[aria-current="page"] { color: var(--foreground); }
+.nav-links a:focus-visible { outline: 2px solid var(--ring); outline-offset: -2px; }
+@media (hover: hover) and (pointer: fine) { .nav-links a:hover { color: var(--foreground); } }
+.header-actions { display: flex; align-items: center; gap: 0.5rem; }
+.theme-toggle { width: 2.75rem; height: 2.75rem; display: grid; place-items: center; background: transparent; border: 1px solid var(--border); transition: background-color 150ms ease, transform 160ms var(--ease-out); }
+.theme-toggle:active { transform: scale(0.97); }
+.theme-toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .theme-toggle:hover { background: var(--accent); } }
+.theme-toggle .icon { font-size: 1.05rem; }
+.dark .sun-icon { display: inline-flex; } .dark .moon-icon { display: none; }
+.sun-icon { display: none; } .moon-icon { display: inline-flex; }
+.header-cta { display: none; }
+@media (min-width: 640px) { .header-cta { display: inline-flex; } }
+
+/* mobile drawer */
+.menu-btn { width: 2.75rem; height: 2.75rem; display: grid; place-items: center; background: transparent; border: 1px solid var(--border); transition: background-color 150ms ease, transform 160ms var(--ease-out); }
+.menu-btn:active { transform: scale(0.97); }
+.menu-btn:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .menu-btn:hover { background: var(--accent); } }
+@media (min-width: 900px) { .menu-btn { display: none; } }
+.scrim { position: fixed; inset: 0; background: oklch(0.147 0.004 49.3 / 55%); z-index: 40; opacity: 0; pointer-events: none; transition: opacity 200ms var(--ease-out); }
+.scrim.open { opacity: 1; pointer-events: auto; }
+.drawer { position: fixed; top: 0; bottom: 0; left: 0; width: 300px; max-width: 84vw; background: var(--background); border-right: 1px solid var(--border); z-index: 50; transform: translateX(-100%); transition: transform 280ms var(--ease-drawer); display: flex; flex-direction: column; padding: 1rem; }
+.drawer.open { transform: translateX(0); }
+.drawer-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+.drawer nav { display: flex; flex-direction: column; padding-top: 0.75rem; }
+.drawer nav a { display: flex; align-items: center; min-height: 2.75rem; padding: 0 0.75rem; text-decoration: none; font-size: 0.875rem; color: var(--foreground); }
+@media (hover: hover) and (pointer: fine) { .drawer nav a:hover { background: var(--accent); } }
+.drawer .btn { margin-top: auto; }
+
+/* reading progress */
+.progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--foreground); z-index: 60; transition: width 80ms linear; }
+
+/* ============ article (structured) ============ */
+.article { padding: 2.5rem 0 3.5rem; }
+@media (min-width: 1024px) { .article { padding: 3.5rem 0 4rem; } }
+.article-col { max-width: 44rem; margin: 0 auto; }
+.breadcrumb { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-size: 0.75rem; color: var(--muted-foreground); margin-bottom: 2rem; }
+.breadcrumb a { text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .breadcrumb a:hover { color: var(--foreground); } }
+.breadcrumb .sep { opacity: 0.45; }
+.cat { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-foreground); }
+.cat .icon { font-size: 0.9rem; }
+.article-head h1 { font-size: 2rem; line-height: 1.14; letter-spacing: -0.01em; margin: 1rem 0; }
+@media (min-width: 768px) { .article-head h1 { font-size: 2.75rem; } }
+.article-head .deck { font-family: var(--font-heading); font-weight: 300; font-size: 1.1875rem; line-height: 1.6; color: var(--muted-foreground); }
+@media (min-width: 768px) { .article-head .deck { font-size: 1.3125rem; } }
+
+/* customer identity row */
+.customer { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.25rem; margin-top: 2rem; padding: 1.25rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pal-logo {
+  width: 104px; height: 30px; display: inline-block; flex: none;
+  background: var(--foreground);
+  mask-image: url('assets/brands/pal-health.png'); -webkit-mask-image: url('assets/brands/pal-health.png');
+  mask-size: contain; -webkit-mask-size: contain;
+  mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
+  mask-position: left center; -webkit-mask-position: left center;
+}
+.customer .cmeta { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.75rem; color: var(--muted-foreground); }
+.customer .cmeta .mi { display: inline-flex; align-items: center; gap: 0.35rem; }
+.customer .share { margin-left: auto; }
+.copy-link { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--border); background: transparent; min-height: 2.25rem; padding: 0 0.75rem; font-size: 0.75rem; font-family: var(--font-mono); transition: background-color 150ms ease; }
+.copy-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .copy-link:hover { background: var(--accent); } }
+
+/* metrics strip */
+.metrics { margin-top: 2rem; border: 1px solid var(--border); display: grid; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .metrics { grid-template-columns: repeat(3, 1fr); } }
+.metric { padding: 1.5rem; border-bottom: 1px solid var(--border); text-align: center; }
+@media (min-width: 640px) { .metric { border-bottom: 0; border-right: 1px solid var(--border); } .metric:last-child { border-right: 0; } }
+.metric:last-child { border-bottom: 0; }
+.metric b { display: block; font-family: var(--font-mono); font-size: 1.75rem; font-weight: 600; font-variant-numeric: tabular-nums; margin-bottom: 0.3rem; }
+.metric span { font-size: 0.75rem; color: var(--muted-foreground); }
+
+/* at-a-glance facts + chips */
+.facts { margin-top: 2rem; border: 1px solid var(--border); background: var(--muted); padding: 1.5rem; }
+.facts .k { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-foreground); margin-bottom: 1rem; }
+.facts dl { display: grid; grid-template-columns: 1fr; gap: 0.75rem 1.5rem; margin: 0; }
+@media (min-width: 640px) { .facts dl { grid-template-columns: repeat(2, 1fr); } }
+.facts .row { display: grid; grid-template-columns: 8rem 1fr; gap: 0.75rem; align-items: baseline; }
+.facts dt { font-size: 0.75rem; color: var(--muted-foreground); }
+.facts dd { margin: 0; font-size: 0.8125rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+.chip { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--border); background: var(--background); padding: 0.3rem 0.6rem; font-size: 0.72rem; font-family: var(--font-mono); color: var(--foreground); }
+.chip .icon { font-size: 0.85rem; color: var(--muted-foreground); }
+
+/* long-form prose (serif reading body, mono for code/labels) */
+.prose { margin-top: 2.75rem; }
+.prose > * + * { margin-top: 1.5rem; }
+.prose p, .prose li { font-family: var(--font-heading); font-weight: 400; font-size: 1.0625rem; line-height: 1.85; }
+.prose h2 { font-size: 1.5rem; line-height: 1.25; margin-top: 3rem; }
+.prose h3 { font-size: 1.1875rem; line-height: 1.3; margin-top: 2rem; }
+.prose h2 + p, .prose h3 + p { margin-top: 0.85rem; }
+.prose strong { font-weight: 700; }
+.prose a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: color-mix(in oklch, currentColor 40%, transparent); }
+@media (hover: hover) and (pointer: fine) { .prose a:hover { text-decoration-color: currentColor; } }
+.prose ul, .prose ol { padding-left: 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.prose li::marker { color: var(--muted-foreground); }
+.prose code { font-family: var(--font-mono); font-size: 0.82em; background: var(--muted); padding: 0.1rem 0.35rem; }
+
+/* customer quote */
+.cs-quote { margin: 2.75rem 0; padding: 1.75rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.cs-quote p { font-family: var(--font-heading); font-weight: 300; font-style: italic; font-size: 1.375rem; line-height: 1.45; }
+@media (min-width: 768px) { .cs-quote p { font-size: 1.5rem; } }
+.cs-quote footer { margin-top: 1rem; font-size: 0.78rem; color: var(--muted-foreground); font-style: normal; }
+.cs-quote footer b { color: var(--foreground); font-weight: 600; }
+
+/* CTA band (inverted) */
+.article-foot { max-width: 44rem; margin: 0 auto; }
+.cta-band { background: var(--primary); color: var(--primary-foreground); margin-top: 3.5rem; }
+.cta-band .inner { max-width: 44rem; margin: 0 auto; padding: 2.75rem 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+.cta-band h2 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+.cta-band p { color: color-mix(in oklch, var(--primary-foreground) 74%, transparent); font-size: 0.875rem; }
+.cta-band .btn-primary { background: var(--primary-foreground); color: var(--primary); }
+@media (hover: hover) and (pointer: fine) { .cta-band .btn-primary:hover { opacity: 0.9; } }
+
+/* related */
+.related { padding: 4rem 0; border-top: 1px solid var(--border); }
+.related h2 { font-size: 1.25rem; margin-bottom: 1.75rem; }
+.grid-cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.rcard { display: flex; flex-direction: column; gap: 0.7rem; border: 1px solid var(--border); background: var(--card); padding: 1.25rem; text-decoration: none; color: inherit; min-height: 12rem; transition: border-color 200ms ease, transform 200ms var(--ease-out); }
+.rcard:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .rcard:hover { border-color: color-mix(in oklch, var(--foreground) 32%, var(--border)); transform: translateY(-2px); } }
+.rcard h3 { font-size: 1rem; line-height: 1.3; }
+.rcard .excerpt { font-size: 0.8125rem; color: var(--muted-foreground); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.rcard .meta { margin-top: auto; padding-top: 0.6rem; font-size: 0.75rem; color: var(--muted-foreground); }
+
+/* ============ footer ============ */
+.site-footer { padding: 3.5rem 0 2.5rem; border-top: 1px solid var(--border); }
+.footer-grid { display: grid; gap: 2.5rem; }
+@media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; } }
+.footer-brand p { font-size: 0.8125rem; color: var(--muted-foreground); margin-top: 0.875rem; max-width: 18rem; }
+.footer-col h3 { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--muted-foreground); margin-bottom: 0.875rem; }
+.footer-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.125rem; }
+.footer-col a { display: inline-flex; align-items: center; min-height: 2rem; font-size: 0.8125rem; color: var(--foreground); text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .footer-col a:hover { color: var(--muted-foreground); } }
+.footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted-foreground); }
+
+/* reveal */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--ease-in-out), transform 600ms var(--ease-in-out); }
+.reveal.in-view { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: opacity 200ms ease; }
+  .progress { transition: none; }
+  .btn:active, .theme-toggle:active, .menu-btn:active, .rcard:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<div class="announce">
+  Announcement: <a href="https://www.uktechnews.info/2026/05/19/rightbrain-ai-secures-3-million-seed-investment-led-by-npif-ii-pxn-equity-finance/">Rightbrain raises a &pound;3M seed round led by NPIF II</a>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="rightbrain-landing-lyra.html#top" aria-label="Rightbrain home">
+      <span class="logo-mark" aria-hidden="true">
+        <img class="logo-mark-for-light" src="assets/rightbrain-icon-light.png" width="48" height="48" alt="" decoding="async">
+        <img class="logo-mark-for-dark" src="assets/rightbrain-icon-dark.png" width="48" height="48" alt="" decoding="async">
+      </span>
+      <span class="logo-name">rightbrain<span class="logo-tld">.ai</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="rightbrain-landing-lyra.html#how">How it works</a>
+      <a href="rightbrain-landing-lyra.html#production">AI in production</a>
+      <a href="rightbrain-landing-lyra.html#case-study">Customers</a>
+      <a href="rightbrain-resources-lyra.html" aria-current="page">Resources</a>
+      <a href="https://docs.rightbrain.ai/">Docs</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="ri-moon-line icon moon-icon" aria-hidden="true"></i>
+        <i class="ri-sun-line icon sun-icon" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn-primary header-cta" href="rightbrain-landing-lyra.html#cta">Book a call</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+        <i class="ri-menu-line icon" style="font-size:1.1rem" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" inert aria-label="Menu">
+  <div class="drawer-head">
+    <a class="logo" href="rightbrain-landing-lyra.html#top" aria-label="Rightbrain home">
+      <span class="logo-mark" aria-hidden="true">
+        <img class="logo-mark-for-light" src="assets/rightbrain-icon-light.png" width="48" height="48" alt="" decoding="async">
+        <img class="logo-mark-for-dark" src="assets/rightbrain-icon-dark.png" width="48" height="48" alt="" decoding="async">
+      </span>
+      <span class="logo-name">rightbrain<span class="logo-tld">.ai</span></span>
+    </a>
+    <button class="menu-btn" id="closeBtn" aria-label="Close menu">
+      <i class="ri-close-line icon" style="font-size:1.1rem" aria-hidden="true"></i>
+    </button>
+  </div>
+  <nav>
+    <a href="rightbrain-landing-lyra.html#how">How it works</a>
+    <a href="rightbrain-landing-lyra.html#production">AI in production</a>
+    <a href="rightbrain-landing-lyra.html#case-study">Customers</a>
+    <a href="rightbrain-resources-lyra.html" aria-current="page">Resources</a>
+    <a href="https://docs.rightbrain.ai/">Docs</a>
+  </nav>
+  <a class="btn btn-primary" href="rightbrain-landing-lyra.html#cta">Book a call</a>
+</aside>
+
+<main id="top">
+
+  <article class="article">
+    <div class="container">
+      <div class="article-col article-head reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="rightbrain-resources-lyra.html">Resources</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <a href="rightbrain-resources-lyra.html">Case study</a>
+        </nav>
+        <span class="cat"><i class="ri-line-chart-line icon" aria-hidden="true"></i> Case study</span>
+        <h1>How Pal built an AI health coach with all the right tools</h1>
+        <p class="deck">15+ scoped AI tools power Pal.'s food scanner, nutrition targets, and coaching. One product lead runs them all, switching models and shipping updates daily.</p>
+
+        <div class="customer">
+          <span class="pal-logo" role="img" aria-label="Pal.health"></span>
+          <span class="cmeta">
+            <span class="mi"><i class="ri-building-line icon" aria-hidden="true"></i> Consumer health</span>
+            <span class="mi"><i class="ri-smartphone-line icon" aria-hidden="true"></i> Mobile app</span>
+            <span class="mi"><i class="ri-calendar-line icon" aria-hidden="true"></i> 20 Feb 2026</span>
+          </span>
+          <span class="share">
+            <button class="copy-link" id="copyLink" type="button"><i class="ri-link icon" aria-hidden="true"></i> Copy link</button>
+          </span>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><b>15+</b><span>AI tools and features in production</span></div>
+          <div class="metric"><b>1</b><span>product lead operating all of them</span></div>
+          <div class="metric"><b>Daily</b><span>releases without app redeploys</span></div>
+        </div>
+
+        <aside class="facts" aria-label="At a glance">
+          <p class="k">At a glance</p>
+          <dl>
+            <div class="row"><dt>Company</dt><dd>Pal.health</dd></div>
+            <div class="row"><dt>Product</dt><dd>AI nutrition and health coach</dd></div>
+            <div class="row"><dt>Use case</dt><dd>Food scanning, targets, coaching</dd></div>
+            <div class="row"><dt>Team</dt><dd>Founder-led, no ML platform team</dd></div>
+          </dl>
+          <div class="chips">
+            <span class="chip"><i class="ri-camera-line icon" aria-hidden="true"></i> Image analysis</span>
+            <span class="chip"><i class="ri-restaurant-line icon" aria-hidden="true"></i> Nutrition targets</span>
+            <span class="chip"><i class="ri-chat-smile-2-line icon" aria-hidden="true"></i> Coaching</span>
+            <span class="chip"><i class="ri-cpu-line icon" aria-hidden="true"></i> GPT</span>
+            <span class="chip"><i class="ri-cpu-line icon" aria-hidden="true"></i> Gemini</span>
+            <span class="chip"><i class="ri-cpu-line icon" aria-hidden="true"></i> Claude</span>
+          </div>
+        </aside>
+      </div>
+
+      <div class="article-col prose reveal">
+        <h2>The challenge</h2>
+        <p>Pal is a health app with AI woven through the core experience: point your camera at a meal and it logs the food, set nutrition targets and it adapts them, ask for guidance and it coaches you. Each of those is a different AI problem, with a different best model and a different prompt.</p>
+        <p>Building that the traditional way means standing up and babysitting bespoke inference for every feature, and re-deploying the app each time a prompt or model changes. For a founder-led team with no dedicated ML platform, that is not sustainable, and it makes every improvement slow and risky.</p>
+
+        <h2>What they built</h2>
+        <p>Instead of one model wrapper buried in the app, Pal built 15+ Rightbrain <strong>tasks</strong>, one per feature. Each task has a narrow job, a typed output the app can rely on, the tools it needs, and its own model chosen for that specific job.</p>
+        <ul>
+          <li>A <strong>food-scanner</strong> task pairs a vision model with a nutrition lookup and returns structured line items.</li>
+          <li>A <strong>targets</strong> task turns a profile and goals into adaptive daily targets.</li>
+          <li>A <strong>coaching</strong> task generates guidance in Pal's voice, grounded in the user's recent data.</li>
+        </ul>
+        <p>Because each task is defined and versioned outside the app, the app just calls it. Chris can change the prompt, tighten the output, or switch the model behind any single feature without shipping a new build.</p>
+
+        <div class="cs-quote">
+          <p>"I can swap the model behind a feature in the morning and have it live by lunch, without touching the app. That is the whole game for a small team."</p>
+          <footer><b>Chris</b> &middot; Founder and Product Lead, Pal.health</footer>
+        </div>
+
+        <h2>The result</h2>
+        <p>One person runs 15+ AI features in production. When a better model ships, Pal moves the relevant task to it and keeps the rest untouched, no lock-in to a single provider. When an edge case appears, Chris fixes the one task responsible rather than untangling a monolith.</p>
+        <p>The outcome is a small team shipping AI features daily, with each one observable, testable, and cheap to change, exactly the posture that keeps AI in production instead of stuck in a prototype.</p>
+      </div>
+    </div>
+
+    <div class="cta-band">
+      <div class="container">
+        <div class="inner reveal">
+          <div>
+            <h2>Build features like Pal's</h2>
+            <p>Book a call and we will map your product's AI features to scoped, swappable tasks.</p>
+          </div>
+          <a class="btn btn-primary btn-lg" href="rightbrain-landing-lyra.html#cta">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <section class="related">
+    <div class="container">
+      <div class="reveal">
+        <h2>Related reading</h2>
+        <!-- Populated from resources.json by resources.js (RBResources.renderRelated) -->
+        <div class="grid-cards" data-related="stop-trying-to-build-a-god-level-agent,rightbrain-web-search-inside-clay,on-brand-product-shots"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="rightbrain-landing-lyra.html#top" aria-label="Rightbrain home">
+          <span class="logo-mark" aria-hidden="true">
+            <img class="logo-mark-for-light" src="assets/rightbrain-icon-light.png" width="48" height="48" alt="" decoding="async">
+            <img class="logo-mark-for-dark" src="assets/rightbrain-icon-dark.png" width="48" height="48" alt="" decoding="async">
+          </span>
+          <span class="logo-name">rightbrain<span class="logo-tld">.ai</span></span>
+        </a>
+        <p>Build reliable agents. Run them at scale.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Community</h3>
+        <ul>
+          <li><a href="https://rightbrain.ai/b2b-services">B2B Services</a></li>
+          <li><a href="https://rightbrain.ai/platform-partners">Partners Program</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="https://rightbrain-developers.slack.com/join/shared_invite/zt-2mt5nyavm-IiYim_3HzoJki7wr8oeHug#/shared-invite/email">Slack Group</a></li>
+          <li><a href="https://rightbrain.ai/brand-kit">Brand Kit</a></li>
+          <li><a href="https://docs.rightbrain.ai/">Documentation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="https://rightbrain.ai/acceptable-use">Acceptable Use</a></li>
+          <li><a href="https://rightbrain.ai/data-processing">Data Processing</a></li>
+          <li><a href="https://rightbrain.ai/privacy-policy">Privacy Notice</a></li>
+          <li><a href="https://rightbrain.ai/customer-terms">Customer Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>&copy; 2026 Rightbrain</span>
+      <span>Made in the UK</span>
+    </div>
+  </div>
+</footer>
+
+<script src="resources.js"></script>
+<script>
+(function () {
+  var root = document.documentElement;
+
+  // related reading from resources.json
+  if (window.RBResources) document.querySelectorAll('[data-related]').forEach(function (h) { RBResources.renderRelated(h); });
+
+  var toggle = document.getElementById('themeToggle');
+  if (toggle) toggle.addEventListener('click', function () {
+    var dark = root.classList.toggle('dark');
+    toggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+  });
+
+  var drawer = document.getElementById('drawer');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeBtn = document.getElementById('closeBtn');
+  function setDrawer(open) {
+    drawer.classList.toggle('open', open);
+    scrim.classList.toggle('open', open);
+    drawer.toggleAttribute('inert', !open);
+    drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  if (menuBtn) menuBtn.addEventListener('click', function () { setDrawer(true); });
+  if (closeBtn) closeBtn.addEventListener('click', function () { setDrawer(false); });
+  if (scrim) scrim.addEventListener('click', function () { setDrawer(false); });
+  if (drawer) drawer.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setDrawer(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setDrawer(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 900) setDrawer(false); });
+
+  var copyBtn = document.getElementById('copyLink');
+  if (copyBtn) copyBtn.addEventListener('click', function () {
+    navigator.clipboard.writeText(location.href).then(function () {
+      var last = copyBtn.childNodes[copyBtn.childNodes.length - 1];
+      last.nodeValue = ' Copied';
+      setTimeout(function () { last.nodeValue = ' Copy link'; }, 1400);
+    }).catch(function () {});
+  });
+
+  var bar = document.getElementById('progress');
+  if (bar) {
+    var onScroll = function () {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  var reveals = document.querySelectorAll('.reveal');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('in-view'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stop trying to build a "God-level agent" | Rightbrain</title>
+<meta name="description" content="Everyone wants one autonomous agent that does everything. That instinct is the fastest route to a system you cannot trust in production. Here is what to build instead.">
+<link rel="canonical" href="https://rightbrain.ai/resources/stop-trying-to-build-a-god-level-agent">
+<!-- Open Graph / social -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stop trying to build a &quot;God-level agent&quot;">
+<meta property="og:description" content="Everyone wants one autonomous agent that does everything. Here is why that is the wrong place to start, and what to build instead.">
+<meta property="og:url" content="https://rightbrain.ai/resources/stop-trying-to-build-a-god-level-agent">
+<meta property="article:published_time" content="2026-06-23">
+<meta property="article:author" content="Florian Ruspi">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Article schema for SEO / AEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stop trying to build a \"God-level agent\"",
+  "description": "Everyone wants one autonomous agent that does everything. Here is why that is the wrong place to start, and what to build instead.",
+  "datePublished": "2026-06-23",
+  "author": { "@type": "Person", "name": "Florian Ruspi", "jobTitle": "Head of Growth" },
+  "publisher": { "@type": "Organization", "name": "Rightbrain" },
+  "articleSection": "Blog",
+  "mainEntityOfPage": "https://rightbrain.ai/resources/stop-trying-to-build-a-god-level-agent"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+</noscript>
+<style>
+/* ============ Lyra / taupe tokens ============ */
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.147 0.004 49.3);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.147 0.004 49.3);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.147 0.004 49.3);
+  --primary: oklch(0.214 0.009 43.1);
+  --primary-foreground: oklch(0.986 0.002 67.8);
+  --secondary: oklch(0.96 0.002 17.2);
+  --secondary-foreground: oklch(0.214 0.009 43.1);
+  --muted: oklch(0.96 0.002 17.2);
+  --muted-foreground: oklch(0.547 0.021 43.1);
+  --accent: oklch(0.96 0.002 17.2);
+  --accent-foreground: oklch(0.214 0.009 43.1);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0.005 34.3);
+  --input: oklch(0.922 0.005 34.3);
+  --ring: oklch(0.714 0.014 41.2);
+  --chart-1: oklch(0.837 0.128 66.29);
+  --chart-2: oklch(0.705 0.213 47.604);
+  --chart-3: oklch(0.646 0.222 41.116);
+  --chart-4: oklch(0.553 0.195 38.402);
+  --chart-5: oklch(0.47 0.157 37.304);
+  --radius: 0;
+  --font-heading: "Merriweather", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+.dark {
+  --background: oklch(0.147 0.004 49.3);
+  --foreground: oklch(0.986 0.002 67.8);
+  --card: oklch(0.214 0.009 43.1);
+  --card-foreground: oklch(0.986 0.002 67.8);
+  --popover: oklch(0.214 0.009 43.1);
+  --popover-foreground: oklch(0.986 0.002 67.8);
+  --primary: oklch(0.922 0.005 34.3);
+  --primary-foreground: oklch(0.214 0.009 43.1);
+  --secondary: oklch(0.268 0.011 36.5);
+  --secondary-foreground: oklch(0.986 0.002 67.8);
+  --muted: oklch(0.268 0.011 36.5);
+  --muted-foreground: oklch(0.714 0.014 41.2);
+  --accent: oklch(0.268 0.011 36.5);
+  --accent-foreground: oklch(0.986 0.002 67.8);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.547 0.021 43.1);
+}
+
+/* ============ base ============ */
+*, *::before, *::after { box-sizing: border-box; border-color: var(--border); margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; line-height: 1.2; }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+img, svg { display: block; }
+
+.container { max-width: 72rem; margin: 0 auto; padding: 0 1.25rem; }
+@media (min-width: 768px) { .container { padding: 0 2rem; } }
+.icon { flex: none; font-size: 1em; line-height: 1; display: inline-flex; align-items: center; justify-content: center; }
+
+/* ============ buttons ============ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 2.75rem; padding: 0 1.25rem;
+  border: 1px solid transparent; border-radius: 0;
+  font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500;
+  text-decoration: none; white-space: nowrap;
+  transition: opacity 150ms ease, background-color 150ms ease, transform 160ms var(--ease-out);
+}
+.btn:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--primary); color: var(--primary-foreground); }
+.btn-outline { background: transparent; border-color: var(--border); color: var(--foreground); }
+.btn-lg { min-height: 3rem; padding: 0 1.75rem; font-size: 0.875rem; }
+.btn-xs { min-height: 2.25rem; padding: 0 0.85rem; font-size: 0.75rem; gap: 0.4rem; }
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-outline:hover { background: var(--accent); }
+}
+
+/* ============ announcement bar ============ */
+.announce { border-bottom: 1px solid var(--border); background: var(--muted); font-size: 0.75rem; text-align: center; padding: 0.5rem 1.25rem; }
+.announce a { color: var(--foreground); text-decoration: underline; text-underline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .announce a:hover { color: var(--muted-foreground); } }
+
+/* ============ header ============ */
+.site-header { position: sticky; top: 0; z-index: 30; background: var(--background); border-bottom: 1px solid var(--border); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; height: 3.75rem; gap: 1rem; }
+.logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.logo-mark { width: 1.75rem; height: 1.75rem; display: grid; place-items: center; flex: 0 0 1.75rem; }
+.logo-mark img { grid-area: 1 / 1; width: 100%; height: 100%; display: block; object-fit: contain; }
+.logo-mark .logo-mark-for-dark { display: none; }
+.dark .logo-mark .logo-mark-for-light { display: none; }
+.dark .logo-mark .logo-mark-for-dark { display: block; }
+.logo-name { font-family: var(--font-mono); font-weight: 600; font-size: 1.0625rem; text-transform: lowercase; }
+.logo-name .logo-tld { color: var(--chart-4); }
+.dark .logo-name .logo-tld { color: var(--chart-2); }
+.nav-links { display: none; align-items: center; gap: 0.25rem; }
+@media (min-width: 900px) { .nav-links { display: flex; } }
+.nav-links a { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 0.875rem; font-size: 0.8125rem; color: var(--muted-foreground); text-decoration: none; transition: color 150ms ease; }
+.nav-links a[aria-current="page"] { color: var(--foreground); }
+.nav-links a:focus-visible { outline: 2px solid var(--ring); outline-offset: -2px; }
+@media (hover: hover) and (pointer: fine) { .nav-links a:hover { color: var(--foreground); } }
+.header-actions { display: flex; align-items: center; gap: 0.5rem; }
+.theme-toggle { width: 2.75rem; height: 2.75rem; display: grid; place-items: center; background: transparent; border: 1px solid var(--border); transition: background-color 150ms ease, transform 160ms var(--ease-out); }
+.theme-toggle:active { transform: scale(0.97); }
+.theme-toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .theme-toggle:hover { background: var(--accent); } }
+.theme-toggle .icon { font-size: 1.05rem; }
+.dark .sun-icon { display: inline-flex; } .dark .moon-icon { display: none; }
+.sun-icon { display: none; } .moon-icon { display: inline-flex; }
+.header-cta { display: none; }
+@media (min-width: 640px) { .header-cta { display: inline-flex; } }
+
+/* mobile drawer */
+.menu-btn { width: 2.75rem; height: 2.75rem; display: grid; place-items: center; background: transparent; border: 1px solid var(--border); transition: background-color 150ms ease, transform 160ms var(--ease-out); }
+.menu-btn:active { transform: scale(0.97); }
+.menu-btn:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .menu-btn:hover { background: var(--accent); } }
+@media (min-width: 900px) { .menu-btn { display: none; } }
+.scrim { position: fixed; inset: 0; background: oklch(0.147 0.004 49.3 / 55%); z-index: 40; opacity: 0; pointer-events: none; transition: opacity 200ms var(--ease-out); }
+.scrim.open { opacity: 1; pointer-events: auto; }
+.drawer { position: fixed; top: 0; bottom: 0; left: 0; width: 300px; max-width: 84vw; background: var(--background); border-right: 1px solid var(--border); z-index: 50; transform: translateX(-100%); transition: transform 280ms var(--ease-drawer); display: flex; flex-direction: column; padding: 1rem; }
+.drawer.open { transform: translateX(0); }
+.drawer-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+.drawer nav { display: flex; flex-direction: column; padding-top: 0.75rem; }
+.drawer nav a { display: flex; align-items: center; min-height: 2.75rem; padding: 0 0.75rem; text-decoration: none; font-size: 0.875rem; color: var(--foreground); }
+@media (hover: hover) and (pointer: fine) { .drawer nav a:hover { background: var(--accent); } }
+.drawer .btn { margin-top: auto; }
+
+/* reading progress (neutral, thin) */
+.progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--foreground); z-index: 60; transition: width 80ms linear; }
+
+/* ============ article ============ */
+.article { padding: 2.5rem 0 3.5rem; }
+@media (min-width: 1024px) { .article { padding: 3.5rem 0 4rem; } }
+.article-col { max-width: 44rem; margin: 0 auto; }
+.breadcrumb { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-size: 0.75rem; color: var(--muted-foreground); margin-bottom: 2rem; }
+.breadcrumb a { text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .breadcrumb a:hover { color: var(--foreground); } }
+.breadcrumb .sep { opacity: 0.45; }
+.cat { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-foreground); }
+.cat .icon { font-size: 0.9rem; }
+.article-head h1 { font-size: 2rem; line-height: 1.14; letter-spacing: -0.01em; margin: 1rem 0; }
+@media (min-width: 768px) { .article-head h1 { font-size: 2.75rem; } }
+.article-head .deck { font-family: var(--font-heading); font-weight: 300; font-size: 1.1875rem; line-height: 1.6; color: var(--muted-foreground); }
+@media (min-width: 768px) { .article-head .deck { font-size: 1.3125rem; } }
+
+.byline { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 2rem; padding: 1.25rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.byline .avatar { width: 2.5rem; height: 2.5rem; flex: none; display: grid; place-items: center; background: var(--muted); font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 600; color: var(--foreground); }
+.byline .who { display: flex; flex-direction: column; line-height: 1.35; font-size: 0.8125rem; }
+.byline .who b { font-weight: 600; }
+.byline .who span { color: var(--muted-foreground); }
+.byline .meta { display: flex; align-items: center; gap: 0.9rem; font-size: 0.75rem; color: var(--muted-foreground); }
+.byline .meta .mi { display: inline-flex; align-items: center; gap: 0.35rem; }
+.byline .share { margin-left: auto; }
+.copy-link { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--border); background: transparent; min-height: 2.25rem; padding: 0 0.75rem; font-size: 0.75rem; font-family: var(--font-mono); transition: background-color 150ms ease; }
+.copy-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .copy-link:hover { background: var(--accent); } }
+
+/* long-form prose — DOCUMENTED DEVIATION: reading body is Merriweather (serif), not mono.
+   Mono is retained for metadata, labels, inline code, and code blocks. */
+.prose { margin-top: 2.5rem; }
+.prose > * + * { margin-top: 1.5rem; }
+.prose p, .prose li { font-family: var(--font-heading); font-weight: 400; font-size: 1.0625rem; line-height: 1.85; }
+.prose h2 { font-size: 1.5rem; line-height: 1.25; margin-top: 3rem; }
+.prose h3 { font-size: 1.1875rem; line-height: 1.3; margin-top: 2rem; }
+.prose h2 + p, .prose h3 + p { margin-top: 0.85rem; }
+.prose strong { font-weight: 700; }
+.prose a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: color-mix(in oklch, currentColor 40%, transparent); }
+@media (hover: hover) and (pointer: fine) { .prose a:hover { text-decoration-color: currentColor; } }
+.prose ul, .prose ol { padding-left: 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.prose li::marker { color: var(--muted-foreground); }
+.prose code { font-family: var(--font-mono); font-size: 0.82em; background: var(--muted); padding: 0.1rem 0.35rem; }
+.prose pre { font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.65; background: var(--muted); border: 1px solid var(--border); padding: 1.1rem 1.25rem; overflow: auto; }
+.prose pre code { background: none; padding: 0; font-size: inherit; }
+.prose blockquote { border-left: 2px solid var(--border); padding-left: 1.25rem; color: var(--muted-foreground); }
+.prose blockquote p { font-style: italic; }
+
+/* pull-quote: centred emphasis, hairline rules (no side-stripe) */
+.pullquote { margin: 2.5rem 0; padding: 1.75rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
+.pullquote p { font-family: var(--font-heading); font-weight: 300; font-size: 1.5rem; line-height: 1.4; }
+@media (min-width: 768px) { .pullquote p { font-size: 1.75rem; } }
+
+/* callout well */
+.callout { background: var(--muted); border: 1px solid var(--border); padding: 1.25rem 1.5rem; }
+.callout .k { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-foreground); display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem; }
+.callout p { margin-top: 0; }
+
+.figure figcaption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.6rem; }
+
+/* ============ end matter ============ */
+.article-foot { max-width: 44rem; margin: 0 auto; }
+.author-card { display: flex; gap: 1rem; align-items: flex-start; background: var(--muted); border: 1px solid var(--border); padding: 1.5rem; margin-top: 3rem; }
+.author-card .avatar { width: 3rem; height: 3rem; flex: none; display: grid; place-items: center; background: var(--background); font-family: var(--font-mono); font-size: 0.9375rem; font-weight: 600; }
+.author-card h3 { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 600; }
+.author-card .role { font-size: 0.75rem; color: var(--muted-foreground); margin-bottom: 0.6rem; }
+.author-card p { font-size: 0.8125rem; color: var(--muted-foreground); line-height: 1.65; }
+
+/* CTA band (inverted) */
+.cta-band { background: var(--primary); color: var(--primary-foreground); margin-top: 3.5rem; }
+.cta-band .inner { max-width: 44rem; margin: 0 auto; padding: 2.75rem 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+.cta-band h2 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+.cta-band p { color: color-mix(in oklch, var(--primary-foreground) 74%, transparent); font-size: 0.875rem; }
+.cta-band .btn-primary { background: var(--primary-foreground); color: var(--primary); }
+@media (hover: hover) and (pointer: fine) { .cta-band .btn-primary:hover { opacity: 0.9; } }
+
+/* related */
+.related { padding: 4rem 0; border-top: 1px solid var(--border); }
+.related h2 { font-size: 1.25rem; margin-bottom: 1.75rem; }
+.grid-cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.rcard { display: flex; flex-direction: column; gap: 0.7rem; border: 1px solid var(--border); background: var(--card); padding: 1.25rem; text-decoration: none; color: inherit; min-height: 12rem; transition: border-color 200ms ease, transform 200ms var(--ease-out); }
+.rcard:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .rcard:hover { border-color: color-mix(in oklch, var(--foreground) 32%, var(--border)); transform: translateY(-2px); } }
+.rcard h3 { font-size: 1rem; line-height: 1.3; }
+.rcard .excerpt { font-size: 0.8125rem; color: var(--muted-foreground); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.rcard .meta { margin-top: auto; padding-top: 0.6rem; font-size: 0.75rem; color: var(--muted-foreground); }
+
+/* ============ footer ============ */
+.site-footer { padding: 3.5rem 0 2.5rem; border-top: 1px solid var(--border); }
+.footer-grid { display: grid; gap: 2.5rem; }
+@media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; } }
+.footer-brand p { font-size: 0.8125rem; color: var(--muted-foreground); margin-top: 0.875rem; max-width: 18rem; }
+.footer-col h3 { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--muted-foreground); margin-bottom: 0.875rem; }
+.footer-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.125rem; }
+.footer-col a { display: inline-flex; align-items: center; min-height: 2rem; font-size: 0.8125rem; color: var(--foreground); text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .footer-col a:hover { color: var(--muted-foreground); } }
+.footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted-foreground); }
+
+/* reveal */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--ease-in-out), transform 600ms var(--ease-in-out); }
+.reveal.in-view { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: opacity 200ms ease; }
+  .progress { transition: none; }
+  .btn:active, .theme-toggle:active, .menu-btn:active, .rcard:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<div class="announce">
+  Announcement: <a href="https://www.uktechnews.info/2026/05/19/rightbrain-ai-secures-3-million-seed-investment-led-by-npif-ii-pxn-equity-finance/">Rightbrain raises a &pound;3M seed round led by NPIF II</a>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="rightbrain-landing-lyra.html#top" aria-label="Rightbrain home">
+      <span class="logo-mark" aria-hidden="true">
+        <img class="logo-mark-for-light" src="assets/rightbrain-icon-light.png" width="48" height="48" alt="" decoding="async">
+        <img class="logo-mark-for-dark" src="assets/rightbrain-icon-dark.png" width="48" height="48" alt="" decoding="async">
+      </span>
+      <span class="logo-name">rightbrain<span class="logo-tld">.ai</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="rightbrain-landing-lyra.html#how">How it works</a>
+      <a href="rightbrain-landing-lyra.html#production">AI in production</a>
+      <a href="rightbrain-landing-lyra.html#case-study">Customers</a>
+      <a href="rightbrain-resources-lyra.html" aria-current="page">Resources</a>
+      <a href="https://docs.rightbrain.ai/">Docs</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="ri-moon-line icon moon-icon" aria-hidden="true"></i>
+        <i class="ri-sun-line icon sun-icon" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn-primary header-cta" href="rightbrain-landing-lyra.html#cta">Book a call</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+        <i class="ri-menu-line icon" style="font-size:1.1rem" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" inert aria-label="Menu">
+  <div class="drawer-head">
+    <a class="logo" href="rightbrain-landing-lyra.html#top" aria-label="Rightbrain home">
+      <span class="logo-mark" aria-hidden="true">
+        <img class="logo-mark-for-light" src="assets/rightbrain-icon-light.png" width="48" height="48" alt="" decoding="async">
+        <img class="logo-mark-for-dark" src="assets/rightbrain-icon-dark.png" width="48" height="48" alt="" decoding="async">
+      </span>
+      <span class="logo-name">rightbrain<span class="logo-tld">.ai</span></span>
+    </a>
+    <button class="menu-btn" id="closeBtn" aria-label="Close menu">
+      <i class="ri-close-line icon" style="font-size:1.1rem" aria-hidden="true"></i>
+    </button>
+  </div>
+  <nav>
+    <a href="rightbrain-landing-lyra.html#how">How it works</a>
+    <a href="rightbrain-landing-lyra.html#production">AI in production</a>
+    <a href="rightbrain-landing-lyra.html#case-study">Customers</a>
+    <a href="rightbrain-resources-lyra.html" aria-current="page">Resources</a>
+    <a href="https://docs.rightbrain.ai/">Docs</a>
+  </nav>
+  <a class="btn btn-primary" href="rightbrain-landing-lyra.html#cta">Book a call</a>
+</aside>
+
+<main id="top">
+
+  <article class="article">
+    <div class="container">
+      <div class="article-col article-head reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="rightbrain-resources-lyra.html">Resources</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <a href="rightbrain-resources-lyra.html">Blog</a>
+        </nav>
+        <span class="cat"><i class="ri-article-line icon" aria-hidden="true"></i> Blog</span>
+        <h1>Stop trying to build a "God-level agent"</h1>
+        <p class="deck">Every product and strategy lead is being asked the same question: what is our agent strategy? Almost everyone answers it the same way, and it is the fastest route to a system you cannot trust in production.</p>
+
+        <div class="byline">
+          <span class="avatar" aria-hidden="true">FR</span>
+          <span class="who"><b>Florian Ruspi</b><span>Head of Growth, Rightbrain</span></span>
+          <span class="meta">
+            <span class="mi"><i class="ri-calendar-line icon" aria-hidden="true"></i> 23 Jun 2026</span>
+            <span class="mi"><i class="ri-time-line icon" aria-hidden="true"></i> 6 min read</span>
+          </span>
+          <span class="share">
+            <button class="copy-link" id="copyLink" type="button"><i class="ri-link icon" aria-hidden="true"></i> Copy link</button>
+          </span>
+        </div>
+      </div>
+
+      <div class="article-col prose reveal">
+        <p>Ask a room of product leaders what their agent strategy is, and you will hear a remarkably consistent answer. They picture one intelligent, autonomous agent that takes a goal, figures out a plan, calls whatever tools it needs, and delivers the finished outcome from start to finish. A single, super-powered assistant that handles it all.</p>
+
+        <p>It is an appealing picture. It is also the wrong place to start, and the reason so many promising pilots quietly stall on their way to production.</p>
+
+        <h2>The "God-level agent" is a demo, not a system</h2>
+        <p>One big agent is the easiest thing in the world to demo. You give it a goal, it reasons out loud, it calls a few tools, and the room nods along. The problem is that a demo only has to work <em>once</em>, in front of a friendly audience, on an input you chose. Production has none of those luxuries.</p>
+        <p>In production the same agent has to be right on the thousandth run, on an input nobody anticipated, at 3am, while an API it depends on is returning malformed data. And when it gets something wrong, someone has to be able to answer a simple question: <strong>why?</strong> A monolithic agent that reasons its way through an entire workflow is exactly the thing that cannot answer that question.</p>
+
+        <h2>Why one big agent breaks</h2>
+        <p>The failure modes are not mysterious. They are structural.</p>
+        <ul>
+          <li><strong>You cannot see inside it.</strong> When the outcome is wrong, the reasoning is a single opaque trace. There is no clean seam at which to say "this step failed."</li>
+          <li><strong>You cannot test it.</strong> A component with one enormous responsibility has no small, checkable contract. You are left grading vibes, not asserting behaviour.</li>
+          <li><strong>You cannot govern it.</strong> One agent with access to every tool is one prompt away from doing something it should never have been allowed to do.</li>
+          <li><strong>You cannot improve it safely.</strong> Change the prompt to fix one case and you silently regress five others, because everything shares one context.</li>
+        </ul>
+
+        <div class="pullquote">
+          <p>Reliability does not come from a smarter agent. It comes from smaller ones you can see, test, and govern.</p>
+        </div>
+
+        <h2>Compose small, scoped, observable units</h2>
+        <p>The teams whose agents actually reach production do the opposite of the instinct. Instead of one agent that does everything, they build many small units that each do one thing well, and they compose them into a workflow.</p>
+        <p>Each unit has a narrow job, an explicit input and output, the minimum set of tools it needs, and a model chosen for that specific step. Because each one is small, each one is observable: every run is a record you can inspect, replay, and grade. Because each one is scoped, access is bounded, not blanket.</p>
+
+        <div class="callout">
+          <p class="k"><i class="ri-lightbulb-line icon" aria-hidden="true"></i> The shift in one line</p>
+          <p>Stop asking "how do I make the agent smart enough to do the whole job?" Start asking "what are the smallest steps, and how do I make each one trustworthy?"</p>
+        </div>
+
+        <p>In Rightbrain, that unit is a <strong>task</strong>: a versioned definition with a typed output, the tools it is allowed to call, and a model you can swap per step. A workflow is just tasks wired together, each one traced on every run.</p>
+
+        <figure class="figure">
+<pre><code>invoice-ops (workflow)
+  extract      -> gemini-2.5-flash   tools: [pdf]        out: LineItems
+  validate     -> gpt-5.1            tools: []           out: {ok, reasons}
+  post-to-erp  -> claude-sonnet      tools: [netsuite]   out: {ref}
+  notify       -> gpt-5.1-mini       tools: [slack]      out: {sent}</code></pre>
+          <figcaption>Four scoped tasks, four models, bounded tools. Each step is traced, tested, and swappable on its own.</figcaption>
+        </figure>
+
+        <p>None of these steps is impressive on its own. That is the point. Each is small enough to test with real cases, cheap enough to run the right model for the job, and isolated enough that fixing one never quietly breaks another.</p>
+
+        <h2>Start from the outcome, not the org chart of skills</h2>
+        <p>The last trap is designing the agent around a list of capabilities: "it should be able to search, summarise, email, update the CRM." Capabilities are not a strategy. The outcome is.</p>
+        <p>Work backwards from the result your business actually needs, decompose it into the smallest steps that get there, make each step observable and governed, and only then decide where autonomy genuinely helps. You end up with less agent and more system, and it is the system that survives contact with production.</p>
+        <p>The God-level agent is a great way to win a demo. A composed set of small, trustworthy tasks is how you win in production.</p>
+      </div>
+    </div>
+
+    <!-- end matter -->
+    <div class="container">
+      <div class="article-foot reveal">
+        <div class="author-card">
+          <span class="avatar" aria-hidden="true">FR</span>
+          <div>
+            <h3>Florian Ruspi</h3>
+            <p class="role">Head of Growth, Rightbrain</p>
+            <p>Florian writes about how teams move AI from prototype to production, and the operating models forming around agents that actually ship.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-band">
+      <div class="container">
+        <div class="inner reveal">
+          <div>
+            <h2>Move your best prototype to production</h2>
+            <p>Book a call and we will map your workflow to scoped, observable tasks.</p>
+          </div>
+          <a class="btn btn-primary btn-lg" href="rightbrain-landing-lyra.html#cta">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- related -->
+  <section class="related">
+    <div class="container">
+      <div class="reveal">
+        <h2>Related reading</h2>
+        <!-- Populated from resources.json by resources.js (RBResources.renderRelated) -->
+        <div class="grid-cards" data-related="production-agents-the-hard-parts,agents-make-engineering-hard-again,pal-health-ai-coach"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="rightbrain-landing-lyra.html#top" aria-label="Rightbrain home">
+          <span class="logo-mark" aria-hidden="true">
+            <img class="logo-mark-for-light" src="assets/rightbrain-icon-light.png" width="48" height="48" alt="" decoding="async">
+            <img class="logo-mark-for-dark" src="assets/rightbrain-icon-dark.png" width="48" height="48" alt="" decoding="async">
+          </span>
+          <span class="logo-name">rightbrain<span class="logo-tld">.ai</span></span>
+        </a>
+        <p>Build reliable agents. Run them at scale.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Community</h3>
+        <ul>
+          <li><a href="https://rightbrain.ai/b2b-services">B2B Services</a></li>
+          <li><a href="https://rightbrain.ai/platform-partners">Partners Program</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="https://rightbrain-developers.slack.com/join/shared_invite/zt-2mt5nyavm-IiYim_3HzoJki7wr8oeHug#/shared-invite/email">Slack Group</a></li>
+          <li><a href="https://rightbrain.ai/brand-kit">Brand Kit</a></li>
+          <li><a href="https://docs.rightbrain.ai/">Documentation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="https://rightbrain.ai/acceptable-use">Acceptable Use</a></li>
+          <li><a href="https://rightbrain.ai/data-processing">Data Processing</a></li>
+          <li><a href="https://rightbrain.ai/privacy-policy">Privacy Notice</a></li>
+          <li><a href="https://rightbrain.ai/customer-terms">Customer Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>&copy; 2026 Rightbrain</span>
+      <span>Made in the UK</span>
+    </div>
+  </div>
+</footer>
+
+<script src="resources.js"></script>
+<script>
+(function () {
+  var root = document.documentElement;
+
+  // related reading from resources.json
+  if (window.RBResources) document.querySelectorAll('[data-related]').forEach(function (h) { RBResources.renderRelated(h); });
+
+  // theme toggle
+  var toggle = document.getElementById('themeToggle');
+  if (toggle) toggle.addEventListener('click', function () {
+    var dark = root.classList.toggle('dark');
+    toggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+  });
+
+  // mobile drawer
+  var drawer = document.getElementById('drawer');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeBtn = document.getElementById('closeBtn');
+  function setDrawer(open) {
+    drawer.classList.toggle('open', open);
+    scrim.classList.toggle('open', open);
+    drawer.toggleAttribute('inert', !open);
+    drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  if (menuBtn) menuBtn.addEventListener('click', function () { setDrawer(true); });
+  if (closeBtn) closeBtn.addEventListener('click', function () { setDrawer(false); });
+  if (scrim) scrim.addEventListener('click', function () { setDrawer(false); });
+  if (drawer) drawer.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setDrawer(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setDrawer(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 900) setDrawer(false); });
+
+  // copy link
+  var copyBtn = document.getElementById('copyLink');
+  if (copyBtn) copyBtn.addEventListener('click', function () {
+    var label = copyBtn.querySelector('i');
+    navigator.clipboard.writeText(location.href).then(function () {
+      var prev = copyBtn.childNodes[copyBtn.childNodes.length - 1].nodeValue;
+      copyBtn.childNodes[copyBtn.childNodes.length - 1].nodeValue = ' Copied';
+      setTimeout(function () { copyBtn.childNodes[copyBtn.childNodes.length - 1].nodeValue = ' Copy link'; }, 1400);
+    }).catch(function () {});
+  });
+
+  // reading progress
+  var bar = document.getElementById('progress');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (bar) {
+    var onScroll = function () {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+      bar.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // scroll reveal
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('in-view'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>

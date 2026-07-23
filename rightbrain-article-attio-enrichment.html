@@ -602,7 +602,14 @@ img, svg { display: block; }
         io.unobserve(entry.target);
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
-    reveals.forEach(function (el) { io.observe(el); });
+    reveals.forEach(function (el) {
+      // Reveal anything already in (or above) the viewport on load; only animate the rest on scroll.
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('in-view');
+      } else {
+        io.observe(el);
+      }
+    });
   }
 })();
 </script>

@@ -4,31 +4,13 @@
 <script>(function(){try{if(localStorage.getItem('rb-theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Production agents: the hard parts | Rightbrain</title>
-<meta name="description" content="Building an agent that works in a demo is easy. Chris Davison on the three pillars that separate a demo from a production-grade agent: cost, transparency, and control.">
-<link rel="canonical" href="https://rightbrain.ai/resources/production-agents-the-hard-parts">
-<!-- Open Graph / social -->
-<meta property="og:type" content="article">
-<meta property="og:title" content="Production agents: the hard parts">
-<meta property="og:description" content="The gap between a great demo and a production-grade agent is where all the hard parts live. On cost, transparency, and control.">
-<meta property="og:url" content="https://rightbrain.ai/resources/production-agents-the-hard-parts">
-<meta property="article:published_time" content="2026-06-18">
-<meta property="article:author" content="Chris Davison">
-<meta name="twitter:card" content="summary_large_image">
-<!-- Article schema for SEO / AEO -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Production agents: the hard parts",
-  "description": "The gap between a great demo and a production-grade agent is where all the hard parts live. On cost, transparency, and control.",
-  "datePublished": "2026-06-18",
-  "author": { "@type": "Person", "name": "Chris Davison", "jobTitle": "Head of Agent Delivery" },
-  "publisher": { "@type": "Organization", "name": "Rightbrain" },
-  "articleSection": "Blog",
-  "mainEntityOfPage": "https://rightbrain.ai/resources/production-agents-the-hard-parts"
-}
-</script>
+<title>Customer Terms | Rightbrain</title>
+<meta name="description" content="Terms and conditions for Rightbrain customers.">
+<link rel="canonical" href="https://rightbrain.ai/customer-terms">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Customer Terms">
+<meta property="og:description" content="Terms and conditions for Rightbrain customers.">
+<meta property="og:url" content="https://rightbrain.ai/customer-terms">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -94,7 +76,7 @@
 
 /* ============ base ============ */
 *, *::before, *::after { box-sizing: border-box; border-color: var(--border); margin: 0; }
-html { scroll-behavior: smooth; scrollbar-gutter: stable; }
+html { scroll-behavior: smooth; scrollbar-gutter: stable; scroll-padding-top: 5rem; }
 body {
   background: var(--background);
   color: var(--foreground);
@@ -127,7 +109,6 @@ img, svg { display: block; }
 .btn-primary { background: var(--primary); color: var(--primary-foreground); }
 .btn-outline { background: transparent; border-color: var(--border); color: var(--foreground); }
 .btn-lg { min-height: 3rem; padding: 0 1.75rem; font-size: 0.875rem; }
-.btn-xs { min-height: 2.25rem; padding: 0 0.85rem; font-size: 0.75rem; gap: 0.4rem; }
 @media (hover: hover) and (pointer: fine) {
   .btn-primary:hover { opacity: 0.88; }
   .btn-outline:hover { background: var(--accent); }
@@ -189,71 +170,67 @@ img, svg { display: block; }
 /* reading progress (neutral, thin) */
 .progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--foreground); z-index: 60; transition: width 80ms linear; }
 
-/* ============ article ============ */
-.article { padding: 2.5rem 0 3.5rem; }
-@media (min-width: 1024px) { .article { padding: 3.5rem 0 4rem; } }
-.article-col { max-width: 44rem; margin: 0 auto; }
+/* ============ legal document ============ */
+.legal { padding: 2.5rem 0 3.5rem; }
+@media (min-width: 1024px) { .legal { padding: 3.5rem 0 4rem; } }
+.legal-head { max-width: 44rem; }
 .breadcrumb { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-size: 0.75rem; color: var(--muted-foreground); margin-bottom: 2rem; }
 .breadcrumb a { text-decoration: none; }
 @media (hover: hover) and (pointer: fine) { .breadcrumb a:hover { color: var(--foreground); } }
 .breadcrumb .sep { opacity: 0.45; }
 .cat { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-foreground); }
 .cat .icon { font-size: 0.9rem; }
-.article-head h1 { font-size: 2rem; line-height: 1.14; letter-spacing: -0.01em; margin: 1rem 0; }
-@media (min-width: 768px) { .article-head h1 { font-size: 2.75rem; } }
-.article-head .deck { font-family: var(--font-heading); font-weight: 300; font-size: 1.1875rem; line-height: 1.6; color: var(--muted-foreground); }
-@media (min-width: 768px) { .article-head .deck { font-size: 1.3125rem; } }
+.legal-head h1 { font-size: 2rem; line-height: 1.14; letter-spacing: -0.01em; margin: 1rem 0; }
+@media (min-width: 768px) { .legal-head h1 { font-size: 2.75rem; } }
+.legal-head .deck { font-family: var(--font-heading); font-weight: 300; font-size: 1.1875rem; line-height: 1.6; color: var(--muted-foreground); }
+@media (min-width: 768px) { .legal-head .deck { font-size: 1.3125rem; } }
+.doc-meta { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground); }
+.doc-meta .mi { display: inline-flex; align-items: center; gap: 0.4rem; }
 
-.byline { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 2rem; padding: 1.25rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.byline .avatar { width: 2.5rem; height: 2.5rem; flex: none; display: grid; place-items: center; background: var(--muted); font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 600; color: var(--foreground); }
-.byline .who { display: flex; flex-direction: column; line-height: 1.35; font-size: 0.8125rem; }
-.byline .who b { font-weight: 600; }
-.byline .who span { color: var(--muted-foreground); }
-.byline .meta { display: flex; align-items: center; gap: 0.9rem; font-size: 0.75rem; color: var(--muted-foreground); }
-.byline .meta .mi { display: inline-flex; align-items: center; gap: 0.35rem; }
-.byline .share { margin-left: auto; }
-.copy-link { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--border); background: transparent; min-height: 2.25rem; padding: 0 0.75rem; font-size: 0.75rem; font-family: var(--font-mono); transition: background-color 150ms ease; }
-.copy-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
-@media (hover: hover) and (pointer: fine) { .copy-link:hover { background: var(--accent); } }
+.legal-layout { display: block; margin-top: 2.5rem; }
+@media (min-width: 1024px) {
+  .legal-layout { display: grid; grid-template-columns: 15rem minmax(0, 44rem); gap: 3rem; align-items: start; }
+}
+.toc { display: none; }
+@media (min-width: 1024px) { .toc { display: block; position: sticky; top: 5rem; } }
+.toc-k { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-foreground); margin-bottom: 0.75rem; }
+.toc nav { display: flex; flex-direction: column; border-left: 1px solid var(--border); max-height: calc(100dvh - 8rem); overflow: auto; }
+.toc a { font-size: 0.75rem; color: var(--muted-foreground); text-decoration: none; padding: 0.3rem 0 0.3rem 0.85rem; margin-left: -1px; border-left: 1px solid transparent; line-height: 1.4; transition: color 150ms ease, border-color 150ms ease; }
+@media (hover: hover) and (pointer: fine) { .toc a:hover { color: var(--foreground); } }
+.toc a.active { color: var(--foreground); border-left-color: var(--foreground); }
 
-/* long-form prose — DOCUMENTED DEVIATION: reading body is Merriweather (serif), not mono.
-   Mono is retained for metadata, labels, inline code, and code blocks. */
-.prose { margin-top: 2.5rem; }
+/* prose — DOCUMENTED DEVIATION: reading body is Merriweather (serif). Mono for labels, data, tables. */
+.prose { min-width: 0; }
 .prose > * + * { margin-top: 1.5rem; }
+.prose > :first-child { margin-top: 0; }
 .prose p, .prose li { font-family: var(--font-heading); font-weight: 400; font-size: 1.0625rem; line-height: 1.85; }
-.prose h2 { font-size: 1.5rem; line-height: 1.25; margin-top: 3rem; }
+.prose h2 { font-size: 1.5rem; line-height: 1.25; margin-top: 3rem; padding-top: 0.25rem; }
 .prose h3 { font-size: 1.1875rem; line-height: 1.3; margin-top: 2rem; }
-.prose h2 + p, .prose h3 + p { margin-top: 0.85rem; }
+.prose h4 { font-size: 1.0625rem; line-height: 1.3; margin-top: 1.5rem; }
+.prose h2 + p, .prose h3 + p, .prose h4 + p { margin-top: 0.85rem; }
 .prose strong { font-weight: 700; }
+.prose em { font-style: italic; }
 .prose a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: color-mix(in oklch, currentColor 40%, transparent); }
 @media (hover: hover) and (pointer: fine) { .prose a:hover { text-decoration-color: currentColor; } }
 .prose ul, .prose ol { padding-left: 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.prose li > ul, .prose li > ol { margin-top: 0.5rem; }
 .prose li::marker { color: var(--muted-foreground); }
 .prose code { font-family: var(--font-mono); font-size: 0.82em; background: var(--muted); padding: 0.1rem 0.35rem; }
-.prose pre { font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.65; background: var(--muted); border: 1px solid var(--border); padding: 1.1rem 1.25rem; overflow: auto; }
-.prose pre code { background: none; padding: 0; font-size: inherit; }
-.prose blockquote { border-left: 2px solid var(--border); padding-left: 1.25rem; color: var(--muted-foreground); }
-.prose blockquote p { font-style: italic; }
-
-/* pull-quote: centred emphasis, hairline rules (no side-stripe) */
-.pullquote { margin: 2.5rem 0; padding: 1.75rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
-.pullquote p { font-family: var(--font-heading); font-weight: 300; font-size: 1.5rem; line-height: 1.4; }
-@media (min-width: 768px) { .pullquote p { font-size: 1.75rem; } }
 
 /* callout well */
 .callout { background: var(--muted); border: 1px solid var(--border); padding: 1.25rem 1.5rem; }
 .callout .k { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-foreground); display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem; }
-.callout p { margin-top: 0; }
+.callout > :first-child { margin-top: 0; }
+.callout > * + * { margin-top: 0.85rem; }
 
-.figure figcaption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.6rem; }
-
-/* ============ end matter ============ */
-.article-foot { max-width: 44rem; margin: 0 auto; }
-.author-card { display: flex; gap: 1rem; align-items: flex-start; background: var(--muted); border: 1px solid var(--border); padding: 1.5rem; margin-top: 3rem; }
-.author-card .avatar { width: 3rem; height: 3rem; flex: none; display: grid; place-items: center; background: var(--background); font-family: var(--font-mono); font-size: 0.9375rem; font-weight: 600; }
-.author-card h3 { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 600; }
-.author-card .role { font-size: 0.75rem; color: var(--muted-foreground); margin-bottom: 0.6rem; }
-.author-card p { font-size: 0.8125rem; color: var(--muted-foreground); line-height: 1.65; }
+/* tables */
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); }
+.prose table { border-collapse: collapse; width: 100%; font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.55; }
+.prose thead th { text-align: left; background: var(--muted); font-weight: 600; white-space: nowrap; }
+.prose th, .prose td { padding: 0.65rem 0.85rem; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); vertical-align: top; }
+.prose th:last-child, .prose td:last-child { border-right: none; }
+.prose tbody tr:last-child td { border-bottom: none; }
+.prose td a { white-space: nowrap; }
 
 /* CTA band (inverted) */
 .cta-band { background: var(--primary); color: var(--primary-foreground); margin-top: 3.5rem; }
@@ -263,17 +240,6 @@ img, svg { display: block; }
 .cta-band .btn-primary { background: var(--primary-foreground); color: var(--primary); }
 @media (hover: hover) and (pointer: fine) { .cta-band .btn-primary:hover { opacity: 0.9; } }
 
-/* related */
-.related { padding: 4rem 0; border-top: 1px solid var(--border); }
-.related h2 { font-size: 1.25rem; margin-bottom: 1.75rem; }
-.grid-cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
-.rcard { display: flex; flex-direction: column; gap: 0.7rem; border: 1px solid var(--border); background: var(--card); padding: 1.25rem; text-decoration: none; color: inherit; min-height: 12rem; transition: border-color 200ms ease, transform 200ms var(--ease-out); }
-.rcard:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
-@media (hover: hover) and (pointer: fine) { .rcard:hover { border-color: color-mix(in oklch, var(--foreground) 32%, var(--border)); transform: translateY(-2px); } }
-.rcard h3 { font-size: 1rem; line-height: 1.3; }
-.rcard .excerpt { font-size: 0.8125rem; color: var(--muted-foreground); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.rcard .meta { margin-top: auto; padding-top: 0.6rem; font-size: 0.75rem; color: var(--muted-foreground); }
-
 /* ============ footer ============ */
 .site-footer { padding: 3.5rem 0 2.5rem; border-top: 1px solid var(--border); }
 .footer-grid { display: grid; gap: 2.5rem; }
@@ -282,10 +248,10 @@ img, svg { display: block; }
 .footer-col h3 { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--muted-foreground); margin-bottom: 0.875rem; }
 .footer-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.125rem; }
 .footer-col a { display: inline-flex; align-items: center; min-height: 2rem; font-size: 0.8125rem; color: var(--foreground); text-decoration: none; }
+.footer-col a[aria-current="page"] { color: var(--muted-foreground); }
 @media (hover: hover) and (pointer: fine) { .footer-col a:hover { color: var(--muted-foreground); } }
 .footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted-foreground); }
 
-/* reveal */
 /* back to top */
 .to-top { position: fixed; right: 1.25rem; bottom: calc(1.25rem + env(safe-area-inset-bottom)); z-index: 35; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 2.75rem; padding: 0 0.85rem; border: 1px solid var(--border); background: var(--card); color: var(--foreground); font-family: var(--font-mono); font-size: 0.75rem; line-height: 1; cursor: pointer; opacity: 0; transform: translateY(8px); visibility: hidden; pointer-events: none; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out), background-color 150ms ease; }
 .to-top .icon { font-size: 1rem; }
@@ -293,15 +259,15 @@ img, svg { display: block; }
 .to-top:active { transform: translateY(1px); }
 .to-top:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 @media (hover: hover) and (pointer: fine) { .to-top:hover { background: var(--muted); } }
-@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
 
+/* reveal */
 .reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--ease-in-out), transform 600ms var(--ease-in-out); }
 .reveal.in-view { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: opacity 200ms ease; }
-  .progress { transition: none; }
-  .btn:active, .theme-toggle:active, .menu-btn:active, .rcard:hover { transform: none; }
+  .progress, .to-top { transition: none; }
+  .btn:active, .theme-toggle:active, .menu-btn:active { transform: none; }
 }
 </style>
 </head>
@@ -324,7 +290,7 @@ img, svg { display: block; }
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="partners-landing-lyra.html">Partners</a>
-      <a href="rightbrain-resources-lyra.html" aria-current="page">Resources</a>
+      <a href="rightbrain-resources-lyra.html">Resources</a>
       <a href="https://docs.rightbrain.ai/">Docs</a>
     </nav>
     <div class="header-actions">
@@ -356,89 +322,95 @@ img, svg { display: block; }
   </div>
   <nav>
     <a href="partners-landing-lyra.html">Partners</a>
-    <a href="rightbrain-resources-lyra.html" aria-current="page">Resources</a>
+    <a href="rightbrain-resources-lyra.html">Resources</a>
     <a href="https://docs.rightbrain.ai/">Docs</a>
   </nav>
   <a class="btn btn-primary" href="./#cta">Book a call</a>
 </aside>
 
 <main>
-
-  <article class="article">
+  <section class="legal">
     <div class="container">
-      <div class="article-col article-head reveal">
+      <div class="legal-head reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="rightbrain-resources-lyra.html">Resources</a>
+          <a href="./">Home</a>
           <span class="sep" aria-hidden="true">/</span>
-          <a href="rightbrain-resources-lyra.html">Blog</a>
+          <span>Customer Terms</span>
         </nav>
-        <span class="cat"><i class="ri-article-line icon" aria-hidden="true"></i> Blog</span>
-        <h1>Production agents: the hard parts</h1>
-        <p class="deck">Building an agent that works "perfectly" in a demo is easy. The gap between that demo and a production-grade agent is where almost all the hard parts live — and it comes down to three pillars: cost, transparency, and control.</p>
-
-        <div class="byline">
-          <span class="avatar" aria-hidden="true">CD</span>
-          <span class="who"><b>Chris Davison</b><span>Head of Agent Delivery, Rightbrain</span></span>
-          <span class="meta">
-            <span class="mi"><i class="ri-calendar-line icon" aria-hidden="true"></i> 18 Jun 2026</span>
-            <span class="mi"><i class="ri-time-line icon" aria-hidden="true"></i> 6 min read</span>
-          </span>
-          <span class="share">
-            <button class="copy-link" id="copyLink" type="button"><i class="ri-link icon" aria-hidden="true"></i> Copy link</button>
-          </span>
-        </div>
+        <span class="cat"><i class="ri-scales-3-line icon" aria-hidden="true"></i> Legal</span>
+        <h1>Customer Terms</h1>
+        <p class="deck">Terms and conditions for Rightbrain customers.</p>
+        
       </div>
 
-      <div class="article-col prose reveal">
-        <p>Most people are familiar with how easy it is to build an agent or skill in Claude or another leading provider — both technical and non-technical builders. You can add in tools, connect it to your Google Workspace, Slack, or whatever connections you have, and it will work "perfectly" — at least for a demo.</p>
-        <p>Agent Delivery at Rightbrain, in practice, means taking agents from prototype to production: scoping the right use cases, architecting them to be efficient and observable, and getting them robust enough to run reliably at scale once real people and real edge cases hit them. So the gap between a great demo and a production-grade agent is the thing I deal with every day, and it is where almost all the hard parts live.</p>
-        <p>After a few runs, or when you hit your first issues, things start to go off-piste. Before you know it there is a sense of losing control, a lack of transparency, and it is easy to become disillusioned — and that is before you open it up to other people in your business and encounter all the edge cases that happen in production. There are also the escalating costs you don't want to tackle without losing the quality of output you spent hours or days achieving in early testing. We see this time and again with our customers, and it boils down to not building the agents in a way that is suitable for a production environment, at scale.</p>
+      <div class="legal-layout">
+        <aside class="toc reveal" aria-label="On this page">
+          <div class="toc-k">On this page</div>
+          <nav id="toc"><a href="#account-and-registration">Account and Registration</a><a href="#third-party-services">Third Party Services</a><a href="#your-obligations">Your Obligations</a><a href="#fees-and-payment">Fees and Payment</a><a href="#term-and-termination">Term and Termination</a><a href="#data-protection">Data Protection</a><a href="#intellectual-property">Intellectual Property</a><a href="#confidentiality-and-publicity">Confidentiality and Publicity</a><a href="#indemnification">Indemnification</a><a href="#limitation-of-liability">Limitation of Liability</a><a href="#miscellaneous">Miscellaneous</a><a href="#definitions-and-interpretation">Definitions and Interpretation</a></nav>
+        </aside>
 
-        <div class="callout">
-          <p class="k"><i class="ri-stack-line icon" aria-hidden="true"></i> The three pillars of production agents</p>
-          <p>This piece is about <strong>cost</strong>, <strong>transparency</strong>, and <strong>control</strong>. Data quality, compliance, and governance are just as important, but they are for another time.</p>
-        </div>
-
-        <h2>Brute forcing increases costs</h2>
-        <p>Tokenmaxxing is definitely not the flex it was a few months ago. It means letting the model do whatever it takes to get to an answer — burning through tokens and API costs, spinning up unnecessary loops and reasoning steps, and turning something that should be deterministic into something erratic that needs minutes of thinking time. It is really a symptom of a lack of precision in either the prompt or the configuration of the agent. Use any of the frontier models from the big three — Anthropic, Google, and OpenAI — and they will usually paper over the gaps and produce something that looks sensible. But that relies on luck, and at production volumes the misses start to add up.</p>
-
-        <h2>Using the right architecture</h2>
-        <p>The basic rule of thumb: the simpler and more deterministic the agent and tasks, the better, so reduce the agent's thinking and reasoning as much as possible. If you are running Opus 4.8 with an orchestrator that needs several reasoning steps, or re-ingests the same data on every turn, that should be split into sequential tasks that are observable and controllable independently of each other, but that run together according to well-defined logic rather than the model choosing the path each time. Only then do you get full visibility and the ability to optimise cost at every step. Determinism wins every time.</p>
-        <p>The expenses processing agent we built in-house for finance teams is a good example. It uses a more powerful model for orchestrating, but a small model classifies, extracts, and validates perfectly well at a fraction of the cost, removing around 90% of the unnecessary reasoning. It could be done by the orchestrating agent, but then you lose control and transparency.</p>
-
-        <div class="pullquote">
-          <p>Determinism wins every time.</p>
-        </div>
-
-        <h2>The power of being model agnostic</h2>
-        <h3>Fallback model</h3>
-        <p>This is an essential part of agents and tasks in production. If the primary model fails — which is more often the case than you might expect — you need a similarly capable model from a different provider to seamlessly carry out the task. Even the major providers go down or hit capacity limits without warning, and managed services can enforce global usage quotas that fail your task at seemingly random moments. None of it is your fault, and none of it is something you can prevent from inside a single provider, which is exactly why a fallback on a different provider matters.</p>
-        <h3>Avoiding vendor lock-in</h3>
-        <p>Not being tied to a model provider is not only beneficial, it is essential for any enterprise today. It matters in production, but also for evaluation, because being able to run the same agent across different models makes it far easier to replicate or simulate how it will actually behave once deployed.</p>
-        <p>We are also entering a period where safety and regulatory pressure can change a model's availability at short notice. A provider can restrict access to a model, or pull a version entirely, on grounds that have nothing to do with your use case — and if your agent is built around that one model, you inherit that risk with no say in it. Open-source models need to remain an option for many businesses, as data becomes more valuable and running private instances enters the radar.</p>
-
-        <h2>Transparency wins</h2>
-        <p>Ask most people who have built a Skill in Claude to tell you what the steps are in the reasoning or processing, and most will return your question with a blank look. Even the ones who can describe it in theory usually cannot tell you whether the agent actually executed those steps in practice. That is the dangerous part. When a step is missing or a tool quietly fails, the model does not stop and flag it — it carries on and returns the most plausible-looking result. You get a confident answer that looks right but has skipped something important, and without visibility into the run you have no way of knowing.</p>
-        <p>This is why, on every agent we put into production, you have to be able to explain and review the execution flow for any given run — not the intended flow, the actual one. Once you can see the cost, latency, and inner workings of each step, the fixes are usually high value and low effort: not just model choice, but prompt engineering, tool use, or removing a tool and replacing it with a configured, deterministic task. Often a few hours of work takes a significant chunk out of the running cost.</p>
-
-        <h2>Your team in control, supported however you need</h2>
-        <p>For many enterprises, once you understand what needs to be done in production with your agents, the natural next step is to manage them in-house: learn from edge cases, handle them quickly, and run your agents like you do your own software stack. That is also where the care you took over the initial build pays off, as your own team becomes the one continuously improving the agent and driving it down the cost curve.</p>
-        <p>In the expenses agent, the orchestrator does real work when it outputs the extracted receipt data and appends it to a Google Sheet, or pushes it through a tool into a third-party system like Xero. Today, that justifies a more capable model with enough reasoning power to overcome edge cases. Over the coming months, as we discover those edge cases and harden the prompt and instructions across iterations, we can move that step to a smaller or open-source model — which on this build points to roughly another ten-fold reduction in cost. You earn the cheaper architecture as you become more precise and efficient.</p>
-        <p>If you are trying to get agents working properly inside your own workflows, that is exactly what we do — so do get in touch.</p>
-      </div>
-    </div>
-
-    <!-- end matter -->
-    <div class="container">
-      <div class="article-foot reveal">
-        <div class="author-card">
-          <span class="avatar" aria-hidden="true">CD</span>
-          <div>
-            <h3>Chris Davison</h3>
-            <p class="role">Head of Agent Delivery, Rightbrain</p>
-            <p>Chris takes agents from prototype to production for Rightbrain's customers, scoping use cases and architecting them to run reliably and cheaply at scale.</p>
-          </div>
-        </div>
+        <article class="prose reveal" id="doc">
+<h2 id="account-and-registration">Account and Registration</h2>
+<ul><li>We are Rightbrain AI Limited a company registered in England with company number 14960427 and its registered office at The Grainger Suite, Dobson House, Regent Centre, Gosforth, Newcastle Upon Tyne, United Kingdom, NE3 3PF.</li><li>The organisation or individual wishing to use our Services can sign up to our Free Service online, or to our Paid Service by signing an Order Form. Both Services are governed by these Terms, and other documents incorporated by reference as set out in Clause 12 - Definitions and Interpretation.</li><li>If you are using the Services on behalf of an organisation, you represent that you have authority to enter, and are entering, into this Agreement on behalf of that organisation. From this point onwards, references to 'you' in these Customer Terms are references to your organisation.</li><li>Subject to the terms of this Agreement, we will provide the Services to you during the Term.</li><li>We will provide Support for the Paid Service as set out in the applicable Order Form.</li></ul>
+<h2 id="third-party-services">Third Party Services</h2>
+<ul><li>We may make Third Party Services available to you through the Services. You acknowledge that such Third Party Services are offered on Third Party Terms, and that this Agreement does not alter nor modify such Third Party Terms except as set out herein.</li><li>Where we make generative AI available to you as a Third Party Service, we will transmit Customer Data to such Third Party Service only as necessary to perform the services requested by you, and will, to the extent that the Third Party Service offers such functionality, agree contracts and configure the Third Party Service to ensure that:<ul><li>Customer Data are not used to train, fine tune or otherwise develop Third Party Service models; and</li><li>Customer Data are not retained by Third Party Services for longer than is necessary to perform the processing operation requested by you.</li></ul></li></ul>
+<h2 id="your-obligations">Your Obligations</h2>
+<p>You undertake that:</p>
+<ul><li>you will not allow your Customer Account to be used by any other person;</li><li>you will take reasonable measures to secure the Authentication Method associated with your Customer Account; and</li><li>you will let us know immediately if you believe the security of your Customer Account has been compromised.</li></ul>
+<p>You will ensure that:</p>
+<ul><li>no User Account is used by more than one Authorised User; and</li><li>such Authorised Users are notified of this Agreement and any applicable Third Party Terms.</li></ul>
+<p>You will not, and will not permit any Authorised User to:</p>
+<ul><li>violate our Acceptable Use Policy; or</li><li>violate the Third Party Terms of any Third Party Service accessed by you or your Authorised Users through the Services.</li></ul>
+<p>You will not:</p>
+<ul><li>copy, modify, or create a derivative work of the Services; or</li><li>reverse engineer, decompile, translate, disassemble, or otherwise attempt to extract any or all of the source code of the Services (except to the extent such restriction is expressly prohibited by applicable law).</li></ul>
+<h2 id="fees-and-payment">Fees and Payment</h2>
+<ul><li>This Clause applies only to the use of the Paid Service.</li><li>You will pay the Fees to us in accordance with this Agreement.</li><li>We will measure your usage of the Services for the determination of the Fees and/or your compliance with any Usage Limits. In the event that you exceed the Usage Limits, an Overage Charge may apply.</li></ul>
+<p>If we have not received payment within 30 days after the due date:</p>
+<ul><li>we may suspend all or part of the Services to you, and will be under no obligation to provide any or all of the Services until full payment, including any interest, has been received; and</li><li>interest shall accrue on a daily basis at an annual rate equal to 4% above the then current base rate of Bank of England from time to time, commencing on the due date and continuing until fully paid, whether before or after judgment.</li></ul>
+<p>All amounts and fees stated or referred to in this Agreement:</p>
+<ul><li>shall be payable in the currency stated on the invoice;</li><li>are, subject to Clause 10.3.2, non-cancellable and non-refundable;</li><li>are exclusive of value added tax, which will be added to our invoice(s) at the appropriate rate.</li></ul>
+<h2 id="term-and-termination">Term and Termination</h2>
+<ul><li>The term of this Agreement (the “Term”) will begin on the Effective Date and continue until terminated or not renewed in accordance with the terms of this Agreement.</li></ul>
+<p>Either party may terminate this Agreement with immediate effect by giving written notice to the other party if:</p>
+<ul><li>the other party fails to pay any amount due under this Agreement on the due date for payment and remains in default not less than 15 days after being notified in writing to make such payment;</li><li>the other party commits a material breach of any other term of this Agreement and fails to remedy that breach for a period of no less than 30 days; or</li><li>the other party ceases its business operations, suspends or threatens to suspend its payments, appoints an administrator, or becomes subject to insolvency proceedings.</li></ul>
+<p>If you are using the Paid Service, we may terminate this Agreement in whole or part on written notice to you if we reasonably believe that continued provision of the Services to you would violate applicable law.</p>
+<h2 id="data-protection">Data Protection</h2>
+<p>We will hold:</p>
+<ul><li>Personal Data relating to account management (including without limitation invoicing, provision of Support, and product feedback) of the Paid Service; and</li><li>Personal Data submitted to the Free Service;</li></ul>
+<p>as Controller, and will Process such data in accordance with our Privacy Notice.</p>
+<p>If you are using the Free Service, you must ensure that Customer Data does not contain Personal Data.</p>
+<p>If you are using the Paid Service, we will hold:</p>
+<ul><li>Personal Data relating to User Accounts; and</li><li>if applicable, any Personal Data contained in Customer Data;</li></ul>
+<p>as Processor, and will Process such Personal Data in accordance with the Data Processing Addendum.</p>
+<h2 id="intellectual-property">Intellectual Property</h2>
+<ul><li>You acknowledge and agree that we and/or our licensors own all Intellectual Property Rights in the Services. Except as expressly stated herein, this Agreement does not grant you any Intellectual Property Rights in respect of the Services.</li><li>We confirm that we have all the rights in relation to the Services that are necessary to grant all the rights it purports to grant under, and in accordance with, this Agreement.</li></ul>
+<p>The parties agree that in relation to the Customer Data:</p>
+<ul><li>any and all Intellectual Property Rights arising in relation to the Customer Data are retained by you; and</li><li>you hereby grant a royalty-free, worldwide, sub-licensable, non-exclusive licence for us (and each of its direct and indirect sub-contractors) to use, copy and otherwise utilise Customer Data as required to provide and develop the Services, and to exercise or perform our rights, remedies and obligations under the Agreement.</li></ul>
+<h2 id="confidentiality-and-publicity">Confidentiality and Publicity</h2>
+<ul><li>Where you use the Paid Service, you consent to our use of your name and logo on our website and in promotional materials. You may withdraw this consent at any time by notifying us in writing.</li><li>Each party agrees to use at least reasonable efforts to protect the other party’s Confidential Information and only use it to fulfil its obligations under this Agreement.</li><li>Confidential Information may only be shared with Representatives who need to know it and who are bound by equivalent confidentiality obligations.</li><li>Disclosure is permitted if required by law, a court, or a regulator, provided that the disclosing party:<ul><li>gives the other party as much notice as legally allowed;</li><li>considers any reasonable requests regarding the content of the disclosure.</li></ul></li></ul>
+<h2 id="indemnification">Indemnification</h2>
+<p>You agree to indemnify and hold harmless Rightbrain, its officers, directors, and employees from and against any claims, losses, damages, or costs arising from your use of the Services in breach of Clause 3 (Your Obligations), provided that:</p>
+<ul><li>you are given prompt notice of the claim;</li><li>we provide reasonable cooperation at your expense;</li><li>you are given full control to defend or settle the claim.</li></ul>
+<p>We agree to indemnify you and your officers, directors, and employees against any claim that use of the Services in accordance with this Agreement infringes UK intellectual property rights, provided that:</p>
+<ul><li>we are given prompt notice of the claim;</li><li>you provide reasonable cooperation and do not compromise the defence;</li><li>we retain sole authority to defend or settle the claim.</li></ul>
+<p>We are not liable for infringement to the extent the claim is based on:</p>
+<ul><li>a third party modification of the Services;</li><li>use of the Services in violation of instructions;</li><li>continued use after notice of alleged infringement;</li><li>your breach of this Agreement.</li></ul>
+<p>This clause sets out your exclusive remedy for IP infringement.</p>
+<h2 id="limitation-of-liability">Limitation of Liability</h2>
+<p>Except as explicitly provided:</p>
+<ul><li>You accept full responsibility for outcomes resulting from your use of the Services.</li><li>We are not liable for any errors or omissions in Customer Data or instructions.</li><li>We exclude all implied warranties, to the extent permitted by law.</li><li>The Services are provided “as is.”</li></ul>
+<p>We do not exclude liability where such exclusion is not permitted by law.</p>
+<p>Subject to the above:</p>
+<ul><li>We are not liable for:<ul><li>indirect, incidental, special, or punitive damages;</li><li>lost profits, revenue, savings, or goodwill.</li></ul></li><li>Our total liability under this Agreement is limited to the Fees paid in the 12 months prior to the event giving rise to the claim.</li></ul>
+<p>You are responsible for seeking legal advice regarding your obligations and risks. Support and guidance we provide is not legal advice.</p>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<ul><li>This Agreement is governed by the laws of England and Wales.</li><li>The courts of England and Wales have exclusive jurisdiction for disputes.</li><li>Neither party is liable for failure or delay caused by circumstances beyond their reasonable control.</li><li>This Agreement replaces all prior agreements relating to the same subject.</li><li>You acknowledge you have not relied on anything not stated in this Agreement.</li><li>We may change the Services and these Terms from time to time.</li><li>Changes for legal compliance take effect immediately. Other changes take effect 30 days after publication. We’ll try to notify you.</li><li>Notices must be sent to:<ul><li>Us: legal@rightbrain.ai</li><li>You: the contact email you provided.</li></ul></li><li>We may subcontract obligations but remain responsible for performance.</li><li>If any part of this Agreement is invalid, the remainder will still apply.</li><li>No third party rights are granted under this Agreement.</li><li>This Agreement does not create a partnership, agency, or joint venture.</li></ul>
+<h2 id="definitions-and-interpretation">Definitions and Interpretation</h2>
+<p>Unless otherwise defined, the following terms have these meanings:</p>
+<ul><li><strong>Agreement</strong>: these Terms and any referenced documents (e.g. Order Form, Data Processing Addendum, Acceptable Use Policy).</li><li><strong>Acceptable Use Policy</strong>: https://rightbrain.ai/acceptable-use</li><li><strong>Authentication Method</strong>: method used to authenticate Authorised Users (e.g. password, token).</li><li><strong>Authorised User</strong>: an individual permitted to use the Services on your behalf.</li><li><strong>Confidential Information</strong>: marked or obviously confidential information disclosed under this Agreement.</li><li><strong>Controller, Processor, Data Subject, Personal Data, Process, Processing</strong>: as defined in the Data Processing Addendum.</li><li><strong>Customer Data</strong>: any data submitted to the Services by you or your Authorised Users, excluding account data.</li><li><strong>Customer Account</strong>: your main account used to access the Services.</li><li><strong>Data Processing Addendum</strong>: https://rightbrain.ai/data-processing</li><li><strong>Effective Date</strong>: either the Order Form date or your signup date.</li><li><strong>Fees</strong>: amounts due for Paid Service (excluding VAT), including Overage Charges.</li><li><strong>Free Service</strong>: the free tier of the Services.</li><li><strong>Intellectual Property Rights</strong>: all existing and future intellectual property rights.</li><li><strong>Order Form</strong>: the signed document describing the Paid Service.</li><li><strong>Overage Charge</strong>: additional fees for exceeding Usage Limits.</li><li><strong>Paid Service</strong>: the commercial version of the Services.</li><li><strong>Privacy Notice</strong>: https://rightbrain.ai/privacy-policy</li><li><strong>Representatives</strong>: each party’s affiliates, employees, contractors, and advisers.</li><li><strong>Services</strong>: the Free Service and/or Paid Service.</li><li><strong>Support</strong>: the support included in the Paid Service.</li><li><strong>Term</strong>: the period this Agreement remains in force.</li><li><strong>Terms</strong>: these Customer Terms.</li><li><strong>Third Party Service</strong>: third-party tools or services accessible through the Services.</li><li><strong>Third Party Terms</strong>: the terms governing Third Party Services.</li><li><strong>Usage Limits</strong>: data/user/query or other limits as stated in the Order Form or set by us for the Free Service.</li><li><strong>Us / We / Rightbrain</strong>: Rightbrain AI Ltd, registered in England, company number 14960427.</li><li><strong>User Account</strong>: an individual login tied to an Authorised User.</li><li><strong>You / Customer</strong>: the person or organisation accepting this Agreement.</li></ul>
+<p>Other interpretation rules:</p>
+<ul><li>Morphological inflections of defined terms have the same meaning.</li><li>“Writing” includes email.</li><li>In case of conflict:<ul><li>Data Processing Addendum takes precedence,</li><li>followed by the Order Form,</li><li>then the Acceptable Use Policy,</li><li>then these Terms.</li></ul></li></ul>
+        </article>
       </div>
     </div>
 
@@ -446,26 +418,14 @@ img, svg { display: block; }
       <div class="container">
         <div class="inner reveal">
           <div>
-            <h2>Get your agents production-ready</h2>
-            <p>Book a call and we will pressure-test your agent for cost, transparency, and control.</p>
+            <h2>Questions about these terms?</h2>
+            <p>Our legal team is happy to help with anything in this agreement.</p>
           </div>
-          <a class="btn btn-primary btn-lg" href="./#cta">Book a call</a>
+          <a class="btn btn-primary btn-lg" href="mailto:legal@rightbrain.ai">Email the legal team</a>
         </div>
       </div>
     </div>
-  </article>
-
-  <!-- related -->
-  <section class="related">
-    <div class="container">
-      <div class="reveal">
-        <h2>Related reading</h2>
-        <!-- Populated from resources.json by resources.js (RBResources.renderRelated) -->
-        <div class="grid-cards" data-related="agents-make-engineering-hard-again,stop-trying-to-build-a-god-level-agent,pal-health-ai-coach"></div>
-      </div>
-    </div>
   </section>
-
 </main>
 
 <button class="to-top" id="toTop" type="button" aria-label="Back to top">
@@ -503,10 +463,7 @@ img, svg { display: block; }
       <div class="footer-col">
         <h3>Legal</h3>
         <ul>
-          <li><a href="acceptable-use.html">Acceptable Use</a></li>
-          <li><a href="data-processing.html">Data Processing</a></li>
-          <li><a href="privacy-policy.html">Privacy Notice</a></li>
-          <li><a href="customer-terms.html">Customer Terms</a></li>
+          <li><a href="acceptable-use.html">Acceptable Use</a></li><li><a href="data-processing.html">Data Processing</a></li><li><a href="privacy-policy.html">Privacy Notice</a></li><li><a href="customer-terms.html" aria-current="page">Customer Terms</a></li>
         </ul>
       </div>
     </div>
@@ -517,13 +474,9 @@ img, svg { display: block; }
   </div>
 </footer>
 
-<script src="resources.js"></script>
 <script>
 (function () {
   var root = document.documentElement;
-
-  // related reading from resources.json
-  if (window.RBResources) document.querySelectorAll('[data-related]').forEach(function (h) { RBResources.renderRelated(h); });
 
   // theme toggle
   var toggle = document.getElementById('themeToggle');
@@ -552,26 +505,15 @@ img, svg { display: block; }
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setDrawer(false); });
   window.addEventListener('resize', function () { if (window.innerWidth > 900) setDrawer(false); });
 
-  // copy link
-  var copyBtn = document.getElementById('copyLink');
-  if (copyBtn) copyBtn.addEventListener('click', function () {
-    var label = copyBtn.querySelector('i');
-    navigator.clipboard.writeText(location.href).then(function () {
-      var prev = copyBtn.childNodes[copyBtn.childNodes.length - 1].nodeValue;
-      copyBtn.childNodes[copyBtn.childNodes.length - 1].nodeValue = ' Copied';
-      setTimeout(function () { copyBtn.childNodes[copyBtn.childNodes.length - 1].nodeValue = ' Copy link'; }, 1400);
-    }).catch(function () {});
-  });
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // reading progress
   var bar = document.getElementById('progress');
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (bar) {
     var onScroll = function () {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
-      bar.style.width = pct + '%';
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -590,21 +532,29 @@ img, svg { display: block; }
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
     reveals.forEach(function (el) {
-      // Reveal anything already in (or above) the viewport on load; only animate the rest on scroll.
-      if (el.getBoundingClientRect().top < window.innerHeight) {
-        el.classList.add('in-view');
-      } else {
-        io.observe(el);
-      }
+      if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add('in-view'); }
+      else { io.observe(el); }
     });
+  }
+
+  // TOC scrollspy
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+  var sections = tocLinks.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+  if (tocLinks.length && 'IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var id = entry.target.id;
+        tocLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
+      });
+    }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+    sections.forEach(function (s) { if (s) spy.observe(s); });
   }
 
   // back to top
   var toTop = document.getElementById('toTop');
   if (toTop) {
-    var toggleTop = function () {
-      toTop.classList.toggle('is-visible', window.scrollY > 600);
-    };
+    var toggleTop = function () { toTop.classList.toggle('is-visible', window.scrollY > 600); };
     window.addEventListener('scroll', toggleTop, { passive: true });
     toggleTop();
     toTop.addEventListener('click', function () {

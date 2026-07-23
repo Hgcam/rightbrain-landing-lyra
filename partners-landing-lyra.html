@@ -170,6 +170,7 @@ img, svg { display: block; }
   font-size: 0.8125rem; color: var(--muted-foreground); text-decoration: none;
   transition: color 150ms ease;
 }
+.nav-links a[aria-current="page"] { color: var(--foreground); }
 .nav-links a:focus-visible { outline: 2px solid var(--ring); outline-offset: -2px; }
 @media (hover: hover) and (pointer: fine) {
   .nav-links a:hover { color: var(--foreground); }
@@ -1413,10 +1414,8 @@ img, svg { display: block; }
       <span class="logo-name">rightbrain<span class="logo-tld">.ai</span></span>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#how">How it works</a>
-      <a href="#production">Why partner</a>
-      <a href="#services">Partner program</a>
-      <a href="#case-study">Partners</a>
+      <a href="partners-landing-lyra.html" aria-current="page">Partners</a>
+      <a href="rightbrain-resources-lyra.html">Resources</a>
       <a href="https://docs.rightbrain.ai/">Docs</a>
     </nav>
     <div class="header-actions">
@@ -1447,10 +1446,8 @@ img, svg { display: block; }
     </button>
   </div>
   <nav>
-    <a href="#how">How it works</a>
-    <a href="#production">Why partner</a>
-    <a href="#services">Partner program</a>
-    <a href="#case-study">Partners</a>
+    <a href="partners-landing-lyra.html" aria-current="page">Partners</a>
+    <a href="rightbrain-resources-lyra.html">Resources</a>
     <a href="https://docs.rightbrain.ai/">Docs</a>
   </nav>
   <a class="btn btn-primary" href="#cta">Become a partner</a>

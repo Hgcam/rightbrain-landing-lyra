@@ -173,7 +173,8 @@ img, svg { display: block; }
 .audit { padding: 2.5rem 0 3.5rem; }
 @media (min-width: 1024px) { .audit { padding: 3.5rem 0 4.5rem; } }
 .audit-grid { display: grid; gap: 2.5rem; }
-@media (min-width: 1024px) { .audit-grid { grid-template-columns: 23rem minmax(0, 1fr); gap: 3.5rem; align-items: start; } }
+/* Right column is capped (~34rem) so the Calendly embed stays under its month+times breakpoint and always renders the compact "Select a Day" layout. */
+@media (min-width: 1024px) { .audit-grid { grid-template-columns: 23rem minmax(0, 34rem); gap: 3.5rem; align-items: start; justify-content: center; } }
 @media (min-width: 1024px) { .audit-copy { position: sticky; top: 5.5rem; } }
 .backlink { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: var(--muted-foreground); text-decoration: none; margin-bottom: 1.75rem; }
 @media (hover: hover) and (pointer: fine) { .backlink:hover { color: var(--foreground); } }
@@ -196,7 +197,7 @@ img, svg { display: block; }
 .audit-cta { margin-top: 2rem; display: none; }
 
 /* ============ scheduler ============ */
-.book { border: 1px solid var(--border); background: var(--card); }
+.book { border: 1px solid var(--border); background: var(--card); max-width: 34rem; }
 .book-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--border); }
 .book-head .t { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: 0.06em; }
 .book-head .t .icon { font-size: 0.95rem; color: var(--foreground); }

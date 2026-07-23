@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>(function(){try{if(localStorage.getItem('rb-theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>How Pal built an AI health coach on Rightbrain | Rightbrain</title>
@@ -250,6 +251,9 @@ img, svg { display: block; }
 .prose ul, .prose ol { padding-left: 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .prose li::marker { color: var(--muted-foreground); }
 .prose code { font-family: var(--font-mono); font-size: 0.82em; background: var(--muted); padding: 0.1rem 0.35rem; }
+.prose figure.shot { margin: 2.25rem 0; }
+.prose figure.shot img { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid var(--border); background: var(--muted); }
+.prose figure.shot figcaption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.6rem; text-align: center; }
 
 /* customer quote */
 .cs-quote { margin: 2.75rem 0; padding: 1.75rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -290,6 +294,15 @@ img, svg { display: block; }
 .footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted-foreground); }
 
 /* reveal */
+/* back to top */
+.to-top { position: fixed; right: 1.25rem; bottom: calc(1.25rem + env(safe-area-inset-bottom)); z-index: 35; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 2.75rem; padding: 0 0.85rem; border: 1px solid var(--border); background: var(--card); color: var(--foreground); font-family: var(--font-mono); font-size: 0.75rem; line-height: 1; cursor: pointer; opacity: 0; transform: translateY(8px); visibility: hidden; pointer-events: none; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out), background-color 150ms ease; }
+.to-top .icon { font-size: 1rem; }
+.to-top.is-visible { opacity: 1; transform: none; visibility: visible; pointer-events: auto; }
+.to-top:active { transform: translateY(1px); }
+.to-top:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .to-top:hover { background: var(--muted); } }
+@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
+
 .reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--ease-in-out), transform 600ms var(--ease-in-out); }
 .reveal.in-view { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
@@ -429,6 +442,11 @@ img, svg { display: block; }
         </ul>
         <p>Because SmartShop lives on Rightbrain, Pal can quickly adjust prompts, update output formats, and ship improvements instantly, all without redeploying their app.</p>
 
+        <figure class="shot">
+          <img src="assets/articles/pal-case-study/3.jpg" width="1060" height="556" loading="lazy" alt="The SmartShop task in the Rightbrain dashboard, showing model and prompt.">
+          <figcaption>The SmartShop Task in Rightbrain: model choice, prompt and structured JSON output.</figcaption>
+        </figure>
+
         <h2>Monitoring AI tasks in one place</h2>
         <p>Pal could have connected to a model API directly, but they needed a way to operate, monitor, and improve AI in production without waiting for engineering cycles or app redeploys, and to future-proof their AI approach through access to all leading models.</p>
         <p>With Rightbrain, Chris can:</p>
@@ -439,10 +457,19 @@ img, svg { display: block; }
         </ul>
         <p>And when things fail, they're not black boxes. Chris can inspect the inputs and outputs, diagnose the issue, adjust the prompt, and redeploy, all without downtime.</p>
 
+        <figure class="shot">
+          <img src="assets/articles/pal-case-study/2.jpg" width="1060" height="556" loading="lazy" alt="The Rightbrain dashboard monitoring AI task runs in production.">
+          <figcaption>Every run is observable — inspect inputs and outputs, diagnose failures, and redeploy without downtime.</figcaption>
+        </figure>
+
         <h2>Pal builds and ships multiple AI agents in Rightbrain</h2>
         <p>With Rightbrain, Pal are able to create and embed multiple AI agents to give users a complete suite of features.</p>
         <h3>SmartShop: scan a product, get healthier alternatives</h3>
         <p>In a supermarket aisle, a user snaps a yoghurt pot. Pal analyses the label, flags misleading claims like "low-fat" that hide high sugar content, and suggests healthier swaps with purchase links. Built as a Rightbrain task with structured JSON outputs, it's easy to refine; whenever accuracy drifts, Chris tweaks the prompt and updates go live instantly.</p>
+        <figure class="shot">
+          <img src="assets/articles/pal-case-study/1.jpg" width="744" height="744" loading="lazy" alt="SmartShop inside the Pal app rating a supermarket product.">
+          <figcaption>SmartShop in the Pal app: scan a product and get a health rating with healthier swaps.</figcaption>
+        </figure>
         <h3>Daily nutrition targets with guardrails</h3>
         <p>When one user was assigned a dangerously low calorie target, Chris added a simple rule, "never recommend below safe minimums", and rolled it out in seconds. The fix went live for all users without requiring a developer.</p>
         <h3>Content moderation in under an hour</h3>
@@ -488,6 +515,10 @@ img, svg { display: block; }
   </section>
 
 </main>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <i class="ri-arrow-up-line icon" aria-hidden="true"></i><span>Top</span>
+</button>
 
 <footer class="site-footer">
   <div class="container">
@@ -608,7 +639,21 @@ img, svg { display: block; }
       }
     });
   }
+
+  // back to top
+  var toTop = document.getElementById('toTop');
+  if (toTop) {
+    var toggleTop = function () {
+      toTop.classList.toggle('is-visible', window.scrollY > 600);
+    };
+    window.addEventListener('scroll', toggleTop, { passive: true });
+    toggleTop();
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  }
 })();
 </script>
+<script>(function(){var t=document.getElementById('themeToggle');if(!t)return;var sync=function(){var d=document.documentElement.classList.contains('dark');try{localStorage.setItem('rb-theme',d?'dark':'light');}catch(e){}t.setAttribute('aria-pressed',d?'true':'false');};t.addEventListener('click',sync);sync();})();</script>
 </body>
 </html>

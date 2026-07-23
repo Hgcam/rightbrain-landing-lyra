@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>(function(){try{if(localStorage.getItem('rb-theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rightbrain: Managed AI agents inside your core systems</title>
@@ -2233,5 +2234,6 @@ img, svg { display: block; }
     });
   })();
 </script>
+<script>(function(){var t=document.getElementById('themeToggle');if(!t)return;var sync=function(){var d=document.documentElement.classList.contains('dark');try{localStorage.setItem('rb-theme',d?'dark':'light');}catch(e){}t.setAttribute('aria-pressed',d?'true':'false');};t.addEventListener('click',sync);sync();})();</script>
 </body>
 </html>

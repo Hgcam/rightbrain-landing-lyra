@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>(function(){try{if(localStorage.getItem('rb-theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AI partner qualification &amp; outreach in Google Sheets | Rightbrain</title>
@@ -250,6 +251,9 @@ img, svg { display: block; }
 .prose ul, .prose ol { padding-left: 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .prose li::marker { color: var(--muted-foreground); }
 .prose code { font-family: var(--font-mono); font-size: 0.82em; background: var(--muted); padding: 0.1rem 0.35rem; }
+.prose figure.shot { margin: 2.25rem 0; }
+.prose figure.shot img { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid var(--border); background: var(--muted); }
+.prose figure.shot figcaption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.6rem; text-align: center; }
 
 /* customer quote */
 .cs-quote { margin: 2.75rem 0; padding: 1.75rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -290,6 +294,15 @@ img, svg { display: block; }
 .footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted-foreground); }
 
 /* reveal */
+/* back to top */
+.to-top { position: fixed; right: 1.25rem; bottom: calc(1.25rem + env(safe-area-inset-bottom)); z-index: 35; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 2.75rem; padding: 0 0.85rem; border: 1px solid var(--border); background: var(--card); color: var(--foreground); font-family: var(--font-mono); font-size: 0.75rem; line-height: 1; cursor: pointer; opacity: 0; transform: translateY(8px); visibility: hidden; pointer-events: none; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out), background-color 150ms ease; }
+.to-top .icon { font-size: 1rem; }
+.to-top.is-visible { opacity: 1; transform: none; visibility: visible; pointer-events: auto; }
+.to-top:active { transform: translateY(1px); }
+.to-top:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .to-top:hover { background: var(--muted); } }
+@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
+
 .reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--ease-in-out), transform 600ms var(--ease-in-out); }
 .reveal.in-view { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
@@ -424,6 +437,31 @@ img, svg { display: block; }
           <li><strong>Improve continuously via run auditing.</strong> Every run is auditable in the platform, so teams can review historical runs, spot where outputs need work, and refine prompts and qualification criteria to improve relevance and accuracy over time.</li>
         </ol>
 
+        <figure class="shot">
+          <img src="assets/articles/partner-qualification/1.jpg" width="1199" height="469" loading="lazy" alt="A prospect list of companies and contacts in Google Sheets.">
+          <figcaption>Step 1 — a prospect list exported from a source like Apollo into Google Sheets.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/articles/partner-qualification/2.jpg" width="1199" height="428" loading="lazy" alt="The Rightbrain Partner Qualification task configuration.">
+          <figcaption>Step 2 — the Partner Qualification task: model, prompt and inputs.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/articles/partner-qualification/3.jpg" width="1198" height="468" loading="lazy" alt="Qualification research and opportunity summary written back into the sheet.">
+          <figcaption>Step 2 — research and an opportunity summary written straight back into the sheet.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/articles/partner-qualification/6.jpg" width="1199" height="471" loading="lazy" alt="A Google Sheet with rows colour-coded green, yellow and red by score.">
+          <figcaption>Step 3 — threshold logic colour-codes each row: green, yellow or red.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/articles/partner-qualification/4.jpg" width="1199" height="459" loading="lazy" alt="The personalised outreach composer drafting LinkedIn and email templates.">
+          <figcaption>Step 4 — the outreach composer drafts tailored LinkedIn and email templates.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/articles/partner-qualification/5.jpg" width="762" height="638" loading="lazy" alt="A Rightbrain run history showing usage, tokens and cost.">
+          <figcaption>Step 5 — every run is auditable, with usage, tokens and cost.</figcaption>
+        </figure>
+
         <h2>How the pieces interact</h2>
         <p>Google Sheets acts as the operational interface; Rightbrain is the intelligence layer, providing website retrieval and analysis, qualification scoring, opportunity summarisation, and personalised content generation. The API connection enables structured, repeatable execution across large outbound lists.</p>
 
@@ -472,6 +510,10 @@ img, svg { display: block; }
   </section>
 
 </main>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <i class="ri-arrow-up-line icon" aria-hidden="true"></i><span>Top</span>
+</button>
 
 <footer class="site-footer">
   <div class="container">
@@ -592,7 +634,21 @@ img, svg { display: block; }
       }
     });
   }
+
+  // back to top
+  var toTop = document.getElementById('toTop');
+  if (toTop) {
+    var toggleTop = function () {
+      toTop.classList.toggle('is-visible', window.scrollY > 600);
+    };
+    window.addEventListener('scroll', toggleTop, { passive: true });
+    toggleTop();
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  }
 })();
 </script>
+<script>(function(){var t=document.getElementById('themeToggle');if(!t)return;var sync=function(){var d=document.documentElement.classList.contains('dark');try{localStorage.setItem('rb-theme',d?'dark':'light');}catch(e){}t.setAttribute('aria-pressed',d?'true':'false');};t.addEventListener('click',sync);sync();})();</script>
 </body>
 </html>

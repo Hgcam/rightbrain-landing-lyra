@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>(function(){try{if(localStorage.getItem('rb-theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sales &amp; ABM workflows in ChatGPT with Rightbrain Skills | Rightbrain</title>
@@ -250,6 +251,9 @@ img, svg { display: block; }
 .prose ul, .prose ol { padding-left: 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .prose li::marker { color: var(--muted-foreground); }
 .prose code { font-family: var(--font-mono); font-size: 0.82em; background: var(--muted); padding: 0.1rem 0.35rem; }
+.prose figure.shot { margin: 2.25rem 0; }
+.prose figure.shot img { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid var(--border); background: var(--muted); }
+.prose figure.shot figcaption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.6rem; text-align: center; }
 
 /* customer quote */
 .cs-quote { margin: 2.75rem 0; padding: 1.75rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -290,6 +294,15 @@ img, svg { display: block; }
 .footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted-foreground); }
 
 /* reveal */
+/* back to top */
+.to-top { position: fixed; right: 1.25rem; bottom: calc(1.25rem + env(safe-area-inset-bottom)); z-index: 35; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 2.75rem; padding: 0 0.85rem; border: 1px solid var(--border); background: var(--card); color: var(--foreground); font-family: var(--font-mono); font-size: 0.75rem; line-height: 1; cursor: pointer; opacity: 0; transform: translateY(8px); visibility: hidden; pointer-events: none; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out), background-color 150ms ease; }
+.to-top .icon { font-size: 1rem; }
+.to-top.is-visible { opacity: 1; transform: none; visibility: visible; pointer-events: auto; }
+.to-top:active { transform: translateY(1px); }
+.to-top:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .to-top:hover { background: var(--muted); } }
+@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
+
 .reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--ease-in-out), transform 600ms var(--ease-in-out); }
 .reveal.in-view { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
@@ -422,6 +435,11 @@ img, svg { display: block; }
         </ul>
         <p>This creates a structured layer between conversational prompts and operational execution.</p>
 
+        <figure class="shot">
+          <img src="assets/articles/chatgpt-abm/1.jpg" width="1200" height="675" loading="lazy" alt="Rightbrain Skills being called from the ChatGPT interface over MCP.">
+          <figcaption>Rightbrain Skills connect to ChatGPT over MCP, callable straight from the chat interface.</figcaption>
+        </figure>
+
         <h2>The workflow, step by step</h2>
         <ol>
           <li><strong>List available Skills.</strong> The user asks ChatGPT what Skills are connected; it returns descriptions, input requirements, and output formats — mirrored in the Rightbrain dashboard so interface and execution stay in sync.</li>
@@ -430,6 +448,27 @@ img, svg { display: block; }
           <li><strong>Account-based marketing strategy.</strong> The AI Account Strategist Skill turns those prioritised opportunities into a focused engagement plan: routes into the organisation, likely stakeholder profiles, and angles aligned to each use case.</li>
           <li><strong>Real-time logging.</strong> As each Skill runs, activity is recorded in the dashboard in near real time. Open any run to review duration, token usage, cost, raw inputs, and the full JSON response — so every output can be traced, reviewed, and validated.</li>
         </ol>
+
+        <figure class="shot">
+          <img src="assets/articles/chatgpt-abm/2.jpg" width="1200" height="675" loading="lazy" alt="ChatGPT listing connected Rightbrain Skills, mirrored in the Rightbrain dashboard.">
+          <figcaption>Step 1 — ChatGPT lists the connected Skills, mirrored in the Rightbrain dashboard.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/articles/chatgpt-abm/3.jpg" width="1200" height="564" loading="lazy" alt="The Similar Companies Skill returning a curated list of comparable accounts.">
+          <figcaption>Step 2 — the Similar Companies Skill returns a curated list of comparable accounts.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/articles/chatgpt-abm/4.jpg" width="1200" height="570" loading="lazy" alt="The Use Case Identifier ranking tailored engagement ideas for a target account.">
+          <figcaption>Step 3 — the Use Case Identifier ranks tailored engagement ideas for a target.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/articles/chatgpt-abm/5.jpg" width="1200" height="574" loading="lazy" alt="The Account Strategist turning opportunities into a focused ABM plan.">
+          <figcaption>Step 4 — the Account Strategist turns opportunities into a focused ABM plan.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/articles/chatgpt-abm/6.jpg" width="946" height="1300" loading="lazy" alt="A Rightbrain run log showing duration, tokens, cost and the full JSON response.">
+          <figcaption>Step 5 — every run is logged with duration, tokens, cost and the full JSON response.</figcaption>
+        </figure>
 
         <h2>Why it matters operationally</h2>
         <p>The workflow mirrors a sequence many teams already follow — identify similar companies to recent wins, research and prioritise, generate relevant use cases, and develop a targeted ABM strategy — but embedding Rightbrain Skills into ChatGPT makes those actions structured, repeatable, and aligned with internal process.</p>
@@ -473,6 +512,10 @@ img, svg { display: block; }
   </section>
 
 </main>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <i class="ri-arrow-up-line icon" aria-hidden="true"></i><span>Top</span>
+</button>
 
 <footer class="site-footer">
   <div class="container">
@@ -593,7 +636,21 @@ img, svg { display: block; }
       }
     });
   }
+
+  // back to top
+  var toTop = document.getElementById('toTop');
+  if (toTop) {
+    var toggleTop = function () {
+      toTop.classList.toggle('is-visible', window.scrollY > 600);
+    };
+    window.addEventListener('scroll', toggleTop, { passive: true });
+    toggleTop();
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  }
 })();
 </script>
+<script>(function(){var t=document.getElementById('themeToggle');if(!t)return;var sync=function(){var d=document.documentElement.classList.contains('dark');try{localStorage.setItem('rb-theme',d?'dark':'light');}catch(e){}t.setAttribute('aria-pressed',d?'true':'false');};t.addEventListener('click',sync);sync();})();</script>
 </body>
 </html>

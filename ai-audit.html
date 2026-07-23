@@ -200,8 +200,9 @@ img, svg { display: block; }
 .book-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--border); }
 .book-head .t { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: 0.06em; }
 .book-head .t .icon { font-size: 0.95rem; color: var(--foreground); }
-.cal-embed { position: relative; min-height: 700px; width: 100%; }
-@media (max-width: 640px) { .cal-embed { min-height: 1040px; } }
+/* Calendly injects a wrapper with height:100%, so the container needs an explicit height (not just min-height) or the iframe collapses to ~150px. */
+.cal-embed { position: relative; height: 720px; width: 100%; }
+@media (max-width: 640px) { .cal-embed { height: 1040px; } }
 .cal-fallback { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.9rem; min-height: 700px; padding: 2rem; text-align: center; color: var(--muted-foreground); font-size: 0.8125rem; }
 
 /* ============ footer ============ */

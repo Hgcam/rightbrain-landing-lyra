@@ -76,6 +76,8 @@
     s.onload = function () {
       booted = true; loading = false;
       try {
+        // Deferred loading: the widget does not auto-boot, so boot explicitly.
+        w.Intercom("boot", w.intercomSettings);
         w.Intercom("onUnreadCountChange", function (n) { setBadge(n); });
         w.Intercom("onShow", function () { setOpen(true); });
         w.Intercom("onHide", function () { setOpen(false); });

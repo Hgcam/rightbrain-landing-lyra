@@ -423,7 +423,7 @@ img, svg { display: block; }
           </div>
           <div class="asset-body">
             <div class="t"><span class="name">Favicon</span></div>
-            <div class="desc">Adaptive SVG (bars flip for light/dark browser chrome), with an ICO + PNG fallback tile that reads on both. Apple touch &amp; PWA icons at 180 / 512.</div>
+            <div class="desc">Self-contained tile (SVG + ICO + PNG) that stays legible on light and dark browser tabs. Apple touch &amp; PWA icons at 180 / 512.</div>
             <div class="dl-row">
               <a class="btn btn-outline btn-sm" href="assets/favicon/favicon.svg" download><i class="ri-vector-line icon" aria-hidden="true"></i> SVG</a>
               <a class="btn btn-outline btn-sm" href="assets/favicon/favicon.ico" download><i class="ri-download-2-line icon" aria-hidden="true"></i> ICO</a>
@@ -823,5 +823,6 @@ img, svg { display: block; }
 })();
 </script>
 <script>(function(){var t=document.getElementById('themeToggle');if(!t)return;var sync=function(){var d=document.documentElement.classList.contains('dark');try{localStorage.setItem('rb-theme',d?'dark':'light');}catch(e){}t.setAttribute('aria-pressed',d?'true':'false');};t.addEventListener('click',sync);sync();})();</script>
+<script src="assets/intercom.js" defer></script>
 </body>
 </html>

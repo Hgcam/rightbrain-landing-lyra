@@ -1,10 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="10.5 10 28 28">
-  <style>
-    .bar { fill: #1D1816; }
-    @media (prefers-color-scheme: dark) { .bar { fill: #FBFAF9; } }
-  </style>
-  <rect x="26" y="12" width="10" height="24" fill="#EA580C"/>
-  <rect class="bar" x="13" y="12" width="10" height="6"/>
-  <rect class="bar" x="13" y="21" width="10" height="6"/>
-  <rect class="bar" x="13" y="30" width="10" height="6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <rect width="48" height="48" rx="9" fill="#F3F1F1"/>
+  <g transform="translate(24 24) scale(1.35) translate(-24.5 -24)">
+    <rect x="26" y="12" width="10" height="24" fill="#EA580C"/>
+    <rect x="13" y="12" width="10" height="6" fill="#1D1816"/>
+    <rect x="13" y="21" width="10" height="6" fill="#1D1816"/>
+    <rect x="13" y="30" width="10" height="6" fill="#1D1816"/>
+  </g>
 </svg>

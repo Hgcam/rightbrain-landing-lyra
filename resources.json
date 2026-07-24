@@ -8,7 +8,10 @@
       "date": "2026-06-23",
       "href": "rightbrain-article-god-level-agent.html",
       "featured": true,
-      "author": { "name": "Florian Ruspi", "role": "Head of Growth" },
+      "author": {
+        "name": "Florian Ruspi",
+        "role": "Head of Growth"
+      },
       "topic": "Agent strategy"
     },
     {
@@ -18,7 +21,10 @@
       "excerpt": "Building an agent that works \"perfectly\" in a demo is easy. Chris Davison, Head of Agent Delivery, on what actually breaks once real traffic, real tools, and real accountability arrive.",
       "date": "2026-06-18",
       "href": "rightbrain-article-production-agents.html",
-      "author": { "name": "Chris Davison", "role": "Head of Agent Delivery" }
+      "author": {
+        "name": "Chris Davison",
+        "role": "Head of Agent Delivery"
+      }
     },
     {
       "slug": "agents-make-engineering-hard-again",
@@ -27,7 +33,10 @@
       "excerpt": "We are nearing the end of the \"prompt demo\" phase of AI. Matthew Wells, CTO, on why the engineering phase brings all the hard bits back, and why that is good news for engineers.",
       "date": "2026-06-23",
       "href": "rightbrain-article-engineering-hard-again.html",
-      "author": { "name": "Matthew Wells", "role": "CTO" }
+      "author": {
+        "name": "Matthew Wells",
+        "role": "CTO"
+      }
     },
     {
       "slug": "how-marketing-agencies-are-rebuilding-around-ai",
@@ -36,10 +45,13 @@
       "excerpt": "Most agencies have experimented with AI. There is a meaningful difference between individuals using AI and a business operating on it, and that gap is where the next operating model is being built.",
       "date": "2026-06-25",
       "href": "rightbrain-article-marketing-agencies.html",
-      "author": { "name": "Florian Ruspi", "role": "Head of Growth" }
+      "author": {
+        "name": "Florian Ruspi",
+        "role": "Head of Growth"
+      }
     },
     {
-      "slug": "automated-company-enrichment",
+      "slug": "attio-company-enrichment",
       "category": "usecase",
       "title": "Automated company enrichment",
       "excerpt": "An integration between Attio CRM and Rightbrain turns a basic company record into a fully enriched, actionable sales and marketing asset, automatically.",
@@ -54,7 +66,7 @@
       "excerpt": "Run structured sales and marketing workflows directly inside ChatGPT by connecting custom Rightbrain Skills over MCP.",
       "date": "2026-02-20",
       "href": "rightbrain-article-chatgpt-abm.html",
-      "tool": "ChatGPT \u00b7 MCP"
+      "tool": "ChatGPT · MCP"
     },
     {
       "slug": "automated-due-diligence",
@@ -66,7 +78,7 @@
       "tool": "GitHub"
     },
     {
-      "slug": "partner-qualification-and-outreach",
+      "slug": "google-sheets-lead-qualifier",
       "category": "usecase",
       "title": "Partner qualification and outreach",
       "excerpt": "Embed Rightbrain in a lightweight Google Sheets workflow to qualify potential partners or customers and generate tailored outreach messaging.",
@@ -84,7 +96,7 @@
       "customer": "Pal.health"
     },
     {
-      "slug": "rightbrain-web-search-inside-clay",
+      "slug": "web-search-inside-clay",
       "category": "casestudy",
       "title": "Rightbrain web search inside Clay",
       "excerpt": "Rocket SaaS built a fully automated audit-to-outreach workflow using Rightbrain inside Clay, so every prospect gets a consistent, structured set of recommendations ready to drop into an email.",
@@ -120,7 +132,7 @@
       "tool": "Gemini 2.5 Flash"
     },
     {
-      "slug": "connect-rightbrain-to-clay",
+      "slug": "clay-guide",
       "category": "guide",
       "title": "Connect Rightbrain to Clay",
       "excerpt": "Connecting Rightbrain to Clay helps you create consistent, structured LLM responses you can reliably reuse across automations and outreach.",

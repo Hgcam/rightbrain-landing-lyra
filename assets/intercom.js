@@ -89,17 +89,57 @@
     x.parentNode.insertBefore(s, x);
   }
 
-  // Prefetch on first hover/focus (desktop) so the click feels instant.
-  btn.addEventListener("mouseenter", function () { bootIntercom(); }, { once: true });
-  btn.addEventListener("focus", function () { bootIntercom(); }, { once: true });
+  // ---- Consent gating ------------------------------------------------------
+  // Intercom sets cookies + loads widget.intercom.io, so it counts as a
+  // "functional" cookie under GDPR/ePrivacy. Nothing loads until the user has
+  // granted functional consent via window.rbConsent. If consent is later
+  // revoked we shut Intercom down (clears its cookies).
+  function functionalOK() {
+    // If the consent manager is absent for some reason, fail closed (no load).
+    return !!(window.rbConsent && window.rbConsent.get && window.rbConsent.get("functional"));
+  }
+  var pendingOpen = false;
 
-  // Click always opens (booting first if needed).
-  btn.addEventListener("click", function () {
-    if (booted) { window.Intercom("showMessenger"); return; }
-    wrap.classList.add("is-loading");
-    bootIntercom(function () {
-      wrap.classList.remove("is-loading");
-      window.Intercom("showMessenger");
+  function shutdownIntercom() {
+    if (!booted) return;
+    try { window.Intercom && window.Intercom("shutdown"); } catch (e) {}
+    booted = false; loading = false;
+    setBadge(0); setOpen(false);
+  }
+
+  // React to consent changes (fires immediately with current state too).
+  function wireConsent() {
+    window.rbConsent.onChange(function (c) {
+      var ok = !!(c && c.functional);
+      if (ok && pendingOpen) {
+        pendingOpen = false;
+        wrap.classList.add("is-loading");
+        bootIntercom(function () { wrap.classList.remove("is-loading"); window.Intercom("showMessenger"); });
+      } else if (!ok) {
+        shutdownIntercom();
+      }
     });
+  }
+  if (window.rbConsent) wireConsent();
+  else document.addEventListener("rb:consent-change", function once() {
+    document.removeEventListener("rb:consent-change", once); if (window.rbConsent) wireConsent();
+  });
+
+  // Prefetch on first hover/focus (desktop) so the click feels instant —
+  // but only if functional cookies are already allowed.
+  btn.addEventListener("mouseenter", function () { if (functionalOK()) bootIntercom(); });
+  btn.addEventListener("focus", function () { if (functionalOK()) bootIntercom(); });
+
+  // Click opens the messenger. If functional consent isn't granted yet, open
+  // the consent preferences instead and remember to launch once allowed.
+  btn.addEventListener("click", function () {
+    if (functionalOK()) {
+      if (booted) { window.Intercom("showMessenger"); return; }
+      wrap.classList.add("is-loading");
+      bootIntercom(function () { wrap.classList.remove("is-loading"); window.Intercom("showMessenger"); });
+      return;
+    }
+    pendingOpen = true;
+    if (window.rbConsent && window.rbConsent.open) window.rbConsent.open();
   });
 })();

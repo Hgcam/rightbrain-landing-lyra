@@ -381,6 +381,7 @@ img, svg { display: block; }
     <div class="footer-base">
       <span>&copy; 2026 Rightbrain</span>
       <span>Made in the UK</span>
+      <button type="button" class="rbc-open" data-rb-consent-open>Cookie settings</button>
     </div>
   </div>
 </footer>
@@ -405,7 +406,8 @@ img, svg { display: block; }
     });
     return CAL_BASE + '?' + p.toString();
   }
-  var calReady = false;
+  var calReady = false, waitCal = null;
+
   function loadCal() {
     var el = document.getElementById('calEmbed');
     if (!el || !window.Calendly || !window.Calendly.initInlineWidget) return;
@@ -413,13 +415,42 @@ img, svg { display: block; }
     window.Calendly.initInlineWidget({ url: calUrl(), parentElement: el });
     calReady = true;
   }
-  // widget.js is async; poll briefly until the global is ready.
-  var tries = 0;
-  var waitCal = setInterval(function () {
-    tries++;
-    if (window.Calendly && window.Calendly.initInlineWidget) { clearInterval(waitCal); loadCal(); }
-    else if (tries > 60) { clearInterval(waitCal); }
-  }, 100);
+
+  // Calendly's iframe sets third-party cookies, so it's a "functional" cookie
+  // under GDPR. We only load it once the user has granted functional consent.
+  function startCal() {
+    if (calReady || waitCal) return;
+    var el = document.getElementById('calEmbed');
+    if (el) el.innerHTML = '<div class="cal-fallback"><span>Loading the scheduler&hellip;</span></div>';
+    var tries = 0;
+    waitCal = setInterval(function () {
+      tries++;
+      if (window.Calendly && window.Calendly.initInlineWidget) { clearInterval(waitCal); waitCal = null; loadCal(); }
+      else if (tries > 60) { clearInterval(waitCal); waitCal = null; }
+    }, 100);
+  }
+
+  function calConsentPrompt() {
+    var el = document.getElementById('calEmbed');
+    if (!el) return;
+    calReady = false;
+    el.innerHTML =
+      '<div class="cal-fallback">' +
+        '<span>The scheduler needs functional cookies to load here.</span>' +
+        '<button type="button" class="btn btn-primary" id="calConsentBtn">Enable &amp; load scheduler</button>' +
+        '<a class="btn btn-outline" href="' + CAL_BASE + '" target="_blank" rel="noopener">Or open the booking page &#8599;</a>' +
+      '</div>';
+    var b = document.getElementById('calConsentBtn');
+    if (b) b.addEventListener('click', function () { if (window.rbConsent && window.rbConsent.open) window.rbConsent.open(); });
+  }
+
+  function initCalConsent() {
+    if (!window.rbConsent) { calConsentPrompt(); return; }   // fail closed
+    window.rbConsent.onChange(function (c) { if (c && c.functional) startCal(); else calConsentPrompt(); });
+    if (!window.rbConsent.decided()) calConsentPrompt();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initCalConsent);
+  else initCalConsent();
 
   // theme toggle (+ re-theme the embed)
   var toggle = document.getElementById('themeToggle');
@@ -469,6 +500,7 @@ img, svg { display: block; }
 })();
 </script>
 <script>(function(){var t=document.getElementById('themeToggle');if(!t)return;var sync=function(){var d=document.documentElement.classList.contains('dark');try{localStorage.setItem('rb-theme',d?'dark':'light');}catch(e){}t.setAttribute('aria-pressed',d?'true':'false');};t.addEventListener('click',sync);sync();})();</script>
+<script src="assets/consent.js" defer></script>
 <script src="assets/intercom.js" defer></script>
 </body>
 </html>

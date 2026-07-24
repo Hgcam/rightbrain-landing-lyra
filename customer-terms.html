@@ -270,6 +270,64 @@ img, svg { display: block; }
   .btn:active, .theme-toggle:active, .menu-btn:active { transform: none; }
 }
 </style>
+<!-- rightbrain-seo:jsonld -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://rightbrain.ai/#organization",
+      "name": "Rightbrain",
+      "url": "https://rightbrain.ai",
+      "sameAs": [
+        "https://www.linkedin.com/company/rightbrain-ai",
+        "https://x.com/rightbrainai"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rightbrain.ai/#website",
+      "url": "https://rightbrain.ai",
+      "name": "Rightbrain",
+      "publisher": {
+        "@id": "https://rightbrain.ai/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://rightbrain.ai/customer-terms#webpage",
+      "url": "https://rightbrain.ai/customer-terms",
+      "name": "Customer Terms",
+      "description": "The terms governing your use of Rightbrain: subscriptions, acceptable use, data handling, liability, and how the agreement can be changed or ended.",
+      "isPartOf": {
+        "@id": "https://rightbrain.ai/#website"
+      },
+      "about": {
+        "@id": "https://rightbrain.ai/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://rightbrain.ai"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Customer Terms",
+          "item": "https://rightbrain.ai/customer-terms"
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -456,7 +514,7 @@ img, svg { display: block; }
         <h3>Support</h3>
         <ul>
           <li><a href="https://rightbrain-developers.slack.com/join/shared_invite/zt-2mt5nyavm-IiYim_3HzoJki7wr8oeHug#/shared-invite/email">Slack Group</a></li>
-          <li><a href="https://rightbrain.ai/brand-kit">Brand Kit</a></li>
+          <li><a href="brand-kit.html">Brand Kit</a></li>
           <li><a href="https://docs.rightbrain.ai/">Documentation</a></li>
         </ul>
       </div>

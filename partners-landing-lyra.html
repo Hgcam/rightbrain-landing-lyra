@@ -1401,6 +1401,58 @@ img, svg { display: block; }
   }
 }
 </style>
+<!-- rightbrain-seo:jsonld -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://rightbrain.ai/#organization",
+      "name": "Rightbrain",
+      "url": "https://rightbrain.ai",
+      "sameAs": [
+        "https://www.linkedin.com/company/rightbrain-ai",
+        "https://x.com/rightbrainai"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rightbrain.ai/#website",
+      "url": "https://rightbrain.ai",
+      "name": "Rightbrain",
+      "publisher": {
+        "@id": "https://rightbrain.ai/#organization"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://rightbrain.ai/#product",
+      "name": "Rightbrain",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Managed AI agents that run inside your existing tools: pick a model per task, ground with RAG, wire up tools, set approvals, and operate with full tracing, evals and rollback.",
+      "publisher": {
+        "@id": "https://rightbrain.ai/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://rightbrain.ai/platform-partners#webpage",
+      "url": "https://rightbrain.ai/platform-partners",
+      "name": "Rightbrain for Platform Partners",
+      "description": "The AI operating layer for platforms. Build, embed and operate agents under your brand, with no AI team to hire and no infrastructure to run. Production-ready from day one.",
+      "isPartOf": {
+        "@id": "https://rightbrain.ai/#website"
+      },
+      "about": {
+        "@id": "https://rightbrain.ai/#product"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -2078,7 +2130,7 @@ img, svg { display: block; }
         <h3>Support</h3>
         <ul>
           <li><a href="https://rightbrain-developers.slack.com/join/shared_invite/zt-2mt5nyavm-IiYim_3HzoJki7wr8oeHug#/shared-invite/email">Slack Group</a></li>
-          <li><a href="https://rightbrain.ai/brand-kit">Brand Kit</a></li>
+          <li><a href="brand-kit.html">Brand Kit</a></li>
           <li><a href="https://docs.rightbrain.ai/">Documentation</a></li>
         </ul>
       </div>

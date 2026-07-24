@@ -1,0 +1,8 @@
+name: Check slug consistency
+on: [push, pull_request]
+jobs:
+  slugs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 _check-slugs.py
